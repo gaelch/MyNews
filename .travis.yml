@@ -50,7 +50,6 @@ before_script:
 - android-wait-for-emulator
 - adb shell input keyevent 82 & 
 
-- cd MyNews
 
 script: 
   ./gradlew connectedAndroidTest
