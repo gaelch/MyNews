@@ -26,14 +26,14 @@
 
                     android:title="Travel" />
                 <item
-                    android:id="@+id/activity_main_drawer_business"
+                    android:id="@+id/activity_main_drawer_technology"
 
-                    android:title="Business" />
+                    android:title="Technology" />
 
                 <item
-                    android:id="@+id/activity_main_drawer_sciences"
+                    android:id="@+id/activity_main_drawer_automobiles"
 
-                    android:title="Sciences" />
+                    android:title="Automobiles" />
                 <item
                     android:id="@+id/activity_main_drawer_sports"
 

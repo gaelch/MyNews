@@ -24,13 +24,4 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
-        <item name="colorAccent">@color/colorPrimary</item>
-        <item name="android:textColorSecondary">@color/Black</item>
-    </style>
-
-    <style name="SwitchTheme" parent="Theme.AppCompat.Light">
-        <item name="android:colorActivatedHighlight">@color/colorPrimary</item>
-    </style>
-
 </resources>

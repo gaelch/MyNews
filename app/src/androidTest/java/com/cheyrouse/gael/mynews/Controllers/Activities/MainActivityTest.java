@@ -1,68 +1,90 @@
 package com.cheyrouse.gael.mynews.Controllers.Activities;
 
+
+import android.support.test.espresso.ViewInteraction;
+import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import com.cheyrouse.gael.mynews.R;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
+@LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mainActivityActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class);
-
-    private MainActivity mActivity = null;
-
-    @Before
-    public void setUp() throws Exception {
-        mActivity = mainActivityActivityTestRule.getActivity();
-    }
+    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void testConfigurePagerAndTabs(){
-        View viewPager = mActivity.findViewById(R.id.activity_main_viewpager);
-        View tabs = mActivity.findViewById(R.id.activity_main_tabs);
+    public void mainActivityTest() {
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withContentDescription("Open navigation drawer"),
+                        childAtPosition(
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withClassName(is("android.widget.LinearLayout")),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
 
-        Assert.assertNotNull(viewPager);
-        Assert.assertNotNull(tabs);
+        ViewInteraction checkedTextView = onView(
+                allOf(withId(R.id.design_menu_item_text),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.design_navigation_view),
+                                        4),
+                                0),
+                        isDisplayed()));
+        checkedTextView.check(matches(isDisplayed()));
+
+        ViewInteraction checkedTextView2 = onView(
+                allOf(withId(R.id.design_menu_item_text),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.design_navigation_view),
+                                        8),
+                                0),
+                        isDisplayed()));
+        checkedTextView2.check(matches(isDisplayed()));
     }
 
-  /*  @Test
-    public void menuIsCreate(){
-        Menu menu = mActivity.findViewById(R.menu.menu);
-        mActivity.onCreateOptionsMenu(menu);
-        Assert.assertNotNull(menu);
-    }*/
+    private static Matcher<View> childAtPosition(
+            final Matcher<View> parentMatcher, final int position) {
 
-    @Test
-    public void toolbarIsOk(){
-        Toolbar toolbar = mActivity.findViewById(R.id.toolbar);
-        Assert.assertNotNull(toolbar);
+        return new TypeSafeMatcher<View>() {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("Child at position " + position + " in parent ");
+                parentMatcher.describeTo(description);
+            }
+
+            @Override
+            public boolean matchesSafely(View view) {
+                ViewParent parent = view.getParent();
+                return parent instanceof ViewGroup && parentMatcher.matches(parent)
+                        && view.equals(((ViewGroup) parent).getChildAt(position));
+            }
+        };
     }
-
-  /*  @Test
-    public void GoodItemSelectedParamsSearch(){
-        MenuItem itemParams = mActivity.findViewById(R.id.menu_activity_main_params);
-        MenuItem itemSearch = mActivity.findViewById(R.id.menu_activity_main_search);
-        Assert.assertTrue("Il n'y a rien à paramétrer ici, passez votre chemin...", mActivity.onOptionsItemSelected(itemParams));
-        Assert.assertTrue("Recherche indisponible, demandez plutôt l'avis de Google, c'est mieux et plus rapide.", mActivity.onOptionsItemSelected(itemSearch));
-    }*/
-
-    @After
-    public void tearDown() throws Exception {
-        mActivity = null;
-    }
-
 }
