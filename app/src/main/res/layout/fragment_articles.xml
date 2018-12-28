@@ -1,3 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_main_swipe_container"
@@ -11,3 +17,27 @@
         android:layout_height="match_parent" />
 
 </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/fragment_progress_bar"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="216dp"
+        android:visibility="gone"
+        android:indeterminateTint="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:id="@+id/tv_bad_request"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="188dp"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Le contenu de cette page est indisponible"/>
+
+</RelativeLayout>

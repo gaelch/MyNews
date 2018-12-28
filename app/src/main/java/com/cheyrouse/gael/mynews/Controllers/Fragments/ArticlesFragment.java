@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -37,6 +39,8 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     @BindView(R.id.fragment_main_recycler_view) RecyclerView recyclerView;
     @BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.tv_bad_request) TextView textView;
+    @BindView(R.id.fragment_progress_bar) ProgressBar progressBar;
 
     private static final String FRAGMENT_POSITION= "position";
     private ArticlesFragmentListener mListener;
@@ -82,6 +86,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_articles, container, false);
         ButterKnife.bind(this, view);
+        progressBar.setVisibility(View.VISIBLE);
 
         if (getArguments() != null) {
             position = getArguments().getInt(FRAGMENT_POSITION);
@@ -105,6 +110,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
     }
 
     public void updateContent(String section){
+        progressBar.setVisibility(View.VISIBLE);
         sectionNav = section;
         executeHttpRequestBusiness(section);
     }
@@ -158,10 +164,12 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
             @Override
             public void onError(Throwable e) {
+                textView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onComplete() {
+                progressBar.setVisibility(View.GONE);
                 Log.e("Test", "TopStories is charged");
             }
         });
@@ -179,11 +187,13 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
             @Override
             public void onError(Throwable e) {
+                textView.setVisibility(View.VISIBLE);
                 Log.e("Test", "MostPopular is on error");
             }
 
             @Override
             public void onComplete() {
+                progressBar.setVisibility(View.GONE);
                 Log.e("Test", "MostPopular is charged");
             }
         });
@@ -199,10 +209,12 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
             @Override
             public void onError(Throwable e) {
+                textView.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onComplete() {
+                progressBar.setVisibility(View.GONE);
                 Log.e("Test", "TopStories, section Business is charged");
             }
         });

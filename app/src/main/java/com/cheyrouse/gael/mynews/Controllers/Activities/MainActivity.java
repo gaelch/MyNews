@@ -24,6 +24,7 @@ import com.cheyrouse.gael.mynews.Views.PagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -166,18 +167,21 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
             case R.id.activity_main_drawer_sports:
                 sectionNav = "sports";
                 updateNavArticle(sectionNav);
+            case R.id.activity_main_drawer_Business:
+                sectionNav = "business";
+                updateNavArticle(sectionNav);
                 break;
             default:
                 break;
         }
 
         this.drawerLayout.closeDrawer(GravityCompat.START);
-
         return true;
     }
 
     private void updateNavArticle(String sectionNav) {
         pager.setCurrentItem(2);
+        Objects.requireNonNull(tabs.getTabAt(2)).setText(sectionNav);
         ((ArticlesFragment) mPagerAdapter.getItem(2)).updateContent(sectionNav);
     }
 

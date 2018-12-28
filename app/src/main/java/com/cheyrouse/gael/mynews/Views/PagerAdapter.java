@@ -55,8 +55,4 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 return null;
         }
     }
-
-    public Fragment setCurrentItem(int i) {
-        return mListFragment.get(i);
-    }
 }
