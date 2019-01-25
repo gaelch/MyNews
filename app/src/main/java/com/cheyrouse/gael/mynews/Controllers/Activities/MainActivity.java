@@ -34,12 +34,9 @@ import static com.cheyrouse.gael.mynews.Models.Result.TOPSTORIES_EXTRA;
 public class MainActivity extends AppCompatActivity implements ArticlesFragment.ArticlesFragmentListener, NavigationView.OnNavigationItemSelectedListener
 {
 
-    @BindView(R.id.activity_main_viewpager)
-    public ViewPager pager;
-    @BindView(R.id.activity_main_tabs)
-    TabLayout tabs;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.activity_main_viewpager) public ViewPager pager;
+    @BindView(R.id.activity_main_tabs) TabLayout tabs;
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -96,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
                 return true;
             case R.id.menu_activity_main_search:
                 Toast.makeText(this, " fragment recherche ", Toast.LENGTH_SHORT).show();
-             /*   Intent SearchActivityIntent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(SearchActivityIntent);*/
+                Intent SearchActivityIntent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(SearchActivityIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

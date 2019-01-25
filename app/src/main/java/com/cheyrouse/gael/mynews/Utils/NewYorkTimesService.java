@@ -1,6 +1,7 @@
 package com.cheyrouse.gael.mynews.Utils;
 
 import com.cheyrouse.gael.mynews.Models.Article;
+import com.cheyrouse.gael.mynews.Models.SearchArticle;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -10,25 +11,29 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 
 public interface NewYorkTimesService {
 
+    static final String API_KEY = "c30Fj2G1xFQkdMypW0aC6uEfGZhJh6Rn";
 
-    @GET("svc/topstories/v2/{section}.json?api_key=0adc2f31b1d340e9afa8a9804f49000a")
-    Observable<Article> getBySection(@Path("section") String section);
 
-    @GET("svc/mostpopular/v2/mostviewed/{section}/1.json?api_key=0adc2f31b1d340e9afa8a9804f49000a")
-    Observable<Article> getBySectionMp(@Path("section") String section);
+    @GET("svc/topstories/v2/{section}.json?")
+    Observable<Article> getBySection(@Path("section") String section, @Query("api-key") String API_KEY);
 
-   /* @GET("svc/search/v2/articlesearch.json?api_key=0adc2f31b1d340e9afa8a9804f49000a")
-    Observable<SearchArticle> getSearch(
-            @Query("q") String section,
+    @GET("svc/mostpopular/v2/mostviewed/{section}/1.json?")
+    Observable<Article> getBySectionMp(@Path("section") String section, @Query("api-key") String API_KEY);
+
+    @GET("svc/search/v2/articlesearch.json?")
+    Observable<SearchArticle> getSearch(@Query("api-key") String API_KEY,
+            @Query("q") String search,
             @Query("fq")String category,
             @Query("begin_date")String beginDate,
             @Query("end_date")String endDate,
             @Query("sort") String sort
-    );*/
+
+    );
 
     ThreadLocal<Retrofit> retrofit = new ThreadLocal<Retrofit>() {
         @Override

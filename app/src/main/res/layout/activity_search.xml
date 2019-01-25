@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controllers.Activities.SearchActivity"
+    android:background="@android:color/white">
+
+    <!-- Toolbar -->
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <CheckBox
+        android:id="@+id/checkBoxArts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="189dp"
+        android:layout_marginEnd="286dp"
+        android:textColor="@color/Black"
+        android:theme="@style/checkBoxStyle"
+        android:text="Arts" />
+
+    <CheckBox
+        android:id="@+id/checkBoxBusiness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="234dp"
+        android:layout_marginEnd="259dp"
+        android:textColor="@color/Black"
+        android:theme="@style/checkBoxStyle"
+        android:text="Business" />
+
+    <CheckBox
+        android:id="@+id/checkBoxSciences"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="276dp"
+        android:layout_marginEnd="256dp"
+        android:textColor="@color/Black"
+        android:theme="@style/checkBoxStyle"
+        android:text="sciences" />
+
+    <CheckBox
+        android:id="@+id/checkBoxPolitics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="81dp"
+        android:textColor="@color/Black"
+        android:theme="@style/checkBoxStyle"
+        android:text="Politics" />
+
+    <CheckBox
+        android:id="@+id/checkBoxSports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="233dp"
+        android:layout_marginEnd="84dp"
+        android:textColor="@color/Black"
+        android:theme="@style/checkBoxStyle"
+        android:text="Sports" />
+
+    <CheckBox
+        android:id="@+id/checkBoxTravel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="276dp"
+        android:layout_marginEnd="84dp"
+        android:textColor="@color/Black"
+        android:theme="@style/checkBoxStyle"
+        android:text="Travel" />
+
+    <TextView
+        android:id="@+id/buttonSearch"
+        android:layout_width="347dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="182dp"
+        android:background="@color/colorPrimary"
+        android:shadowColor="@android:color/black"
+        android:text="Search"
+        android:textColor="@color/colorAccent" />
+
+    <DatePicker
+        android:id="@+id/result_to_search_date_picker_begin"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/editSearchBar"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="139dp">
+    </DatePicker>
+
+    <DatePicker
+        android:id="@+id/result_to_search_date_picker_end"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/editSearchBar"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="192dp"
+        android:layout_marginTop="139dp">
+    </DatePicker>
+
+
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/editSearchBar"
+        android:layout_width="313dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/checkBoxPolitics"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="-47dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:hint="Search query term" />
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_search_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+    </FrameLayout>
+
+
+</RelativeLayout>

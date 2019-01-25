@@ -31,6 +31,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
 import static android.support.constraint.Constraints.TAG;
+import static com.cheyrouse.gael.mynews.Utils.NewYorkTimesService.API_KEY;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -156,7 +157,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     private void executeHttpRequestTopStories( ){
 
-        disposable = NewYorkTimesStream.streamFetchArticle("home").subscribeWith(new DisposableObserver<Article>() {
+        disposable = NewYorkTimesStream.streamFetchArticle( "home", API_KEY).subscribeWith(new DisposableObserver<Article>() {
             @Override
             public void onNext(Article articles) {
                 updateUI(articles);
@@ -178,7 +179,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     private  void executeHttpRequestMostPopular (){
 
-        disposable = NewYorkTimesStream.streamFetchArticleMostPopular("movies").subscribeWith(new DisposableObserver<Article>() {
+        disposable = NewYorkTimesStream.streamFetchArticleMostPopular("sports", API_KEY).subscribeWith(new DisposableObserver<Article>() {
 
             @Override
             public void onNext(Article articles) {
@@ -200,8 +201,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
     }
 
     private void executeHttpRequestBusiness(String sectionNav){
-
-        disposable = NewYorkTimesStream.streamFetchArticle(sectionNav).subscribeWith(new DisposableObserver<Article>() {
+        disposable = NewYorkTimesStream.streamFetchArticle(sectionNav, API_KEY).subscribeWith(new DisposableObserver<Article>() {
             @Override
             public void onNext(Article articles) {
                 updateUI(articles);
@@ -236,6 +236,11 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
         if(articles.getResult() != null)
         {
             ArticlesResults.addAll(articles.getResult());
+            if(ArticlesResults.size() == 0){
+                {
+                    textView.setVisibility(View.VISIBLE);
+                    textView.setText("il n'y a pas d'article dans cette section");}
+            }
             adapter.notifyDataSetChanged();
             swipeRefreshLayout.setRefreshing(false);
         }

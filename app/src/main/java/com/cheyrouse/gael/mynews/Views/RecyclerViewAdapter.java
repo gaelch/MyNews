@@ -17,13 +17,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     private final onArticleAdapterListener mListener;
 
-    public interface Listener {
-        void onClickDeleteButton(int position);
-    }
-
-    // FOR COMMUNICATION
-
-
     // FOR DATA
     private List<Result> topStories;
     private RequestManager glide;
@@ -58,10 +51,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         return this.topStories.size();
     }
 
-
-    public Result getArticle (int position) {
-        return this.topStories.get(position);
-    }
 
     public interface onArticleAdapterListener {
         void onArticleClicked(Result resultTopStories);

@@ -61,24 +61,21 @@ public class ArticleDetailActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void onConfigureWebView() {
-        // Configure la webview pour l'utilisation du javascript
+        //Configure the webview for the use of javascript
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
-        // Permet l'ouverture des fenêtres
+        // Allows opening of windows
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-
-        // Autorise le stockage DOM (Document Object Model)
+        //Allow storage DOM (Document Object Model)
         webSettings.setDomStorageEnabled(true);
     }
 
-
-    // Fonction qui permet l'affichage de la page lorsque tout est chargé (événement onPageFinished)
+    // Function that allows the display of the page when everything is loaded
     public void onPageFinished() {
         webView.setVisibility(View.VISIBLE);
     }
-
 
 
     @Override
@@ -99,7 +96,7 @@ public class ArticleDetailActivity extends AppCompatActivity {
     // UPDATE UI
     // -------------------
 
-    private void updateUI(){
+    protected void updateUI(){
         // Charge l'url
         webView.loadUrl(url);
     }

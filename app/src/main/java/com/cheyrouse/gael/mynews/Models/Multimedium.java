@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Multimedium {
 
+    @SerializedName("rank")
+    @Expose
+    private Integer rank;
     @SerializedName("url")
     @Expose
     private String url;
@@ -29,6 +32,15 @@ public class Multimedium {
     @SerializedName("copyright")
     @Expose
     private String copyright;
+    @SerializedName("credit")
+    @Expose
+    private Object credit;
+    @SerializedName("legacy")
+    @Expose
+    private Legacy legacy;
+    @SerializedName("crop_name")
+    @Expose
+    private String cropName;
 
     public String getUrl() {
         return url;
@@ -92,5 +104,37 @@ public class Multimedium {
 
     public void setCopyright(String copyright) {
         this.copyright = copyright;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public void setRank(Integer rank) {
+        this.rank = rank;
+    }
+
+    public Object getCredit() {
+        return credit;
+    }
+
+    public void setCredit(Object credit) {
+        this.credit = credit;
+    }
+
+    public Legacy getLegacy() {
+        return legacy;
+    }
+
+    public void setLegacy(Legacy legacy) {
+        this.legacy = legacy;
+    }
+
+    public String getCropName() {
+        return cropName;
+    }
+
+    public void setCropName(String cropName) {
+        this.cropName = cropName;
     }
 }

@@ -11,8 +11,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.cheyrouse.gael.mynews.Models.Result;
 import com.cheyrouse.gael.mynews.R;
 
-import java.lang.ref.WeakReference;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -25,7 +23,6 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder  {
     @BindView(R.id.relativeLayout) RelativeLayout relativeLayout;
 
     private static final String SUBSECTION = " > ";
-    private WeakReference<RecyclerViewAdapter.Listener> callbackWeakRef;
 
 
     public RecyclerViewHolder(View itemView) {
