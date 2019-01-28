@@ -23,6 +23,8 @@ public class ViewHolderSearch extends RecyclerView.ViewHolder  {
         @BindView(R.id.fragment_Search_item_section) TextView textViewSection;
         @BindView(R.id.relativeLayoutSearch) RelativeLayout relativeLayout;
 
+        static final String URL = "https://static01.nyt.com/";
+
 
         public ViewHolderSearch(View itemView) {
             super(itemView);
@@ -34,11 +36,15 @@ public class ViewHolderSearch extends RecyclerView.ViewHolder  {
         this.textViewTitle.setText((article).getHeadline().getMain());
         this.textViewSection.setText(article.getSectionName());
         if(article.getPubDate() != null){
-            this.textViewDate.setText(article.getPubDate());
+            String date = article.getPubDate().substring(0, 10);
+            this.textViewDate.setText(date);
         }
 
-        if(article.getMultimedia()!=null && article.getMultimedia().size()>=1){
-            glide.load(article.getMultimedia().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageView);
+            if (!article.getMultimedia().isEmpty()){
+                String mUrl = URL + article.getMultimedia().get(0).getUrl();
+                glide.load(mUrl).apply(RequestOptions.centerCropTransform()).into(imageView);
+        }else{
+            imageView.setImageResource(R.mipmap.ic_my_news);
         }
             this.relativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

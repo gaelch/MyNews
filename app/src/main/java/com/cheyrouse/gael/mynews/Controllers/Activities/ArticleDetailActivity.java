@@ -1,9 +1,9 @@
 package com.cheyrouse.gael.mynews.Controllers.Activities;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 
-public class ArticleDetailActivity extends AppCompatActivity {
+public class ArticleDetailActivity extends AppCompatActivity  {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -37,7 +37,7 @@ public class ArticleDetailActivity extends AppCompatActivity {
 
         url = getIntent().getStringExtra(Result.TOPSTORIES_EXTRA);
 
-        updateUI();
+        updateUI(url);
 
         ConfigureToolbar();
 
@@ -96,9 +96,8 @@ public class ArticleDetailActivity extends AppCompatActivity {
     // UPDATE UI
     // -------------------
 
-    protected void updateUI(){
+    protected void updateUI(String url){
         // Charge l'url
         webView.loadUrl(url);
     }
-
 }

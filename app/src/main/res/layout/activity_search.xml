@@ -102,37 +102,40 @@
 
     <DatePicker
         android:id="@+id/result_to_search_date_picker_begin"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@+id/editSearchBar"
         android:layout_alignParentTop="true"
+        android:calendarViewShown="true"
         android:layout_marginTop="139dp">
     </DatePicker>
 
     <DatePicker
         android:id="@+id/result_to_search_date_picker_end"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@+id/editSearchBar"
         android:layout_alignParentTop="true"
+        android:calendarViewShown="true"
         android:layout_marginStart="192dp"
         android:layout_marginTop="139dp">
     </DatePicker>
 
 
 
-    <android.support.v7.widget.SearchView
+    <EditText
         android:id="@+id/editSearchBar"
-        android:layout_width="313dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/checkBoxPolitics"
         android:layout_alignParentTop="true"
         android:layout_marginTop="75dp"
-        android:layout_marginEnd="-47dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:inputType="text"
+        android:hint="Search query terms"
+        android:cursorVisible="true"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:hint="Search query term" />
+        android:drawableLeft="@drawable/ic_search"/>
 
     <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

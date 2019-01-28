@@ -3,6 +3,7 @@ package com.cheyrouse.gael.mynews.Utils;
 import com.cheyrouse.gael.mynews.Models.Article;
 import com.cheyrouse.gael.mynews.Models.SearchArticle;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -27,9 +28,17 @@ public class NewYorkTimesStream {
                 .timeout(10, TimeUnit.SECONDS);
     }
 
-    public static Observable<SearchArticle> streamFetchArticleSearch(String api_key, String search, String category, String beginDate, String endDate){
+    public static Observable<SearchArticle> streamFetchArticleSearch(String api_key, String search, List<String> category, String beginDate, String endDate){
         NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.get().create(NewYorkTimesService.class);
-        return newYorkTimesService.getSearch(api_key, search, category, beginDate, endDate,"newest")
+        return newYorkTimesService.getSearch(api_key, search, category, beginDate, endDate,"relevance")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(10, TimeUnit.SECONDS);
+    }
+
+    public static Observable<List<SearchArticle>> streamFetchArticleSearchNotification(String api_key, String search, List<String> category){
+        NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.get().create(NewYorkTimesService.class);
+        return newYorkTimesService.getSearchNotification(api_key, search, category, "relevance")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10, TimeUnit.SECONDS);

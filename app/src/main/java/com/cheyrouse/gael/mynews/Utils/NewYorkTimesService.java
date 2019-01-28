@@ -3,6 +3,8 @@ package com.cheyrouse.gael.mynews.Utils;
 import com.cheyrouse.gael.mynews.Models.Article;
 import com.cheyrouse.gael.mynews.Models.SearchArticle;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -28,10 +30,18 @@ public interface NewYorkTimesService {
     @GET("svc/search/v2/articlesearch.json?")
     Observable<SearchArticle> getSearch(@Query("api-key") String API_KEY,
             @Query("q") String search,
-            @Query("fq")String category,
+            @Query("fq")List<String> category,
             @Query("begin_date")String beginDate,
             @Query("end_date")String endDate,
             @Query("sort") String sort
+
+    );
+
+    @GET("svc/search/v2/articlesearch.json?")
+    Observable<List<SearchArticle>> getSearchNotification(@Query("api-key") String API_KEY,
+                                        @Query("q") String search,
+                                        @Query("fq")List<String> category,
+                                        @Query("sort") String sort
 
     );
 

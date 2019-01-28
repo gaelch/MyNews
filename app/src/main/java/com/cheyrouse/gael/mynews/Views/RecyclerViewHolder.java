@@ -37,7 +37,10 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder  {
         }else {
             this.textViewSection.setText(String.format("%s%s%s", article.getSection(), SUBSECTION, article.getSubsection()));
         }
-        this.textViewDate.setText(article.getUpdatedDate());
+        if(article.getUpdatedDate() != null){
+            this.textViewDate.setText(article.getUpdatedDate().substring(0, 10));
+        }
+
 
         if(article.getMultimedia()!=null && article.getMultimedia().size()>=1){
             glide.load(article.getMultimedia().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageView);

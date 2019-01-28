@@ -39,7 +39,7 @@ public class ResultToSearchFragment extends Fragment implements View.OnClickList
     private List<Doc> responses;
     private SearchArticle searchArticle;
     private RecyclerViewSearchAdapter adapter;
-    private SearchArticlesFragmentListener mListener;
+    private ResultToSearchFragmentListener mListener;
 
     public ResultToSearchFragment() {
         // Required empty public constructor
@@ -48,9 +48,9 @@ public class ResultToSearchFragment extends Fragment implements View.OnClickList
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context instanceof SearchArticlesFragmentListener){
+        if(context instanceof ResultToSearchFragmentListener){
             //Listener to pass userLogin to th activityMain
-            mListener = (SearchArticlesFragmentListener)context;
+            mListener = (ResultToSearchFragmentListener)context;
         }
         else{
             Log.d(TAG, "onAttach: parrent Activity must implement MainFragementListener");
@@ -114,10 +114,12 @@ public class ResultToSearchFragment extends Fragment implements View.OnClickList
     }
 
     @Override
-    public void onArticleClicked(Doc searchResult) {
-        mListener.callbackSearchArticle(searchResult);
+    public void onArticleClicked(Doc resultTopStories) {
+        mListener.callbackSearchArticle(resultTopStories);
     }
-    public interface SearchArticlesFragmentListener{
+
+
+    public interface ResultToSearchFragmentListener{
         void callbackSearchArticle(Doc searchArticle);
     }
 }

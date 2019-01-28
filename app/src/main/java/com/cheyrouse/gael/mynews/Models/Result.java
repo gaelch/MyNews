@@ -8,7 +8,6 @@ import java.util.List;
 public class Result {
 
     public static final String TOPSTORIES_EXTRA = "TOPSTORIES_EXTRA";
-    public static final String SECTION_EXTRA = "section";
 
     @SerializedName("section")
     @Expose

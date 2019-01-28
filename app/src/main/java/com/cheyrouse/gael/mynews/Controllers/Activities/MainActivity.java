@@ -15,10 +15,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.cheyrouse.gael.mynews.Controllers.Fragments.ArticlesFragment;
 import com.cheyrouse.gael.mynews.Models.Result;
+import com.cheyrouse.gael.mynews.NotificationActivity;
 import com.cheyrouse.gael.mynews.R;
 import com.cheyrouse.gael.mynews.Views.PagerAdapter;
 
@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 
 import static com.cheyrouse.gael.mynews.Models.Result.TOPSTORIES_EXTRA;
 
-public class MainActivity extends AppCompatActivity implements ArticlesFragment.ArticlesFragmentListener, NavigationView.OnNavigationItemSelectedListener
+public class MainActivity extends AppCompatActivity implements ArticlesFragment.ArticlesFragmentListener,NavigationView.OnNavigationItemSelectedListener
 {
 
     @BindView(R.id.activity_main_viewpager) public ViewPager pager;
@@ -85,14 +85,14 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
             case R.id.menu_activity_main_params:
                 return true;
             case R.id.menu_activity_main_params_Notification:
-                // startNotificationActivity();
+                Intent notificationIntent = new Intent(MainActivity.this, NotificationActivity.class);
+                startActivity(notificationIntent);
                 return true;
             case R.id.menu_activity_main_params_help:
                 return true;
             case R.id.menu_activity_main_params_about:
                 return true;
             case R.id.menu_activity_main_search:
-                Toast.makeText(this, " fragment recherche ", Toast.LENGTH_SHORT).show();
                 Intent SearchActivityIntent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(SearchActivityIntent);
                 return true;
@@ -209,5 +209,4 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
     public void callbackArticle(Result article) {
         startDetailActivity(article);
     }
-
 }
