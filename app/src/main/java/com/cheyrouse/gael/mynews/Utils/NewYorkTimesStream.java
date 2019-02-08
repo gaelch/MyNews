@@ -36,7 +36,7 @@ public class NewYorkTimesStream {
                 .timeout(10, TimeUnit.SECONDS);
     }
 
-    public static Observable<List<SearchArticle>> streamFetchArticleSearchNotification(String api_key, String search, List<String> category){
+    public static Observable<SearchArticle> streamFetchArticleSearchNotification(String api_key, String search, List<String> category){
         NewYorkTimesService newYorkTimesService = NewYorkTimesService.retrofit.get().create(NewYorkTimesService.class);
         return newYorkTimesService.getSearchNotification(api_key, search, category, "relevance")
                 .subscribeOn(Schedulers.io())

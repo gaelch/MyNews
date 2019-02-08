@@ -20,6 +20,7 @@ import com.cheyrouse.gael.mynews.Controllers.Fragments.ArticlesFragment;
 import com.cheyrouse.gael.mynews.Models.Result;
 import com.cheyrouse.gael.mynews.NotificationActivity;
 import com.cheyrouse.gael.mynews.R;
+import com.cheyrouse.gael.mynews.Utils.AlarmHelper;
 import com.cheyrouse.gael.mynews.Views.PagerAdapter;
 
 import java.util.ArrayList;
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
         this.configureViewPagerAndTabs();
 
         this.configureAndShowArticlesFragment();
+
+        (new AlarmHelper()).configureAlarmNotification(this);
     }
 
     private void configureToolbar() {

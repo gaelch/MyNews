@@ -38,7 +38,7 @@ public interface NewYorkTimesService {
     );
 
     @GET("svc/search/v2/articlesearch.json?")
-    Observable<List<SearchArticle>> getSearchNotification(@Query("api-key") String API_KEY,
+    Observable<SearchArticle> getSearchNotification(@Query("api-key") String API_KEY,
                                         @Query("q") String search,
                                         @Query("fq")List<String> category,
                                         @Query("sort") String sort

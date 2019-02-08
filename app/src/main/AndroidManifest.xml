@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cheyrouse.gael.mynews">
-
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
     <application
         android:allowBackup="true"
@@ -10,8 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_my_news_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".NotificationActivity"></activity>
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".NotificationActivity"
+            android:parentActivityName=".Controllers.Activities.MainActivity"/>
+
         <activity android:name=".Controllers.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +27,11 @@
         <activity
             android:name=".Controllers.Activities.SearchActivity"
             android:parentActivityName=".Controllers.Activities.MainActivity" />
+        <receiver android:name=".Utils.AlarmReceiver">
+            <intent-filter>
+                <action android:name="me.proft.alarms.ACTION_ALARM" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

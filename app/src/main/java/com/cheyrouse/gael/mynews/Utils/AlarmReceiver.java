@@ -1,12 +1,14 @@
 package com.cheyrouse.gael.mynews.Utils;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.Builder;
-import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.cheyrouse.gael.mynews.Models.SearchArticle;
@@ -20,36 +22,39 @@ import java.util.List;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.cheyrouse.gael.mynews.NotificationActivity.MY_PREFS;
+import static com.cheyrouse.gael.mynews.Utils.AlarmHelper.CHANNEL_ID;
 import static com.cheyrouse.gael.mynews.Utils.NewYorkTimesService.API_KEY;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
     private String keywords;
     private List<String> categories;
-    private Context context;
     private SharedPreferences sharedPreferences;
     static final String CHANEL_ID = "chanel_id";
     static final int NOTIFICATION_ID = 0;
+    private Context mContext;
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        mContext = context;
         executeRequestWithSearchParams();
     }
 
     public void executeRequestWithSearchParams(){
-        sharedPreferences = context.getSharedPreferences(MY_PREFS, Context.MODE_PRIVATE);
-        keywords = sharedPreferences.getString(MY_PREFS, "");
-        String jsonFavorites = sharedPreferences.getString(MY_PREFS, null);
+        sharedPreferences = mContext.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
+        keywords = sharedPreferences.getString("keywords", "");
+        String jsonFavorites = sharedPreferences.getString("categories", null);
         Gson gson = new Gson();
         String[] favoriteItems = gson.fromJson(jsonFavorites, String[].class);
         categories = Arrays.asList(favoriteItems);
         categories = new ArrayList<String>(categories);
         Log.e("test", String.valueOf(categories));
         Log.e("test", keywords);
-        Disposable disposable = NewYorkTimesStream.streamFetchArticleSearchNotification(API_KEY, keywords, categories).subscribeWith(new DisposableObserver<List<SearchArticle>>() {
+        Disposable disposable = NewYorkTimesStream.streamFetchArticleSearchNotification(API_KEY, keywords, categories).subscribeWith(new DisposableObserver<SearchArticle>() {
             @Override
-            public void onNext(List<SearchArticle> articles) {
+            public void onNext(SearchArticle articles) {
                 showNotification(articles);
             }
 
@@ -65,13 +70,40 @@ public class AlarmReceiver extends BroadcastReceiver {
         });
     }
 
-    private void showNotification(List<SearchArticle> articles) {
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        Builder mBuilder = new Builder(context, CHANEL_ID)
-                .setSmallIcon(R.mipmap.ic_launcher_foreground_my_news)
-                .setContentTitle("Notification")
-                .setContentText("MyNews founds " + articles.size() + "articles today")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        notificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+    private void showNotification(SearchArticle articles) {
+        // 2 - Create a Style for the Notification
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+        inboxStyle.setBigContentTitle("Notification");
+        inboxStyle.addLine("MyNews founds " + articles.getResponse().getDocs().size() + " articles today");
+
+        // 3 - Create a Channel (Android 8)
+        String channelId = CHANNEL_ID;
+
+        // 4 - Build a Notification object
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(mContext, channelId)
+                        .setSmallIcon(R.mipmap.ic_my_news)
+                        .setContentTitle("My News")
+                        .setContentText("MyNews founds " + articles.getResponse().getDocs().size() + " articles today")
+                        .setAutoCancel(true)
+                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                        .setStyle(inboxStyle);
+
+        // 5 - Add the Notification to the Notification Manager and show it.
+        NotificationManager notificationManager = (NotificationManager) mContext
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // 6 - Support Version >= Android 8
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence channelName = "Message provenant de Firebase";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = new NotificationChannel(channelId, channelName, importance);
+            assert notificationManager != null;
+            notificationManager.createNotificationChannel(mChannel);
+
+
+            // 7 - Show notification
+            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+        }
     }
 }

@@ -92,7 +92,7 @@
         android:cursorVisible="true"
         android:textCursorDrawable="@color/colorPrimaryDark"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:drawableLeft="@drawable/ic_search"/>
+        android:drawableStart="@drawable/ic_search"/>
 
     <View
         android:layout_width="match_parent"
@@ -113,6 +113,8 @@
         android:layout_marginTop="45dp"
         android:textColor="@color/Black"
         android:layout_centerHorizontal="true"
+        android:backgroundTintMode="add"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:textColorHighlight="@color/colorPrimary"
         android:text="Enable notifications (once par day)" />
 

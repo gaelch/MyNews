@@ -1,9 +1,5 @@
 package com.cheyrouse.gael.mynews;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -11,19 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.cheyrouse.gael.mynews.Utils.AlarmReceiver;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +39,9 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     private List<String> categories;
     private String keywords;
     private SharedPreferences sharedPreferences;
+    private Boolean switchNotif;
     public static final String MY_PREFS = "my_prefs";
+
 
 
     @Override
@@ -54,21 +51,35 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         ButterKnife.bind(this);
         categories = new ArrayList<>();
         configureToolbar();
-        configureSharedPreferences();
         innitListener();
-        configureEditTextSearch();
-        SaveQueryParams();
+        configureSharedPreferences();
         configureSwitchNotification();
+        configureEditTextSearch();
     }
 
     private void configureSwitchNotification() {
-        if(switchNotification.isActivated()){
-            configureAlarmNotification(this);
+        if(sharedPreferences != null){
+            switchNotif = sharedPreferences.getBoolean("switch", false);
+            if(switchNotif){
+                switchNotification.setChecked(true);
+            }
+        }else{
+            switchNotif = false;
         }
+        switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                switchNotif = switchNotification.isChecked();
+                Log.e("testSwitch", String.valueOf(switchNotif));
+                saveQueryParams();
+            }
+        });
+
     }
 
     private void configureSharedPreferences() {
         sharedPreferences = getApplicationContext().getSharedPreferences(MY_PREFS, MODE_PRIVATE);
+        Log.e("test", "ok");
     }
 
     public void configureToolbar(){
@@ -107,6 +118,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void afterTextChanged(Editable s) {
                 keywords = editTextSearch.getText().toString();
+                saveQueryParams();
             }
         });
     }
@@ -115,8 +127,6 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.switch_notification:
-                break;
             case R.id.checkBoxArts:
                 if (checkBoxArts.isChecked()){
                     category = "arts";
@@ -172,55 +182,17 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
                 }
                 break;
         }
+        saveQueryParams();
     }
 
-    private void SaveQueryParams() {
+    private void saveQueryParams() {
+        sharedPreferences = getApplicationContext().getSharedPreferences(MY_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(MY_PREFS, keywords);
+        editor.putString("keywords", keywords);
+        editor.putBoolean("switch", switchNotif);
         Gson gson = new Gson();
         String json = gson.toJson(categories);
-        editor.putString(MY_PREFS, json);
+        editor.putString("categories", json);
         editor.apply();
-        if (switchNotification.isChecked()) {
-            editor.putBoolean("SWITCH", true);
-            editor.apply();
-        } else {
-            editor.putBoolean("SWITCH", false);
-            editor.apply();
-        }
     }
-
-    //At midnight, the alarm goes off to save the mood of the day
-    private void configureAlarmNotification(Context context) {
-        AlarmManager alarmManager;
-        PendingIntent pendingIntent;
-
-        //in a current date at midnight, this property get an instance to calendar
-        Calendar calendar = Calendar.getInstance(Locale.FRANCE);
-        calendar.set(Calendar.HOUR_OF_DAY, 17);
-        calendar.set(Calendar.MINUTE, 5);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.add(Calendar.DATE, 1);
-
-        boolean switchNotif = sharedPreferences.getBoolean("SWITCH", false);
-        //call AlarmReceiver class
-        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        if(switchNotif){
-            Intent intent;
-            intent = new Intent(context, AlarmReceiver.class);
-            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-            if (alarmManager != null) {
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-            }
-        }
-
-        //RTC-WAKEUP that will wake the device when it turns off.
-        if (alarmManager != null && switchNotif) {
-            Intent intent;
-            intent = new Intent(context, AlarmReceiver.class);
-            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        }
-    }
-
 }
