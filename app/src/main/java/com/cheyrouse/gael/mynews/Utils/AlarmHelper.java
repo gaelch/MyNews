@@ -22,13 +22,13 @@ public class AlarmHelper {
         AlarmManager alarmManager;
         PendingIntent pendingIntent;
 
-        //in a current date at midnight, this property get an instance to calendar
+        //in a current date at 1 pm, this property get an instance to calendar
         Calendar calendar = Calendar.getInstance(Locale.FRANCE);
         calendar.set(Calendar.HOUR_OF_DAY, 13);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
-        calendar.add(Calendar.DATE, 0);
 
+        //request sharedPreferences to check boolean switchNotif
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
 
         boolean switchNotif = sharedPreferences.getBoolean("switch", false);
