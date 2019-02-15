@@ -43,13 +43,28 @@ This application uses the API of the news york times so that you can find the ar
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You can find more information on the sittte duu New york tiimes: https://www.nytimes.com/"
+        android:text="You can find more information on the site of New york times:"
         android:textColor="@color/Black"
         android:textSize="15sp"
         android:layout_marginTop="350dp"
         android:gravity="center"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="https://www.nytimes.com/"
+        android:autoLink="web"
+        android:layout_centerHorizontal="true"
+        android:textSize="15sp"
+        android:layout_marginTop="420dp"
+        android:gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        tools:ignore="HardcodedText"/>
 
 
 </RelativeLayout>

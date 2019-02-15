@@ -26,13 +26,13 @@ public class ViewHolderSearch extends RecyclerView.ViewHolder  {
         static final String URL = "https://static01.nyt.com/";
 
 
-        public ViewHolderSearch(View itemView) {
+        ViewHolderSearch(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
 
-        public void updateWithResult(final Doc article, RequestManager glide, final RecyclerViewSearchAdapter.onArticleSearchAdapterListener callback){
+        void updateWithResult(final Doc article, RequestManager glide, final RecyclerViewSearchAdapter.onArticleSearchAdapterListener callback){
         this.textViewTitle.setText((article).getHeadline().getMain());
         this.textViewSection.setText(article.getSectionName());
         if(article.getPubDate() != null){

@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews;
+package com.cheyrouse.gael.mynews.Controllers.Activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +15,9 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.cheyrouse.gael.mynews.R;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,33 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         configureSharedPreferences();
         configureSwitchNotification();
         configureEditTextSearch();
+        configureCheckBoxPrefs();
+    }
+
+    private void configureCheckBoxPrefs() {
+        if(sharedPreferences != null){
+            Gson gson = new Gson();
+            String json = sharedPreferences.getString("categories", null);
+            categories = gson.fromJson(json, new TypeToken<ArrayList<String>>(){}.getType());
+            if(categories != null && categories.contains("arts")){
+                checkBoxArts.setChecked(true);
+            }
+            if(categories != null && categories.contains("business")){
+                checkBoxBusiness.setChecked(true);
+            }
+            if(categories != null && categories.contains("politics")){
+                checkBoxPolitics.setChecked(true);
+            }
+            if(categories != null && categories.contains("sports")){
+                checkBoxSport.setChecked(true);
+            }
+            if(categories != null && categories.contains("sciences")){
+                checkBoxSciences.setChecked(true);
+            }
+            if(categories != null && categories.contains("travel")){
+                checkBoxTravel.setChecked(true);
+            }
+        }
     }
 
     private void configureSwitchNotification() {
@@ -104,6 +133,10 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void configureEditTextSearch() {
+        if(sharedPreferences != null){
+            keywords = sharedPreferences.getString("keywords", "");
+            editTextSearch.setText(keywords);
+        }
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

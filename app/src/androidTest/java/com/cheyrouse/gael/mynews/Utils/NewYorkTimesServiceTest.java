@@ -2,6 +2,8 @@ package com.cheyrouse.gael.mynews.Utils;
 
 import com.cheyrouse.gael.mynews.Controllers.Fragments.ArticlesFragmentTest;
 import com.cheyrouse.gael.mynews.Models.Article;
+import com.cheyrouse.gael.mynews.Models.SearchArticle;
+
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -18,8 +20,8 @@ public interface  NewYorkTimesServiceTest {
     @GET("/mostPopular_200_response.json")
      Observable<Article> getMostPopularArticles();
 
-  /*  @GET("/search_200_ok_response.json")
-    Observable<SearchArticle> getSearch();*/
+    @GET("/search_200_ok_response.json")
+    Observable<SearchArticle> getSearch();
 
     OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
 

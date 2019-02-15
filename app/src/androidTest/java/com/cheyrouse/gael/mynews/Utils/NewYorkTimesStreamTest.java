@@ -1,6 +1,7 @@
 package com.cheyrouse.gael.mynews.Utils;
 
 import com.cheyrouse.gael.mynews.Models.Article;
+import com.cheyrouse.gael.mynews.Models.SearchArticle;
 
 import java.util.concurrent.TimeUnit;
 
@@ -26,12 +27,12 @@ public class NewYorkTimesStreamTest {
                 .timeout(10000, TimeUnit.SECONDS);
     }
 
-   /* public static Observable<SearchArticle> streamSearch(){
-        NyTimesServiceTest nyTimesServiceTest = NyTimesServiceTest.retrofit.create(NyTimesServiceTest.class);
-        return nyTimesServiceTest.getSearch()
+    public static Observable<SearchArticle> streamSearch(){
+        NewYorkTimesServiceTest newYorkTimesServiceTest = NewYorkTimesServiceTest.retrofit.create(NewYorkTimesServiceTest.class);
+        return newYorkTimesServiceTest.getSearch()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(10000, TimeUnit.SECONDS);
-    }*/
+    }
 
 }

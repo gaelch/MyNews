@@ -7,7 +7,7 @@ import android.test.InstrumentationTestCase;
 
 import com.cheyrouse.gael.mynews.Models.Article;
 import com.cheyrouse.gael.mynews.Models.Result;
-import com.cheyrouse.gael.mynews.Utils.JsoonContent;
+import com.cheyrouse.gael.mynews.Utils.JsonContent;
 import com.cheyrouse.gael.mynews.Utils.NewYorkTimesStreamTest;
 
 import org.junit.Before;
@@ -47,7 +47,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
     public void fetchMostPopularTest() throws Exception {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
-                .setBody(JsoonContent.jsonMostPopular));
+                .setBody(JsonContent.jsonMostPopular));
 
         Observable<Article> observableArticles = NewYorkTimesStreamTest.streamFetchMostPopular();
         TestObserver<Article> testObserver = new TestObserver<>();
@@ -67,7 +67,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
     public void fetchTopStoriesTest() throws Exception {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
-                .setBody( JsoonContent.jsonTopStories));
+                .setBody( JsonContent.jsonTopStories));
 
         Observable<Article> observableArticles = NewYorkTimesStreamTest.streamFetchTopStories();
         TestObserver<Article> testObserver = new TestObserver<>();
@@ -82,14 +82,14 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
         assertThat("The result list is not empty", !articles.isEmpty());
     }
 
-   /* @Test
+    /*@Test
     public void fetchSearchTest() throws Exception {
         String fileName = "search_200_ok_response.json";
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(RestServiceTest.getStringFromFile(getInstrumentation().getContext(), fileName)));
 
-        Observable<Result> observableResult = NyTimesStreamsTest.streamSearch();
+        Observable<SearchArticle> observableResult = NewYorkTimesStreamTest.streamSearch();
         TestObserver<Result> testObserver = new TestObserver<>();
 
         observableResult.subscribeWith(testObserver)
@@ -97,8 +97,8 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
                 .assertNoTimeout()
                 .awaitTerminalEvent();
 
-        Articles articles = testObserver.values().get(0).getArticles();
-        List<Article> articlesL = articles.getArticles();
+        Article articles = testObserver.values().get(0).get;
+        List<SearchArticle> articlesL = arti;
 
         assertThat("The result list is not empty", !articlesL.isEmpty());
     }*/

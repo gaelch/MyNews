@@ -2,6 +2,7 @@ package com.cheyrouse.gael.mynews.Views;
 
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,8 +33,9 @@ public class RecyclerViewSearchAdapter extends RecyclerView.Adapter<ViewHolderSe
 
     }
 
+    @NonNull
     @Override
-    public ViewHolderSearch onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolderSearch onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // CREATE VIEW HOLDER AND INFLATING ITS XML LAYOUT
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -44,7 +46,7 @@ public class RecyclerViewSearchAdapter extends RecyclerView.Adapter<ViewHolderSe
 
     // UPDATE VIEW HOLDER WITH A TOPSTORIES
     @Override
-    public void onBindViewHolder(ViewHolderSearch viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderSearch viewHolder, int position) {
         viewHolder.updateWithResult(this.search.get(position), this.glide, mListener);
     }
 

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controllers.Activities.HelpActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Help"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="90dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="The application consists of several tabs, including:
+- The topics of the moment (Top Stories);
+- The most popular articles (Most Popular);
+- Topics that interest you (Business, Sports and the Arts for example)\n"
+        tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:text="When you click on an article, you display the contents of the article.\n"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:text="A magnifying glass allows you to search all the items in the New York Times database (not the items displayed on the screen).
+This one allows to search the articles according to the following criteria:\n"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:text="When you click on an article, you display the co"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:text="The list of keywords (required);
+The minimum publication date (optional);
+The maximum date of publication (optional);
+The category or categories (at least one category must be checked)."/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:text="The list of keywords (required);
+The minimum publication date (optional);
+The maximum date of publication (optional);
+The category or categories (at least one category must be checked).
+On validation, the results are displayed on a new screen, in the form of a list (as on the home screen). If no result is found, indicate it with a pop-up.\n"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:text="Notifications
+To avoid missing any relevant news, you decide to add a feature to warn you when a new article is published, according to criteria that you have predefined. To do this, you decide to add a new settings screen, accessible from the menu point of the main screen of the application.\n"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:text="If notifications are enabled, then the app will check once a day if news matches the search criteria, then notify you with a notification message.
+In the menu at the top left, you can choose the categories that interest you. Once a category is selected, the items are displayed."/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

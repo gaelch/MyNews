@@ -23,15 +23,11 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.cheyrouse.gael.mynews.NotificationActivity.MY_PREFS;
-import static com.cheyrouse.gael.mynews.Utils.AlarmHelper.CHANNEL_ID;
+import static com.cheyrouse.gael.mynews.Controllers.Activities.NotificationActivity.MY_PREFS;
 import static com.cheyrouse.gael.mynews.Utils.NewYorkTimesService.API_KEY;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
-    private String keywords;
-    private List<String> categories;
-    private SharedPreferences sharedPreferences;
     static final String CHANEL_ID = "chanel_id";
     static final int NOTIFICATION_ID = 0;
     private Context mContext;
@@ -43,12 +39,12 @@ public class AlarmReceiver extends BroadcastReceiver {
     }
 
     public void executeRequestWithSearchParams(){
-        sharedPreferences = mContext.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
-        keywords = sharedPreferences.getString("keywords", "");
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
+        String keywords = sharedPreferences.getString("keywords", "");
         String jsonFavorites = sharedPreferences.getString("categories", null);
         Gson gson = new Gson();
         String[] favoriteItems = gson.fromJson(jsonFavorites, String[].class);
-        categories = Arrays.asList(favoriteItems);
+        List<String> categories = Arrays.asList(favoriteItems);
         categories = new ArrayList<String>(categories);
         Log.e("test", String.valueOf(categories));
         Log.e("test", keywords);
@@ -77,7 +73,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         inboxStyle.addLine("MyNews founds " + articles.getResponse().getDocs().size() + " articles today");
 
         // 3 - Create a Channel (Android 8)
-        String channelId = CHANNEL_ID;
+        String channelId = CHANEL_ID;
 
         // 4 - Build a Notification object
         NotificationCompat.Builder notificationBuilder =

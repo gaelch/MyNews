@@ -4,7 +4,8 @@
     android:id="@+id/fragment_search_swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:layout_marginTop="55dp">
 
 
     <android.support.v7.widget.RecyclerView

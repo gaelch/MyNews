@@ -18,7 +18,6 @@ import android.view.MenuItem;
 
 import com.cheyrouse.gael.mynews.Controllers.Fragments.ArticlesFragment;
 import com.cheyrouse.gael.mynews.Models.Result;
-import com.cheyrouse.gael.mynews.NotificationActivity;
 import com.cheyrouse.gael.mynews.R;
 import com.cheyrouse.gael.mynews.Utils.AlarmHelper;
 import com.cheyrouse.gael.mynews.Views.PagerAdapter;
@@ -92,8 +91,12 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
                 startActivity(notificationIntent);
                 return true;
             case R.id.menu_activity_main_params_help:
+                Intent helpIntent = new Intent(MainActivity.this, HelpActivity.class);
+                startActivity(helpIntent);
                 return true;
             case R.id.menu_activity_main_params_about:
+                Intent aboutIntent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(aboutIntent);
                 return true;
             case R.id.menu_activity_main_search:
                 Intent SearchActivityIntent = new Intent(MainActivity.this, SearchActivity.class);

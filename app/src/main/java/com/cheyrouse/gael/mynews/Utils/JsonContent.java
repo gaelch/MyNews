@@ -1,6 +1,6 @@
 package com.cheyrouse.gael.mynews.Utils;
 
-public class JsoonContent {
+public class JsonContent {
 
     public static final String jsonTopStories = "{\n" +
             "  \"status\": \"OK\",\n" +

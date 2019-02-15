@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.cheyrouse.gael.mynews.NotificationActivity.MY_PREFS;
+import static com.cheyrouse.gael.mynews.Controllers.Activities.NotificationActivity.MY_PREFS;
 
 public class AlarmHelper {
 
@@ -24,9 +24,14 @@ public class AlarmHelper {
 
         //in a current date at 1 pm, this property get an instance to calendar
         Calendar calendar = Calendar.getInstance(Locale.FRANCE);
-        calendar.set(Calendar.HOUR_OF_DAY, 13);
+        Calendar now = Calendar.getInstance(Locale.FRANCE);
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY,12);
         calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
+
+        if (now.after(calendar)) {
+            calendar.add(Calendar.DATE, 1);
+        }
 
         //request sharedPreferences to check boolean switchNotif
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
@@ -37,7 +42,7 @@ public class AlarmHelper {
         if(switchNotif){
             Intent intent;
             intent = new Intent(context, AlarmReceiver.class);
-            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             if (alarmManager != null) {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
             }

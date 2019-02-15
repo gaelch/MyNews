@@ -14,9 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Controllers.Activities.AboutActivity"></activity>
+        <activity android:name=".Controllers.Activities.HelpActivity"></activity>
+        <activity android:name=".Controllers.Activities.AboutActivity" />
         <activity
-            android:name=".NotificationActivity"
+            android:name=".Controllers.Activities.NotificationActivity"
             android:parentActivityName=".Controllers.Activities.MainActivity" />
         <activity android:name=".Controllers.Activities.MainActivity">
             <intent-filter>
@@ -33,6 +34,8 @@
         <receiver android:name=".Utils.AlarmReceiver">
             <intent-filter>
                 <action android:name="me.proft.alarms.ACTION_ALARM" />
+                <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
     </application>
