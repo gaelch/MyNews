@@ -20,7 +20,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
         mListFragment = listFragment;
     }
 
-
     @Override
     public int getCount() {
         return 3;
