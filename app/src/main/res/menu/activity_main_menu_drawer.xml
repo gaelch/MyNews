@@ -7,41 +7,41 @@
         <item
             android:id="@+id/activity_main_drawer_news"
             android:icon="@drawable/ic_category_white_24dp"
-            android:title="Catégories" />
+            android:title="@string/categories" />
     </group>
 
-    <item android:title="Sections :">
+    <item android:title="@string/sections">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/activity_main_drawer_arts"
 
-                    android:title="Arts" />
+                    android:title="@string/arts" />
                 <item
                     android:id="@+id/activity_main_drawer_politics"
 
-                    android:title="Politics" />
+                    android:title="@string/politics" />
                 <item
                     android:id="@+id/activity_main_drawer_travel"
 
-                    android:title="Travel" />
+                    android:title="@string/travel" />
                 <item
                     android:id="@+id/activity_main_drawer_technology"
 
-                    android:title="Technology" />
+                    android:title="@string/techno" />
 
                 <item
                     android:id="@+id/activity_main_drawer_automobiles"
 
-                    android:title="Automobiles" />
+                    android:title="@string/autos" />
                 <item
                     android:id="@+id/activity_main_drawer_sports"
 
-                    android:title="Sports" />
+                    android:title="@string/sports" />
                 <item
                     android:id="@+id/activity_main_drawer_Business"
 
-                    android:title="Business" />
+                    android:title="@string/business" />
             </group>
         </menu>
     </item>

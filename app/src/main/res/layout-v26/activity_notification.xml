@@ -92,7 +92,8 @@
         android:cursorVisible="true"
         android:textCursorDrawable="@color/colorPrimaryDark"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:drawableStart="@drawable/ic_search" />
+        android:drawableStart="@drawable/ic_search"
+        android:autofillHints="true" />
 
     <View
         android:layout_width="match_parent"

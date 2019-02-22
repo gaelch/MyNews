@@ -18,17 +18,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="155dp"
-        android:text="Begin date" />
+        android:layout_below="@+id/editSearchBar"
+        android:layout_marginTop="45dp"
+        android:text="@string/begin_date" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/editSearchBar"
+        android:layout_marginTop="45dp"
         android:layout_alignStart="@+id/editEndDate"
-        android:layout_alignTop="@+id/textView"
-        android:text="End date" />
+        android:text="@string/end_date" />
 
 
     <CheckBox
@@ -38,8 +39,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="230dp"
-        android:layout_marginEnd="280dp"
-        android:text="Arts"
+        android:layout_marginEnd="282dp"
+        android:text="@string/arts"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -50,8 +51,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="270dp"
-        android:layout_marginEnd="249dp"
-        android:text="Business"
+        android:layout_marginEnd="250dp"
+        android:text="@string/business"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -63,7 +64,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="310dp"
         android:layout_marginEnd="249dp"
-        android:text="sciences"
+        android:text="@string/sciences"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -75,7 +76,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="230dp"
         android:layout_marginEnd="72dp"
-        android:text="Politics"
+        android:text="@string/politics"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -86,8 +87,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="270dp"
-        android:layout_marginEnd="77dp"
-        android:text="Sports"
+        android:layout_marginEnd="78dp"
+        android:text="@string/sports"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -99,7 +100,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="310dp"
         android:layout_marginEnd="80dp"
-        android:text="Travel"
+        android:text="@string/travel"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -116,20 +117,18 @@
         android:layout_marginBottom="150dp"
         android:background="@color/colorPrimary"
         android:shadowColor="@android:color/black"
-        android:text="Search"
+        android:text="@string/search"
         android:textColor="@color/colorAccent" />
 
     <EditText
         android:id="@+id/editTextBeginDate"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="171dp"
+        android:layout_below="@+id/textView"
+        android:layout_marginStart="50dp"
         android:clickable="true"
         android:longClickable="false"
-        android:focusable="false"
+        android:focusable="true"
         android:ems="10"
         android:drawableEnd="@drawable/ic_expand_more"
         android:textColor="@color/colorPrimary" />
@@ -138,14 +137,12 @@
         android:id="@+id/editEndDate"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="171dp"
-        android:layout_marginEnd="29dp"
+        android:layout_below="@+id/textView2"
+        android:layout_marginStart="240dp"
         android:drawableEnd="@drawable/ic_expand_more"
         android:clickable="true"
         android:longClickable="false"
-        android:focusable="false"
+        android:focusable="true"
         android:textColor="@color/colorPrimary" />
 
 
@@ -158,11 +155,11 @@
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:inputType="text"
-        android:hint="Search query terms"
+        android:hint="@string/search_query_terms"
         android:cursorVisible="true"
         android:textCursorDrawable="@color/colorPrimaryDark"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:drawableLeft="@drawable/ic_search"/>
+        android:drawableStart="@drawable/ic_search"/>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_search_frame_layout"

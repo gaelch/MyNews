@@ -3,4 +3,47 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="list_empty">sorry we could not find any articles matching your search</string>
     <string name="dateFromat">"-"</string>
+    <string name="aboutMyNews">MyNews is an application designed by Openclassrooms and developed by its students for the 5th project for the graduation of Android developer. </string>
+    <string name="about2">This application uses the API of the news york times so that you can find the articles that interest you</string>
+    <string name="findUrl">You can find more information on the site of New york times:</string>
+    <string name="help">Help</string>
+    <string name="help1">When you click on an article, you display the contents of the article.\n</string>
+    <string name="help2">A magnifying glass allows you to search all the items in the New York Times database (not the items displayed on the screen).
+This one allows to search the articles according to the following criteria:\n</string>
+    <string name="help3">When you click on an article, you display the co</string>
+    <string name="help4">The list of keywords (required);
+The minimum publication date (optional);
+The maximum date of publication (optional);
+The category or categories (at least one category must be checked).</string>
+    <string name="help5">The list of keywords (required);
+The minimum publication date (optional);
+The maximum date of publication (optional);
+The category or categories (at least one category must be checked).
+On validation, the results are displayed on a new screen, in the form of a list (as on the home screen). If no result is found, indicate it with a pop-up.\n</string>
+    <string name="help6">Notifications
+To avoid missing any relevant news, you decide to add a feature to warn you when a new article is published,
+        according to criteria that you have predefined. To do this, you decide to add a new settings screen,
+        accessible from the menu point of the main screen of the application.\n</string>
+    <string name="help7">If notifications are enabled, then the app will check once a day if news matches the search criteria, then notify you with a notification message.
+In the menu at the top left, you can choose the categories that interest you. Once a category is selected, the items are displayed.</string>
+    <string name="arts">Arts</string>
+    <string name="business">Business</string>
+    <string name="sciences">Sciences</string>
+    <string name="politics">Politics</string>
+    <string name="sports">Sports</string>
+    <string name="travel">Travel</string>
+    <string name="search_query_terms">Search query terms</string>
+    <string name="enable_notifications">Enable notifications (once par day)</string>
+    <string name="begin_date">Begin date</string>
+    <string name="end_date">End date</string>
+    <string name="search">Search</string>
+    <string name="categories">Catégories</string>
+    <string name="sections">Sections :</string>
+    <string name="techno">Technology</string>
+    <string name="autos">Automobiles</string>
+    <string name="params">Params</string>
+    <string name="notification">Notifications</string>
+    <string name="about">About</string>
+
+
 </resources>
