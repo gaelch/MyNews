@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.Activities.NotificationActivity">
+    tools:context=".controllers.activities.NotificationActivity">
 
     <!-- Toolbar -->
     <include
@@ -113,10 +113,8 @@
         android:layout_marginTop="45dp"
         android:textColor="@color/Black"
         android:layout_centerHorizontal="true"
-        android:backgroundTintMode="add"
-        android:thumbTint="@color/colorPrimaryDark"
-        android:trackTint="@color/colorPrimary"
-        android:text="Enable notifications (once par day)" />
+        android:text="Enable notifications (once par day)"
+        android:theme="@style/SwitchCompatTheme"/>
 
     <FrameLayout
         android:id="@+id/activity_notification_frame_layout"

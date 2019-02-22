@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.Activities.SearchActivity"
+    tools:context=".controllers.activities.SearchActivity"
     android:background="@android:color/white">
 
     <!-- Toolbar -->
@@ -17,7 +17,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/checkBoxSciences"
+        android:layout_marginStart="50dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="155dp"
         android:text="Begin date" />
@@ -37,8 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="226dp"
-        android:layout_marginEnd="282dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginEnd="280dp"
         android:text="Arts"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
@@ -49,8 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="269dp"
-        android:layout_marginEnd="255dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="249dp"
         android:text="Business"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
@@ -61,8 +61,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="312dp"
-        android:layout_marginEnd="252dp"
+        android:layout_marginTop="310dp"
+        android:layout_marginEnd="249dp"
         android:text="sciences"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="222dp"
+        android:layout_marginTop="230dp"
         android:layout_marginEnd="72dp"
         android:text="Politics"
         android:textColor="@color/Black"
@@ -85,8 +85,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="268dp"
-        android:layout_marginEnd="78dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="77dp"
         android:text="Sports"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
@@ -97,8 +97,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="313dp"
-        android:layout_marginEnd="81dp"
+        android:layout_marginTop="310dp"
+        android:layout_marginEnd="80dp"
         android:text="Travel"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    tools:context=".Controllers.Activities.MainActivity">
+    tools:context=".controllers.activities.MainActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
-        tools:context=".Controllers.Activities.MainActivity">
+        tools:context=".controllers.activities.MainActivity">
 
         <!-- Importation de notre Toolbar -->
         <include
@@ -30,9 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            app:tabIndicatorColor="@color/colorPrimary"
-            app:tabTextColor="@color/colorAccent"
-            app:tabSelectedTextColor="#fff"/>
+            app:tabIndicatorColor="@color/Yellow"
+            app:tabTextColor="@color/colorLightBlue"
+            app:tabSelectedTextColor="#fff"
+            app:tabTextAppearance="@style/MyCustomTabText"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/activity_main_viewpager"

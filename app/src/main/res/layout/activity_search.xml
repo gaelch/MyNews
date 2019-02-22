@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.Activities.SearchActivity"
+    tools:context=".controllers.activities.SearchActivity"
     android:background="@android:color/white">
 
     <!-- Toolbar -->
@@ -13,6 +13,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="155dp"
+        android:text="Begin date" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editEndDate"
+        android:layout_alignTop="@+id/textView"
+        android:text="End date" />
+
 
     <CheckBox
         android:id="@+id/checkBoxArts"
@@ -20,11 +37,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="189dp"
-        android:layout_marginEnd="286dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginEnd="282dp"
+        android:text="Arts"
         android:textColor="@color/Black"
-        android:theme="@style/checkBoxStyle"
-        android:text="Arts" />
+        android:theme="@style/checkBoxStyle" />
 
     <CheckBox
         android:id="@+id/checkBoxBusiness"
@@ -32,11 +49,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="234dp"
-        android:layout_marginEnd="259dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="250dp"
+        android:text="Business"
         android:textColor="@color/Black"
-        android:theme="@style/checkBoxStyle"
-        android:text="Business" />
+        android:theme="@style/checkBoxStyle" />
 
     <CheckBox
         android:id="@+id/checkBoxSciences"
@@ -44,11 +61,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="276dp"
-        android:layout_marginEnd="256dp"
+        android:layout_marginTop="310dp"
+        android:layout_marginEnd="249dp"
+        android:text="sciences"
         android:textColor="@color/Black"
-        android:theme="@style/checkBoxStyle"
-        android:text="sciences" />
+        android:theme="@style/checkBoxStyle" />
 
     <CheckBox
         android:id="@+id/checkBoxPolitics"
@@ -56,11 +73,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="188dp"
-        android:layout_marginEnd="81dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginEnd="72dp"
+        android:text="Politics"
         android:textColor="@color/Black"
-        android:theme="@style/checkBoxStyle"
-        android:text="Politics" />
+        android:theme="@style/checkBoxStyle" />
 
     <CheckBox
         android:id="@+id/checkBoxSports"
@@ -68,11 +85,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="233dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="78dp"
+        android:text="Sports"
         android:textColor="@color/Black"
-        android:theme="@style/checkBoxStyle"
-        android:text="Sports" />
+        android:theme="@style/checkBoxStyle" />
 
     <CheckBox
         android:id="@+id/checkBoxTravel"
@@ -80,11 +97,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="276dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginTop="310dp"
+        android:layout_marginEnd="80dp"
+        android:text="Travel"
         android:textColor="@color/Black"
-        android:theme="@style/checkBoxStyle"
-        android:text="Travel" />
+        android:theme="@style/checkBoxStyle" />
 
     <TextView
         android:id="@+id/buttonSearch"
@@ -92,35 +109,44 @@
         android:layout_height="45dp"
         android:gravity="center"
         android:textSize="20sp"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="182dp"
+        android:layout_marginBottom="150dp"
         android:background="@color/colorPrimary"
         android:shadowColor="@android:color/black"
         android:text="Search"
         android:textColor="@color/colorAccent" />
 
-    <DatePicker
-        android:id="@+id/result_to_search_date_picker_begin"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editTextBeginDate"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editSearchBar"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:calendarViewShown="true"
-        android:layout_marginTop="139dp">
-    </DatePicker>
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="171dp"
+        android:clickable="true"
+        android:longClickable="false"
+        android:focusable="false"
+        android:ems="10"
+        android:drawableEnd="@drawable/ic_expand_more"
+        android:textColor="@color/colorPrimary" />
 
-    <DatePicker
-        android:id="@+id/result_to_search_date_picker_end"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editEndDate"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editSearchBar"
         android:layout_alignParentTop="true"
-        android:calendarViewShown="true"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="139dp">
-    </DatePicker>
-
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="171dp"
+        android:layout_marginEnd="29dp"
+        android:drawableEnd="@drawable/ic_expand_more"
+        android:clickable="true"
+        android:longClickable="false"
+        android:focusable="false"
+        android:textColor="@color/colorPrimary" />
 
 
     <EditText
@@ -134,15 +160,18 @@
         android:inputType="text"
         android:hint="Search query terms"
         android:cursorVisible="true"
+        android:textCursorDrawable="@color/colorPrimaryDark"
         android:backgroundTint="@color/colorPrimaryDark"
         android:drawableLeft="@drawable/ic_search"/>
 
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_search_frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
     </FrameLayout>
 
 

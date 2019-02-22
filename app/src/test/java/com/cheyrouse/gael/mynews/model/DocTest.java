@@ -1,6 +1,6 @@
 package com.cheyrouse.gael.mynews.model;
 
-import com.cheyrouse.gael.mynews.Models.Doc;
+import com.cheyrouse.gael.mynews.models.Doc;
 
 import org.junit.Test;
 
@@ -9,6 +9,7 @@ import static org.junit.Assert.assertNull;
 
 public class DocTest {
 
+    //Test Docs
     @Test
     public void createAndGetTest() throws Exception {
         Doc doc = new Doc();
