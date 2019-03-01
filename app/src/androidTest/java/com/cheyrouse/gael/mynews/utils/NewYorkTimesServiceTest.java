@@ -26,7 +26,7 @@ public interface  NewYorkTimesServiceTest {
 
     OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
 
-    Retrofit retrofit = new Retrofit.Builder()
+      Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(ArticlesFragmentTest.server.url("/").toString())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

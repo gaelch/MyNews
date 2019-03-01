@@ -11,8 +11,8 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.cheyrouse.gael.mynews.models.SearchArticle;
 import com.cheyrouse.gael.mynews.R;
+import com.cheyrouse.gael.mynews.models.SearchArticle;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
