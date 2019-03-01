@@ -36,6 +36,9 @@
             android:parentActivityName=".controllers.activities.MainActivity" />
         <receiver android:name=".utils.AlarmReceiver"
             android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
         </receiver>
 
     </application>
