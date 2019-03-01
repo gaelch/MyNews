@@ -1,7 +1,7 @@
 package com.cheyrouse.gael.mynews.utils;
 
 public class Prefs {
-  /*  //This class saves moods using SharedPreferences and the Gson library
+  /*//This class using SharedPreferences and the Gson library
     private static Prefs instance;
         private static final String Moods = "Mood";
         private static SharedPreferences prefs;
@@ -31,23 +31,23 @@ public class Prefs {
         }
 
         //getMoodStore recovers json strings and return there in ArrayList
-        public ArrayList<Mood> getMoodStore() {
+        public ArrayList<Mood> getPrefs() {
             Gson gson = new Gson();
             String json = prefs.getString(Moods, "");
 
-            ArrayList<Mood> moodStore;
+            ArrayList<String> store;
 
             if (json.length() < 1) {
-                moodStore = new ArrayList<>();
+               store = new ArrayList<>();
             } else {
                 Type type = new TypeToken<ArrayList<Mood>>() {
                 }.getType();
-                moodStore = gson.fromJson(json, type);
+                store = gson.fromJson(json, type);
             }
 
             //return the value that was stored under the key
 
-            return moodStore;
+            return store;
         }*/
 
 }
