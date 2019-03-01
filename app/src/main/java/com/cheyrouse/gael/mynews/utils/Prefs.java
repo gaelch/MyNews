@@ -1,8 +1,8 @@
 package com.cheyrouse.gael.mynews.utils;
 
 public class Prefs {
-    //This class saves moods using SharedPreferences and the Gson library
-  /*  private static Prefs instance;
+   /* //This class saves moods using SharedPreferences and the Gson library
+    private static Prefs instance;
         private static final String Moods = "Mood";
         private static SharedPreferences prefs;
 
