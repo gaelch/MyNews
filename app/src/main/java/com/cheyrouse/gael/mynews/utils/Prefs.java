@@ -2,17 +2,14 @@ package com.cheyrouse.gael.mynews.utils;
 
 public class Prefs {
     //This class saves moods using SharedPreferences and the Gson library
-
-    /*    private static Prefs instance;
+  /*  private static Prefs instance;
         private static final String Moods = "Mood";
         private static SharedPreferences prefs;
 
 
         //Class Prefs constructor
         private Prefs(Context context) {
-            String PREFS_MOOD_STORE = "MoodStore";
-            prefs = context.getSharedPreferences(PREFS_MOOD_STORE, Activity.MODE_PRIVATE);
-
+            prefs = context.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
         }
         //Prefs.get is called in SaveMoodHelper to create a new instance of Prefs
         public static Prefs get(Context context) {
@@ -22,13 +19,13 @@ public class Prefs {
         }
 
         //storeMoodStore change ArrayList into json strings and save it
-        public void storeMoodStore(ArrayList<Mood> moodStore) {
+        public void storeCategories(ArrayList<String> categories) {
             //start writing (open the file)
             SharedPreferences.Editor editor = prefs.edit();
             //put the data
             Gson gson = new Gson();
-            String json = gson.toJson(moodStore);
-            editor.putString(Moods, json);
+            String json = gson.toJson(categories);
+            editor.putString(categorie, json);
             //close the file
             editor.apply();
         }
