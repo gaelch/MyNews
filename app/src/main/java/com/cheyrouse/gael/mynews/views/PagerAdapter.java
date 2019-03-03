@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 
-import com.cheyrouse.gael.mynews.Controllers.fragments.ArticlesFragment;
+import com.cheyrouse.gael.mynews.Controllers.Fragments.ArticlesFragment;
 
 import java.util.List;
 

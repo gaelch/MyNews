@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.Controllers.fragments;
+package com.cheyrouse.gael.mynews.Controllers.Fragments;
 
 
 import android.support.test.InstrumentationRegistry;

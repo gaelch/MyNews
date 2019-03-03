@@ -1,6 +1,6 @@
 package com.cheyrouse.gael.mynews.Utils;
 
-import com.cheyrouse.gael.mynews.Controllers.fragments.ArticlesFragmentTest;
+import com.cheyrouse.gael.mynews.Controllers.Fragments.ArticlesFragmentTest;
 import com.cheyrouse.gael.mynews.Models.Article;
 import com.cheyrouse.gael.mynews.Models.SearchArticle;
 

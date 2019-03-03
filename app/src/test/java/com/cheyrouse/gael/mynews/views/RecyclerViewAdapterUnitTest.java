@@ -1,7 +1,7 @@
 package com.cheyrouse.gael.mynews.views;
 
 import com.bumptech.glide.RequestManager;
-import com.cheyrouse.gael.mynews.Controllers.fragments.ArticlesFragment;
+import com.cheyrouse.gael.mynews.Controllers.Fragments.ArticlesFragment;
 import com.cheyrouse.gael.mynews.Models.Result;
 
 import org.junit.Test;
