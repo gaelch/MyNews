@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.Controllers.fragments;
+package com.cheyrouse.gael.mynews.controllers.fragments;
 
 
 import android.content.Context;
@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.support.constraint.Constraints.TAG;
-import static com.cheyrouse.gael.mynews.Controllers.activities.SearchActivity.ARTICLES_SEARCH;
+import static com.cheyrouse.gael.mynews.controllers.activities.SearchActivity.ARTICLES_SEARCH;
 
 /**
  * A simple {@link Fragment} subclass.

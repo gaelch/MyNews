@@ -17,23 +17,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Controllers.activities.HelpActivity"/>
-        <activity android:name=".Controllers.activities.AboutActivity" />
+        <activity android:name=".controllers.activities.HelpActivity"/>
+        <activity android:name=".controllers.activities.AboutActivity" />
         <activity
-            android:name=".Controllers.activities.NotificationActivity"
-            android:parentActivityName=".Controllers.activities.MainActivity" />
-        <activity android:name=".Controllers.activities.MainActivity">
+            android:name=".controllers.activities.NotificationActivity"
+            android:parentActivityName=".controllers.activities.MainActivity" />
+        <activity android:name=".controllers.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Controllers.activities.ArticleDetailActivity"
-            android:parentActivityName=".Controllers.activities.MainActivity" />
+        <activity android:name=".controllers.activities.ArticleDetailActivity"
+            android:parentActivityName=".controllers.activities.MainActivity" />
         <activity
-            android:name=".Controllers.activities.SearchActivity"
-            android:parentActivityName=".Controllers.activities.MainActivity" />
+            android:name=".controllers.activities.SearchActivity"
+            android:parentActivityName=".controllers.activities.MainActivity" />
         <receiver android:name=".utils.AlarmReceiver"
             android:enabled="true">
             <intent-filter>

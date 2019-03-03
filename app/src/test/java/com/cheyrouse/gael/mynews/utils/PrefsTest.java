@@ -7,9 +7,8 @@ import java.util.List;
 
 import static android.support.test.InstrumentationRegistry.getContext;
 
-
 public class PrefsTest  {
-  /*  private Prefs prefs;
+ /*   private Prefs prefs;
 
     private String getTest(){
         return prefs.getKeywords();

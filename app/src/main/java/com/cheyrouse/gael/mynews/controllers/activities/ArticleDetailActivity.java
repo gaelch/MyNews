@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.Controllers.activities;
+package com.cheyrouse.gael.mynews.controllers.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

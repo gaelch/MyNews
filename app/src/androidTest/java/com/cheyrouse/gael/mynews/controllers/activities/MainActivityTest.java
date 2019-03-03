@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.Controllers.activities;
+package com.cheyrouse.gael.mynews.controllers.activities;
 
 
 import android.support.test.espresso.ViewInteraction;

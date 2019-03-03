@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.Controllers.activities;
+package com.cheyrouse.gael.mynews.controllers.activities;
 
 
 import android.content.Intent;
@@ -16,7 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.cheyrouse.gael.mynews.Controllers.fragments.ArticlesFragment;
+import com.cheyrouse.gael.mynews.controllers.fragments.ArticlesFragment;
 import com.cheyrouse.gael.mynews.models.Result;
 import com.cheyrouse.gael.mynews.R;
 import com.cheyrouse.gael.mynews.utils.AlarmHelper;

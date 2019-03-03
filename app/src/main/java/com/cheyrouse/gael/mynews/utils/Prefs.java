@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.cheyrouse.gael.mynews.Controllers.activities.NotificationActivity.MY_PREFS;
+import static com.cheyrouse.gael.mynews.controllers.activities.NotificationActivity.MY_PREFS;
 
 public class Prefs {
   //This class using SharedPreferences and the Gson library
