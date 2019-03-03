@@ -19,7 +19,8 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".Controllers.activities.SearchActivity"
-            android:parentActivityName=".Controllers.activities.MainActivity"></activity>
+            android:parentActivityName=".Controllers.activities.MainActivity">
+        </activity>
         <activity android:name=".Controllers.activities.HelpActivity" />
         <activity android:name=".Controllers.activities.AboutActivity" />
         <activity

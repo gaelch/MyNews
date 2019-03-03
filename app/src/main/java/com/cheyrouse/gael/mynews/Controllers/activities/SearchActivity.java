@@ -24,7 +24,6 @@ import com.cheyrouse.gael.mynews.Controllers.Fragments.ResultToSearchFragment;
 import com.cheyrouse.gael.mynews.Models.Doc;
 import com.cheyrouse.gael.mynews.Models.SearchArticle;
 import com.cheyrouse.gael.mynews.Utils.NewYorkTimesStream;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
