@@ -2,7 +2,7 @@ package com.cheyrouse.gael.mynews.views;
 
 import android.support.test.rule.ActivityTestRule;
 
-import com.cheyrouse.gael.mynews.controllers.activities.MainActivity;
+import com.cheyrouse.gael.mynews.Controllers.activities.MainActivity;
 
 import org.junit.Before;
 import org.junit.Rule;

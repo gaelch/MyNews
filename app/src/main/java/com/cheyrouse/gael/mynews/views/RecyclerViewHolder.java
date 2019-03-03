@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
-import com.cheyrouse.gael.mynews.models.Result;
+import com.cheyrouse.gael.mynews.Models.Result;
 import com.cheyrouse.gael.mynews.R;
 
 import butterknife.BindView;

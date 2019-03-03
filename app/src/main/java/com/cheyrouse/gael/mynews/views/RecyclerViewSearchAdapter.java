@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.RequestManager;
-import com.cheyrouse.gael.mynews.models.Doc;
+import com.cheyrouse.gael.mynews.Models.Doc;
 import com.cheyrouse.gael.mynews.R;
 
 import java.util.List;
