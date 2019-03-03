@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".Controllers.SearchActivity"
+            android:name=".Controllers.activities.SearchActivity"
             android:parentActivityName=".Controllers.activities.MainActivity">
         </activity>
         <activity android:name=".Controllers.activities.HelpActivity" />

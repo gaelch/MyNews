@@ -17,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.cheyrouse.gael.mynews.Controllers.Fragments.ArticlesFragment;
-import com.cheyrouse.gael.mynews.Controllers.SearchActivity;
 import com.cheyrouse.gael.mynews.Models.Result;
 import com.cheyrouse.gael.mynews.R;
 import com.cheyrouse.gael.mynews.Utils.AlarmHelper;
