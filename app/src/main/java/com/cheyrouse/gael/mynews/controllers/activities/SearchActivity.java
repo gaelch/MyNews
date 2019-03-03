@@ -4,9 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -38,19 +38,21 @@ import io.reactivex.observers.DisposableObserver;
 import static com.cheyrouse.gael.mynews.models.Result.TOPSTORIES_EXTRA;
 import static com.cheyrouse.gael.mynews.utils.NewYorkTimesService.API_KEY;
 
-
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener, ResultToSearchFragment.ResultToSearchFragmentListener {
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.editSearchBar) EditText editTextSearch;
     @BindView(R.id.editTextBeginDate) EditText editTextBeginDate;
-    @BindView(R.id.editEndDate) EditText editTextEndDate;
+    @BindView(R.id.editEndDate)
+    EditText editTextEndDate;
     @BindView(R.id.checkBoxArts) CheckBox checkBoxArts;
     @BindView(R.id.checkBoxBusiness) CheckBox checkBoxBusiness;
     @BindView(R.id.checkBoxPolitics) CheckBox checkBoxPolitics;
     @BindView(R.id.checkBoxSciences) CheckBox checkBoxSciences;
     @BindView(R.id.checkBoxSports) CheckBox checkBoxSport;
-    @BindView(R.id.checkBoxTravel) CheckBox checkBoxTravel;
+    @BindView(R.id.checkBoxTravel)
+    CheckBox checkBoxTravel;
     @BindView(R.id.buttonSearch)
     TextView buttonSearch;
 
@@ -320,7 +322,4 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         detailActivityIntent.putExtra(TOPSTORIES_EXTRA, searchArticle.getWebUrl());
         startActivity(detailActivityIntent);
     }
-
-
-
 }

@@ -17,7 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controllers.activities.HelpActivity"/>
+        <activity
+            android:name=".controllers.activities.SearchActivity"
+            android:parentActivityName=".controllers.activities.MainActivity"></activity>
+        <activity android:name=".controllers.activities.HelpActivity" />
         <activity android:name=".controllers.activities.AboutActivity" />
         <activity
             android:name=".controllers.activities.NotificationActivity"
@@ -29,24 +32,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controllers.activities.ArticleDetailActivity"
-            android:parentActivityName=".controllers.activities.MainActivity" />
         <activity
-            android:name=".controllers.activities.SearchActivity"
+            android:name=".controllers.activities.ArticleDetailActivity"
             android:parentActivityName=".controllers.activities.MainActivity" />
-        <receiver android:name=".utils.AlarmReceiver"
+
+        <receiver
+            android:name=".utils.AlarmReceiver"
             android:enabled="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <uses-library android:name="android.test.runner"
-            android:required="false" />
-        <uses-library android:name="android.test.base"
-            android:required="false" />
-        <uses-library android:name="android.test.mock"
-            android:required="false" />
 
+        <uses-library
+            android:name="android.test.runner"
+            android:required="false" />
+        <uses-library
+            android:name="android.test.base"
+            android:required="false" />
+        <uses-library
+            android:name="android.test.mock"
+            android:required="false" />
     </application>
 
 </manifest>
