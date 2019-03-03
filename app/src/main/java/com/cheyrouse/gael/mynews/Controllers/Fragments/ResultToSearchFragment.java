@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.support.constraint.Constraints.TAG;
-import static com.cheyrouse.gael.mynews.Controllers.activities.SearchActivity.ARTICLES_SEARCH;
+import static com.cheyrouse.gael.mynews.Controllers.SearchActivity.ARTICLES_SEARCH;
 
 /**
  * A simple {@link Fragment} subclass.

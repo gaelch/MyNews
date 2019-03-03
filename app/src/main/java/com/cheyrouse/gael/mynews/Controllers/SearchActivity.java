@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.Controllers.activities;
+package com.cheyrouse.gael.mynews.Controllers;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cheyrouse.gael.mynews.Controllers.activities.ArticleDetailActivity;
 import com.cheyrouse.gael.mynews.R;
 import com.cheyrouse.gael.mynews.Controllers.Fragments.ResultToSearchFragment;
 import com.cheyrouse.gael.mynews.Models.Doc;
