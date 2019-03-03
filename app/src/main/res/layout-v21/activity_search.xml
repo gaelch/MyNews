@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controllers.activities.SearchActivity"
+    tools:context=".Controllers.activities.SearchActivity"
     android:background="@android:color/white">
 
     <!-- Toolbar -->
@@ -129,7 +129,7 @@
         android:clickable="true"
         android:longClickable="false"
         android:focusable="true"
-        android:ems="10"
+        android:backgroundTint="@color/Black"
         android:drawableEnd="@drawable/ic_expand_more"
         android:textColor="@color/colorPrimary" />
 
@@ -138,9 +138,10 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
-        android:layout_marginStart="240dp"
+        android:layout_marginStart="220dp"
         android:drawableEnd="@drawable/ic_expand_more"
         android:clickable="true"
+        android:backgroundTint="@color/Black"
         android:longClickable="false"
         android:focusable="true"
         android:textColor="@color/colorPrimary" />

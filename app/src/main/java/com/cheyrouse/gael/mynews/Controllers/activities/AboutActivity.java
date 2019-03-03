@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.controllers.activities;
+package com.cheyrouse.gael.mynews.Controllers.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

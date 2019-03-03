@@ -4,13 +4,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 
 import java.util.Calendar;
 import java.util.Locale;
-
-import static android.content.Context.MODE_PRIVATE;
-import static com.cheyrouse.gael.mynews.controllers.activities.NotificationActivity.MY_PREFS;
 
 public class AlarmHelper {
 
@@ -31,9 +27,9 @@ public class AlarmHelper {
         }
 
         //request sharedPreferences to check boolean switchNotif
-        SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
+        Prefs prefs = new Prefs(context);
 
-        boolean switchNotif = sharedPreferences.getBoolean("switch", false);
+        boolean switchNotif = prefs.getBoolean();
         //call AlarmReceiver class
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if(switchNotif){

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.RequestManager;
-import com.cheyrouse.gael.mynews.controllers.fragments.ArticlesFragment;
+import com.cheyrouse.gael.mynews.Controllers.fragments.ArticlesFragment;
 import com.cheyrouse.gael.mynews.models.Result;
 import com.cheyrouse.gael.mynews.R;
 

@@ -1,13 +1,11 @@
-package com.cheyrouse.gael.mynews.controllers.activities;
+package com.cheyrouse.gael.mynews.Controllers.activities;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -16,8 +14,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.cheyrouse.gael.mynews.R;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.cheyrouse.gael.mynews.utils.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,24 +34,21 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     @BindView(R.id.editSearchBar) EditText editTextSearch;
     @BindView(R.id.switch_notification) Switch switchNotification;
 
-    private String category;
     private List<String> categories;
     private String keywords;
-    private SharedPreferences sharedPreferences;
     private Boolean switchNotif;
     public static final String MY_PREFS = "my_prefs";
-
-
+    private Prefs prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         ButterKnife.bind(this);
+        prefs = Prefs.get(NotificationActivity.this);
         categories = new ArrayList<>();
         configureToolbar();
         innitListener();
-        configureSharedPreferences();
         configureSwitchNotification();
         configureEditTextSearch();
         configureCheckBoxPrefs();
@@ -62,11 +56,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
     //If Prefs is not null check saved CheckBox
     private void configureCheckBoxPrefs() {
-        if(sharedPreferences != null){
-            Gson gson = new Gson();
-            String json = sharedPreferences.getString("categories", null);
-            categories = gson.fromJson(json, new TypeToken<ArrayList<String>>(){}.getType());
-
+        if(prefs != null){
+            categories = prefs.getCategories();
             if(switchNotif){
                 if(categories != null && categories.contains("arts")){
                     checkBoxArts.setChecked(true);
@@ -92,8 +83,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
     // If switch is saved, check it
     private void configureSwitchNotification() {
-        if(sharedPreferences != null) {
-            switchNotif = sharedPreferences.getBoolean("switch", false);
+        if(prefs != null) {
+            switchNotif = prefs.getBoolean();
             if (switchNotif) {
                 switchNotification.setChecked(true);
             }
@@ -127,12 +118,6 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-    //Request prefs
-    private void configureSharedPreferences() {
-        sharedPreferences = getApplicationContext().getSharedPreferences(MY_PREFS, MODE_PRIVATE);
-        Log.e("test", "ok");
-    }
-
     //Set the toolbar
     public void configureToolbar(){
         // Set the Toolbar
@@ -158,28 +143,28 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
     //Set saved words on EditText and get words
     private void configureEditTextSearch() {
-        if(sharedPreferences != null){
-            keywords = sharedPreferences.getString("keywords", "");
+        if(prefs != null){
+            keywords = prefs.getKeywords();
         }
         if(switchNotif){
             editTextSearch.setText(keywords);
-            editTextSearch.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    keywords = editTextSearch.getText().toString();
-                }
-            });
         }
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                keywords = editTextSearch.getText().toString();
+            }
+        });
 
     }
 
@@ -187,6 +172,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
 
+        String category;
         switch (v.getId()){
             case R.id.checkBoxArts:
                 if (checkBoxArts.isChecked()){
@@ -247,13 +233,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
     //Save params
     private void saveQueryParams() {
-        sharedPreferences = getApplicationContext().getSharedPreferences(MY_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("keywords", keywords);
-        editor.putBoolean("switch", switchNotif);
-        Gson gson = new Gson();
-        String json = gson.toJson(categories);
-        editor.putString("categories", json);
-        editor.apply();
+        prefs.storeCategories(categories);
+        prefs.storeKeywords(keywords);
+        prefs.storeBoolean(switchNotif);
     }
 }
