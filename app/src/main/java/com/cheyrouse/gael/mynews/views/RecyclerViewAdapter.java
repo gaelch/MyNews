@@ -43,7 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     // UPDATE VIEW HOLDER WITH A TOPSTORIES
     @Override
-    public void onBindViewHolder(RecyclerViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewHolder viewHolder, int position) {
         viewHolder.updateWithResult(this.topStories.get(position), this.glide, mListener);
     }
 

@@ -45,11 +45,11 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     private static final String FRAGMENT_POSITION= "position";
     private ArticlesFragmentListener mListener;
-    private List<Result> ArticlesResults;
+    private List<Result> articlesResults;
     private RecyclerViewAdapter adapter;
     private int position;
     private Disposable disposable;
-    private String sectionNav = "business";
+    private String sectionNav = "sports";
 
 
     public ArticlesFragment() {
@@ -87,6 +87,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
         View view = inflater.inflate(R.layout.fragment_articles, container, false);
         ButterKnife.bind(this, view);
         progressBar.setVisibility(View.VISIBLE);
+        articlesResults = new ArrayList<>();
 
         if (getArguments() != null) {
             position = getArguments().getInt(FRAGMENT_POSITION);
@@ -111,9 +112,8 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     //Update sectionNav to request articles
     public void updateContent(String section){
-        progressBar.setVisibility(View.VISIBLE);
         sectionNav = section;
-        executeHttpRequestBusiness(section);
+        executeHttpRequestBusiness(sectionNav);
     }
 
     @Override
@@ -124,9 +124,9 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     //configure recyclerView and Tabs
     private void configureRecyclerView(){
-        this.ArticlesResults = new ArrayList<>();
+        this.articlesResults = new ArrayList<>();
         // Create adapter passing in the sample user data
-        this.adapter = new RecyclerViewAdapter(this.ArticlesResults, Glide.with(this), this);
+        this.adapter = new RecyclerViewAdapter(this.articlesResults, Glide.with(this), this);
         // Attach the adapter to the recyclerView to populate items
         this.recyclerView.setAdapter(this.adapter);
         // Set layout manager to position the items
@@ -159,7 +159,6 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     //Request to TopStories Api articles
     private void executeHttpRequestTopStories( ){
-
         disposable = NewYorkTimesStream.streamFetchArticle( "home", API_KEY).subscribeWith(new DisposableObserver<Article>() {
             @Override
             public void onNext(Article articles) {
@@ -181,8 +180,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     //Request to MostPopular Api articles
     private  void executeHttpRequestMostPopular (){
-
-        disposable = NewYorkTimesStream.streamFetchArticleMostPopular("politics", API_KEY).subscribeWith(new DisposableObserver<Article>() {
+        disposable = NewYorkTimesStream.streamFetchArticleMostPopular("arts", API_KEY).subscribeWith(new DisposableObserver<Article>() {
 
             @Override
             public void onNext(Article articles) {
@@ -235,14 +233,16 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     //Update the adapter to recyclerView
     private void updateUI(Article articles){
-        if(ArticlesResults != null){
-            ArticlesResults.clear();
+        if(articlesResults != null){
+            articlesResults.clear();
         }
         if(articles.getResult() != null)
         {
-            ArticlesResults.addAll(articles.getResult());
-            if(ArticlesResults.size() == 0){
+            articlesResults.addAll(articles.getResult());
+            textView.setVisibility(View.GONE);
+            if(articlesResults.size() == 0){
                 {
+                    articlesResults.clear();
                     textView.setVisibility(View.VISIBLE);
                     textView.setText(R.string.list_empty);}
             }

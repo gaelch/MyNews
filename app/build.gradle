@@ -15,6 +15,8 @@ android {
 
         testOptions {
             unitTests.includeAndroidResources = true
+            unitTests.returnDefaultValues = true
+            testOptions.unitTests.includeAndroidResources = true
         }
 
     }
@@ -57,9 +59,12 @@ dependencies {
     androidTestImplementation 'com.squareup.okhttp3:mockwebserver:3.10.0'
     testImplementation 'junit:junit:4.12'
     testImplementation 'commons-io:commons-io:2.6'
+    testImplementation 'org.robolectric:robolectric:4.2'
+    testImplementation 'org.robolectric:shadows-multidex:4.0.1'
     testImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation "com.android.support.test:rules:1.0.2"
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     androidTestImplementation('com.android.support:multidex-instrumentation:1.0.1') {
         exclude group: 'com.android.support', module: 'multidex'
     }

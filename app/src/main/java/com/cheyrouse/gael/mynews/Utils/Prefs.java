@@ -30,6 +30,15 @@ public class Prefs {
             return instance;
         }
 
+        Prefs(){
+        }
+
+        public static Prefs PrefsInit(SharedPreferences sharedPreferences){
+            instance = new Prefs();
+            prefs = sharedPreferences;
+            return instance;
+        }
+
         //storeMoodStore change ArrayList into json strings and save it
         public void storeCategories(List<String> categories) {
             //start writing (open the file)

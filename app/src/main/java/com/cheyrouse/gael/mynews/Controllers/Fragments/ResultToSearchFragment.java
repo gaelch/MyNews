@@ -71,7 +71,8 @@ public class ResultToSearchFragment extends Fragment implements View.OnClickList
         getTheBundle();
 
         configureRecyclerView();
-        UpdateUI();
+        configureSwipeRefreshLayout();
+        updateUI();
 
         return view;
     }
@@ -98,8 +99,18 @@ public class ResultToSearchFragment extends Fragment implements View.OnClickList
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    //Configure SSwipeRefreshLayout
+    private void configureSwipeRefreshLayout(){
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                updateUI();
+            }
+        });
+    }
+
     //Update adapter
-    private void UpdateUI() {
+    private void updateUI() {
         if(responses != null){
             responses.clear();
         }

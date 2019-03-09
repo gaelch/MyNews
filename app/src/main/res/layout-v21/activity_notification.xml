@@ -20,6 +20,7 @@
         android:layout_below="@+id/editSearchBar"
         android:layout_marginStart="30dp"
         android:text="@string/arts"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -30,6 +31,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="5dp"
         android:layout_below="@+id/checkBoxArts"
+        android:textSize="@dimen/size_string"
         android:text="@string/business"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
@@ -42,6 +44,7 @@
         android:layout_marginStart="30dp"
         android:layout_below="@+id/checkBoxBusiness"
         android:text="@string/sciences"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -53,6 +56,7 @@
         android:layout_below="@+id/editSearchBar"
         android:layout_marginStart="235dp"
         android:text="@string/politics"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -64,6 +68,7 @@
         android:layout_below="@+id/checkBoxPolitics"
         android:layout_marginStart="235dp"
         android:text="@string/sports"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -75,6 +80,7 @@
         android:layout_marginStart="235dp"
         android:layout_marginTop="5dp"
         android:text="@string/travel"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -92,7 +98,9 @@
         android:cursorVisible="true"
         android:textCursorDrawable="@color/colorPrimaryDark"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:drawableStart="@drawable/ic_search" />
+        android:drawableStart="@drawable/ic_search"
+        android:autofillHints="true"
+        tools:targetApi="o" />
 
     <View
         android:layout_width="match_parent"

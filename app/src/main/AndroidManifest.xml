@@ -19,14 +19,18 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".Controllers.activities.SearchActivity"
-            android:parentActivityName=".Controllers.activities.MainActivity">
+            android:parentActivityName=".Controllers.activities.MainActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".Controllers.activities.HelpActivity" />
-        <activity android:name=".Controllers.activities.AboutActivity" />
+        <activity android:name=".Controllers.activities.AboutActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controllers.activities.NotificationActivity"
-            android:parentActivityName=".Controllers.activities.MainActivity" />
-        <activity android:name=".Controllers.activities.MainActivity">
+            android:parentActivityName=".Controllers.activities.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Controllers.activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

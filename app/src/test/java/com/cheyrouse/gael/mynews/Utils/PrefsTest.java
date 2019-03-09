@@ -1,7 +1,30 @@
 package com.cheyrouse.gael.mynews.Utils;
 
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.robolectric.RobolectricTestRunner;
+import java.util.ArrayList;
+import java.util.List;
+
+//@RunWith(RobolectricTestRunner.class)
 public class PrefsTest  {
- /*   private Prefs prefs;
+   /* private Prefs prefs;
+
+    @Mock
+    SharedPreferences mMockSharedPreferences;
+
+    @Before
+    public void setUp() throws Exception{
+        prefs = Prefs.PrefsInit(mMockSharedPreferences);
+    }
+
 
     private String getTest(){
         return prefs.getKeywords();
@@ -17,7 +40,6 @@ public class PrefsTest  {
 
     @Test
     public void assertStringIsStoredAndReturned(){
-        prefs = Prefs.get(getContext());
         String test = "testPreferences";
         prefs.storeKeywords(test);
         Assert.assertEquals(test, getTest());
@@ -25,7 +47,6 @@ public class PrefsTest  {
 
     @Test
     public void assertListIsStoredAndReturned(){
-        prefs = Prefs.get(getContext());
         List<String> testList = new ArrayList<>();
         testList.add("hello");
         testList.add("openClassrooms");
@@ -35,10 +56,10 @@ public class PrefsTest  {
 
     @Test
     public void assertBooleanIsStoredAndReturned(){
-        prefs = Prefs.get(getContext());
         Boolean testFalse = false;
-        prefs.storeBoolean(testFalse);
-        Assert.assertEquals(testFalse, getBoolean());
+        prefs.storeBoolean(false);
+        Assert.assertEquals(false, getBoolean());
     }*/
+
 
 }

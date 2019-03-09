@@ -18,6 +18,10 @@
 
                     android:title="@string/arts" />
                 <item
+                    android:id="@+id/activity_main_drawer_sports"
+
+                    android:title="@string/sports" />
+                <item
                     android:id="@+id/activity_main_drawer_politics"
 
                     android:title="@string/politics" />
@@ -34,10 +38,6 @@
                     android:id="@+id/activity_main_drawer_automobiles"
 
                     android:title="@string/autos" />
-                <item
-                    android:id="@+id/activity_main_drawer_sports"
-
-                    android:title="@string/sports" />
                 <item
                     android:id="@+id/activity_main_drawer_Business"
 

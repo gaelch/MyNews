@@ -155,6 +155,10 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
                 String sectionNav = "technology";
                 updateNavArticle(sectionNav);
                 break;
+            case R.id.activity_main_drawer_sports:
+                sectionNav = "sports";
+                updateNavArticle(sectionNav);
+                break;
             case R.id.activity_main_drawer_politics:
                 sectionNav = "politics";
                 updateNavArticle(sectionNav);
@@ -171,9 +175,6 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
                 sectionNav = "arts";
                 updateNavArticle(sectionNav);
                 break;
-            case R.id.activity_main_drawer_sports:
-                sectionNav = "sports";
-                updateNavArticle(sectionNav);
             case R.id.activity_main_drawer_Business:
                 sectionNav = "business";
                 updateNavArticle(sectionNav);

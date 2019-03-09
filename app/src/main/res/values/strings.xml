@@ -26,7 +26,7 @@ To avoid missing any relevant news, you decide to add a feature to warn you when
         accessible from the menu point of the main screen of the application.\n</string>
     <string name="help7">If notifications are enabled, then the app will check once a day if news matches the search criteria, then notify you with a notification message.
 In the menu at the top left, you can choose the categories that interest you. Once a category is selected, the items are displayed.</string>
-    <string name="arts">Arts</string>
+    <string name="arts">Arts \u0020 \u0020 \u0020 \u0020\u0020</string>
     <string name="business">Business</string>
     <string name="sciences">Sciences</string>
     <string name="politics">Politics</string>

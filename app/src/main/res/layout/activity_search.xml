@@ -40,6 +40,7 @@
         android:layout_marginTop="230dp"
         android:layout_marginEnd="282dp"
         android:text="@string/arts"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -52,6 +53,7 @@
         android:layout_marginTop="270dp"
         android:layout_marginEnd="250dp"
         android:text="@string/business"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -64,6 +66,7 @@
         android:layout_marginTop="310dp"
         android:layout_marginEnd="249dp"
         android:text="@string/sciences"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -76,6 +79,7 @@
         android:layout_marginTop="230dp"
         android:layout_marginEnd="72dp"
         android:text="@string/politics"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -88,6 +92,7 @@
         android:layout_marginTop="270dp"
         android:layout_marginEnd="78dp"
         android:text="@string/sports"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
@@ -100,6 +105,7 @@
         android:layout_marginTop="310dp"
         android:layout_marginEnd="80dp"
         android:text="@string/travel"
+        android:textSize="@dimen/size_string"
         android:textColor="@color/Black"
         android:theme="@style/checkBoxStyle" />
 
