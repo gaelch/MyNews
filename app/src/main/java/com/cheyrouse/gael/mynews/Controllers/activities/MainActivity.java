@@ -31,6 +31,7 @@ import butterknife.ButterKnife;
 
 import static com.cheyrouse.gael.mynews.Models.Result.TOPSTORIES_EXTRA;
 
+//home screen
 public class MainActivity extends AppCompatActivity implements ArticlesFragment.ArticlesFragmentListener,NavigationView.OnNavigationItemSelectedListener
 {
 
