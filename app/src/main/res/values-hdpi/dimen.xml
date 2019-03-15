@@ -1,5 +1,5 @@
 <resources>
     <!-- Default NavigationView Header height -->
     <dimen name="nav_header_height">176dp</dimen>
-    <dimen name="size_string">14</dimen>
+    <dimen name="size_string">14sp</dimen>
 </resources>

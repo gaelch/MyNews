@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers;
 //Stream run test with mockito
 public class NewYorkTimesStreamTest {
 
-    public static Observable<Article> streamFetchTopStories(){
+    public static Observable<Article> streamFetchTopStoriesTest(){
         NewYorkTimesServiceTest newYorkTimesServiceTest = NewYorkTimesServiceTest.retrofit.create(NewYorkTimesServiceTest.class);
         return newYorkTimesServiceTest.getTopStoriesArticles()
                 .subscribeOn(Schedulers.io())

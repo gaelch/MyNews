@@ -18,7 +18,7 @@ import retrofit2.http.Query;
 
 public interface NewYorkTimesService {
 
-    static final String API_KEY = "c30Fj2G1xFQkdMypW0aC6uEfGZhJh6Rn";
+    public static final String API_KEY = "c30Fj2G1xFQkdMypW0aC6uEfGZhJh6Rn";
 
 
     @GET("svc/topstories/v2/{section}.json?")

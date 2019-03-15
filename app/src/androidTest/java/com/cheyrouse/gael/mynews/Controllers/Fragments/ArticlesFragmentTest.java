@@ -11,6 +11,7 @@ import com.cheyrouse.gael.mynews.Models.Doc;
 import com.cheyrouse.gael.mynews.Models.Result;
 import com.cheyrouse.gael.mynews.Models.SearchArticle;
 import com.cheyrouse.gael.mynews.Utils.JsonContent;
+import com.cheyrouse.gael.mynews.Utils.NewYorkTimesStream;
 import com.cheyrouse.gael.mynews.Utils.NewYorkTimesStreamTest;
 
 import org.junit.Before;
@@ -26,9 +27,10 @@ import io.reactivex.observers.TestObserver;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
+import static com.cheyrouse.gael.mynews.Utils.NewYorkTimesService.API_KEY;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-//Test Requests with Mockito
+//Test Requests with Mockito and API request
 @RunWith(AndroidJUnit4.class)
 public class ArticlesFragmentTest extends InstrumentationTestCase {
 
@@ -46,6 +48,19 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
     public void setUp() throws Exception{
         super.setUp();
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
+    }
+
+    @Test
+    public void TopStoriesAPIReturnArticles()
+    {
+        Observable<Article> observable = NewYorkTimesStream.streamFetchArticle("home", API_KEY);
+        TestObserver<Article> testObserver = new TestObserver<>();
+        observable.subscribeWith(testObserver)
+                .assertNoErrors()
+                .assertNoTimeout()
+                .awaitTerminalEvent();
+        Article article = testObserver.values().get(0);
+        assertThat("size != 0", article.getResult().size() != 0);
     }
 
     //Test MostPopular
@@ -76,7 +91,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
                 .setResponseCode(200)
                 .setBody( JsonContent.jsonTopStories));
 
-        Observable<Article> observableArticles = NewYorkTimesStreamTest.streamFetchTopStories();
+        Observable<Article> observableArticles = NewYorkTimesStreamTest.streamFetchTopStoriesTest();
         TestObserver<Article> testObserver = new TestObserver<>();
 
         observableArticles.subscribeWith(testObserver)

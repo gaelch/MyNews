@@ -58,7 +58,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     private void configureCheckBoxPrefs() {
         if(prefs != null){
             categories = prefs.getCategories();
-            if(switchNotif){
+
                 if(categories != null && categories.contains("arts")){
                     checkBoxArts.setChecked(true);
                 }
@@ -77,7 +77,6 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
                 if(categories != null && categories.contains("travel")){
                     checkBoxTravel.setChecked(true);
                 }
-            }
         }
     }
 
@@ -146,9 +145,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         if(prefs != null){
             keywords = prefs.getKeywords();
         }
-        if(switchNotif){
-            editTextSearch.setText(keywords);
-        }
+        editTextSearch.setText(keywords);
+
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

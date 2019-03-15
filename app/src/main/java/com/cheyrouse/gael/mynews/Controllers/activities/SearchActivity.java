@@ -24,6 +24,8 @@ import com.cheyrouse.gael.mynews.Controllers.Fragments.ResultToSearchFragment;
 import com.cheyrouse.gael.mynews.Models.Doc;
 import com.cheyrouse.gael.mynews.Models.SearchArticle;
 import com.cheyrouse.gael.mynews.Utils.NewYorkTimesStream;
+import com.cheyrouse.gael.mynews.Utils.StringDateUtils;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -39,21 +41,17 @@ import static com.cheyrouse.gael.mynews.Utils.NewYorkTimesService.API_KEY;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener, ResultToSearchFragment.ResultToSearchFragmentListener {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.editSearchBar) EditText editTextSearch;
     @BindView(R.id.editTextBeginDate) EditText editTextBeginDate;
-    @BindView(R.id.editEndDate)
-    EditText editTextEndDate;
+    @BindView(R.id.editEndDate) EditText editTextEndDate;
     @BindView(R.id.checkBoxArts) CheckBox checkBoxArts;
     @BindView(R.id.checkBoxBusiness) CheckBox checkBoxBusiness;
     @BindView(R.id.checkBoxPolitics) CheckBox checkBoxPolitics;
     @BindView(R.id.checkBoxSciences) CheckBox checkBoxSciences;
     @BindView(R.id.checkBoxSports) CheckBox checkBoxSport;
-    @BindView(R.id.checkBoxTravel)
-    CheckBox checkBoxTravel;
-    @BindView(R.id.buttonSearch)
-    TextView buttonSearch;
+    @BindView(R.id.checkBoxTravel)CheckBox checkBoxTravel;
+    @BindView(R.id.buttonSearch) TextView buttonSearch;
 
     public static final String ARTICLES_SEARCH = "articles_search";
     private String keywords;
@@ -132,8 +130,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                         }else{
                             month = String.valueOf(monthOfYear);
                         }
-                        editTextBeginDate.setText(dayOfMonth + "-" + month + "-" + year);
-                        beginDate = year + month + dayOfMonth;
+                        editTextBeginDate.setText(getDateForSearch(year, dayOfMonth, month));
+                        beginDate = StringDateUtils.getDate(year, dayOfMonth, month);
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
@@ -161,11 +159,16 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                         }else{
                             month = String.valueOf(monthOfYear);
                         }
-                        editTextEndDate.setText(dayOfMonth + "-" + month + "-" + year);
-                        endDate = year + month + dayOfMonth;
+                        editTextEndDate.setText(getDateForSearch(year, dayOfMonth, month));
+                        endDate = StringDateUtils.getDate(year, dayOfMonth, month);
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
+    }
+
+
+    private static String getDateForSearch(int year, int dayOfMonth, String month) {
+        return dayOfMonth + "-" + month + "-" + year;
     }
 
     //Set the toolbar
@@ -199,12 +202,14 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         String category;
         switch (v.getId()){
             case R.id.buttonSearch:
-                if(keywords.isEmpty()){
+                if (keywords == null) {
                     Toast.makeText(this, "You must enter a keyword", Toast.LENGTH_LONG).show();
-                }else {
-                    if(categories.size() == 0){
+                } else if (keywords.isEmpty()) {
+                    Toast.makeText(this, "You must enter a keyword", Toast.LENGTH_LONG).show();
+                } else {
+                    if (categories.size() == 0) {
                         Toast.makeText(this, "You must choose a category", Toast.LENGTH_LONG).show();
-                    }else {
+                    } else {
                         executeRequestWithSearchParams();
                     }
                 }

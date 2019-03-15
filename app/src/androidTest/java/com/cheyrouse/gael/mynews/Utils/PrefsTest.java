@@ -1,41 +1,29 @@
 package com.cheyrouse.gael.mynews.Utils;
 
-
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.support.test.InstrumentationRegistry;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.robolectric.RobolectricTestRunner;
+
 import java.util.ArrayList;
 import java.util.List;
 
-//@RunWith(RobolectricTestRunner.class)
-public class PrefsTest  {
-   /* private Prefs prefs;
 
-    @Mock
-    SharedPreferences mMockSharedPreferences;
+public class PrefsTest {
+    private Prefs prefs;
 
     @Before
-    public void setUp() throws Exception{
-        prefs = Prefs.PrefsInit(mMockSharedPreferences);
+    public void setUp() throws Exception {
+        Context context = InstrumentationRegistry.getTargetContext();
+        prefs = Prefs.get(context);
     }
 
-
-    private String getTest(){
-        return prefs.getKeywords();
-    }
-
-    private List<String> getList(){
-        return prefs.getCategories();
-    }
-
-    private Boolean getBoolean(){
-        return prefs.getBoolean();
+    @After
+    public void tearDown() {
+        prefs = null;
     }
 
     @Test
@@ -56,10 +44,20 @@ public class PrefsTest  {
 
     @Test
     public void assertBooleanIsStoredAndReturned(){
-        Boolean testFalse = false;
         prefs.storeBoolean(false);
         Assert.assertEquals(false, getBoolean());
-    }*/
+    }
 
+    private String getTest(){
+        return prefs.getKeywords();
+    }
+
+    private List<String> getList(){
+        return prefs.getCategories();
+    }
+
+    private Boolean getBoolean(){
+        return prefs.getBoolean();
+    }
 
 }
