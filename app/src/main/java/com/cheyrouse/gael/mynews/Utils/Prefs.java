@@ -30,18 +30,8 @@ public class Prefs {
             return instance;
         }
 
-        Prefs(){
-        }
-
-        public static Prefs PrefsInit(SharedPreferences sharedPreferences){
-            instance = new Prefs();
-            prefs = sharedPreferences;
-            return instance;
-        }
-
-        //storeMoodStore change ArrayList into json strings and save it
+        //storeCategories change ArrayList into json strings and save it
         public void storeCategories(List<String> categories) {
-
             //start writing (open the file)
             SharedPreferences.Editor editor = prefs.edit();
             //put the data
@@ -52,7 +42,7 @@ public class Prefs {
             editor.apply();
         }
 
-        //getMoodStore recovers json strings and return there in ArrayList
+        //getCategories recovers json strings and return there in ArrayList
         public ArrayList<String> getCategories() {
             Gson gson = new Gson();
             String json = prefs.getString("categories", "");
@@ -92,4 +82,32 @@ public class Prefs {
             return prefs.getBoolean("switch", false);
         }
 
+
+        void storeListTest(List<String> testList) {
+
+           //start writing (open the file)
+            SharedPreferences.Editor editor = prefs.edit();
+            //put the data
+            Gson gson = new Gson();
+            String json = gson.toJson(testList);
+            editor.putString("test", json);
+            //close the file
+            editor.apply();
+        }
+
+        //getTestList recovers json strings and return there in ArrayList
+        ArrayList<String> getTestList() {
+            Gson gson = new Gson();
+            String json = prefs.getString("test", "");
+            ArrayList<String> testList;
+            if (json.length() < 1) {
+                 testList = new ArrayList<>();
+            } else {
+                Type type = new TypeToken<ArrayList<String>>() {
+            }.getType();
+                testList = gson.fromJson(json, type);
+            }
+            //return the value that was stored under the key
+            return testList;
+        }
 }

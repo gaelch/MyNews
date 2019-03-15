@@ -51,21 +51,22 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
     }
 
     @Test
-    public void TopStoriesAPIReturnArticles()
-    {
-       /* Observable<Article> observable = NewYorkTimesStream.streamFetchArticle("home", API_KEY);
+    public void TopStoriesAPIReturnArticles() {
+        Observable<Article> observable = NewYorkTimesStream.streamFetchArticle("home", API_KEY);
         TestObserver<Article> testObserver = new TestObserver<>();
+
         observable.subscribeWith(testObserver)
                 .assertNoErrors()
                 .assertNoTimeout()
                 .awaitTerminalEvent();
-        Article article = testObserver.values().get(0);
-        assertThat("size != 0", article.getResult().size() != 0);*/
+
+        List<Result> articles = testObserver.values().get(0).getResult();
+        assertThat("size != 0", articles.size() != 0);
     }
 
     //Test MostPopular
     @Test
-    public void fetchMostPopularTest() throws Exception {
+    public void fetchMostPopularTest() {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(JsonContent.jsonMostPopular));
@@ -86,7 +87,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
 
     //Test TopStories
     @Test
-    public void fetchTopStoriesTest() throws Exception {
+    public void fetchTopStoriesTest()  {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody( JsonContent.jsonTopStories));
@@ -105,7 +106,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
     }
 
     @Test
-    public void fetchSearchTest() throws Exception {
+    public void fetchSearchTest()  {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(JsonContent.jsonSearch));
