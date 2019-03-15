@@ -1,5 +1,6 @@
 package com.cheyrouse.gael.mynews.Utils;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
@@ -19,10 +20,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import butterknife.internal.Utils;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.support.constraint.Constraints.TAG;
 import static com.cheyrouse.gael.mynews.Controllers.activities.NotificationActivity.MY_PREFS;
 import static com.cheyrouse.gael.mynews.Utils.NewYorkTimesService.API_KEY;
 
@@ -33,10 +36,12 @@ public class AlarmReceiver extends BroadcastReceiver {
     private Context mContext;
 
     //Receive notification and execute request to search user articles
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     @Override
     public void onReceive(Context context, Intent intent) {
         mContext = context;
         executeRequestWithSearchParams();
+
     }
 
     //Request to search user articles

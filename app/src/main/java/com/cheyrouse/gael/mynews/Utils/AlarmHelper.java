@@ -19,7 +19,7 @@ public class AlarmHelper {
         Calendar now = Calendar.getInstance(Locale.FRANCE);
         Calendar calendar = Calendar.getInstance(Locale.FRANCE);
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 9);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
         calendar.set(Calendar.MINUTE, 0);
 
         if(calendar.before(now)){

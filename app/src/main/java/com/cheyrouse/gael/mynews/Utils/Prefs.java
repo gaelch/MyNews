@@ -20,7 +20,7 @@ public class Prefs {
 
 
         //Class Prefs constructor
-        Prefs(Context context) {
+       Prefs(Context context) {
             prefs = context.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
         }
         //Prefs.get is called in SaveMoodHelper to create a new instance of Prefs
@@ -41,6 +41,7 @@ public class Prefs {
 
         //storeMoodStore change ArrayList into json strings and save it
         public void storeCategories(List<String> categories) {
+
             //start writing (open the file)
             SharedPreferences.Editor editor = prefs.edit();
             //put the data

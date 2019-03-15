@@ -25,7 +25,6 @@ public class ArticleDetailActivity extends AppCompatActivity  {
 
 
     private Disposable disposable;
-    private String url;
 
 
     @SuppressLint("RestrictedApi")
@@ -35,7 +34,7 @@ public class ArticleDetailActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_article_detail);
         ButterKnife.bind(this);
 
-        url = getIntent().getStringExtra(Result.TOPSTORIES_EXTRA);
+        String url = getIntent().getStringExtra(Result.TOPSTORIES_EXTRA);
 
         updateUI(url);
 
