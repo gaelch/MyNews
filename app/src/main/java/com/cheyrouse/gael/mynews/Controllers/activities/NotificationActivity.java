@@ -171,62 +171,62 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
 
         String category;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.checkBoxArts:
-                if (checkBoxArts.isChecked()){
+                if (checkBoxArts.isChecked()) {
                     category = "arts";
                     categories.add(category);
-                }
-                else {
+                } else {
                     categories.remove("arts");
                 }
                 break;
             case R.id.checkBoxBusiness:
-                if(checkBoxBusiness.isChecked()){
+                if (checkBoxBusiness.isChecked()) {
                     category = "business";
                     categories.add(category);
-                }
-                else{
+                } else {
                     categories.remove("business");
                 }
                 break;
             case R.id.checkBoxPolitics:
-                if(checkBoxPolitics.isChecked()){
+                if (checkBoxPolitics.isChecked()) {
                     category = "politics";
                     categories.add(category);
-                }
-                else{
+                } else {
                     categories.remove("politics");
                 }
                 break;
             case R.id.checkBoxSciences:
-                if(checkBoxSciences.isChecked()){
+                if (checkBoxSciences.isChecked()) {
                     category = "sciences";
                     categories.add(category);
-                }
-                else{
+                } else {
                     categories.remove("sciences");
                 }
                 break;
             case R.id.checkBoxSports:
-                if(checkBoxSport.isChecked()){
+                if (checkBoxSport.isChecked()) {
                     category = "sports";
                     categories.add(category);
-                }
-                else{
+                } else {
                     categories.remove("sports");
                 }
                 break;
             case R.id.checkBoxTravel:
-                if(checkBoxTravel.isChecked()){
+                if (checkBoxTravel.isChecked()) {
                     category = "travel";
                     categories.add(category);
-                }
-                else{
+                } else {
                     categories.remove("travel");
                 }
                 break;
         }
+    }
+
+    //call onPause to save the settings if the switch is not touched
+    protected void onPause() {
+        super.onPause();
+        saveQueryParams();
     }
 
     //Save params

@@ -3,6 +3,7 @@ package com.cheyrouse.gael.mynews.views;
 import com.bumptech.glide.RequestManager;
 import com.cheyrouse.gael.mynews.Controllers.Fragments.ArticlesFragment;
 import com.cheyrouse.gael.mynews.Models.Result;
+import com.cheyrouse.gael.mynews.Utils.JsonContent;
 
 import org.junit.Test;
 
@@ -16,10 +17,9 @@ public class RecyclerViewAdapterUnitTest  {
     private List<Result> list = new ArrayList<>();
     private RequestManager glide;
     private ArticlesFragment frag;
-
     private RecyclerViewAdapter mRecyclerView = new RecyclerViewAdapter(list, glide, frag);
 
-
+    //test recyclerView
     @Test
     public void shouldReturnGoodCount(){
         assertEquals(0, mRecyclerView.getItemCount());

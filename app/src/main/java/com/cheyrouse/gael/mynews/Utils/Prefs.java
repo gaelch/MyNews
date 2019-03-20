@@ -23,7 +23,7 @@ public class Prefs {
        Prefs(Context context) {
             prefs = context.getSharedPreferences(MY_PREFS, MODE_PRIVATE);
         }
-        //Prefs.get is called in SaveMoodHelper to create a new instance of Prefs
+        //Prefs.get is called to create a new instance of Prefs
         public static Prefs get(Context context) {
             if (instance == null)
                 instance = new Prefs(context);
@@ -62,6 +62,7 @@ public class Prefs {
             return categories;
         }
 
+        //store keyword to notification
         public void storeKeywords(String keywords){
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("keywords", keywords);
@@ -72,6 +73,7 @@ public class Prefs {
             return prefs.getString("keywords", "");
         }
 
+        //store boolean to notification
         public void storeBoolean(Boolean aSwitch){
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("switch", aSwitch);
@@ -82,7 +84,7 @@ public class Prefs {
             return prefs.getBoolean("switch", false);
         }
 
-
+        //to test class prefs store test list
         void storeListTest(List<String> testList) {
 
            //start writing (open the file)

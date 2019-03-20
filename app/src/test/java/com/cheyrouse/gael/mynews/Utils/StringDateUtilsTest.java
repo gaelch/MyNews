@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 public class StringDateUtilsTest {
 
+    //test class stringDateUtil
     @Test
     public void testDate(){
         String month = "11";
