@@ -50,7 +50,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
     }
 
-    @Test
+    /*@Test
     public void TopStoriesAPIReturnArticles() {
         Observable<Article> observable = NewYorkTimesStream.streamFetchArticle("home", API_KEY);
         TestObserver<Article> testObserver = new TestObserver<>();
@@ -62,7 +62,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
 
         List<Result> articles = testObserver.values().get(0).getResult();
         assertThat("size != 0", articles.size() != 0);
-    }
+    }*/
 
     //Test MostPopular
     @Test
