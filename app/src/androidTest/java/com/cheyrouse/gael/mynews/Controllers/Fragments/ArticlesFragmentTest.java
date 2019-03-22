@@ -5,7 +5,6 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.InstrumentationTestCase;
 import android.util.Log;
-
 import com.cheyrouse.gael.mynews.Models.Article;
 import com.cheyrouse.gael.mynews.Models.Doc;
 import com.cheyrouse.gael.mynews.Models.Result;
@@ -13,15 +12,12 @@ import com.cheyrouse.gael.mynews.Models.SearchArticle;
 import com.cheyrouse.gael.mynews.Utils.JsonContent;
 import com.cheyrouse.gael.mynews.Utils.NewYorkTimesStream;
 import com.cheyrouse.gael.mynews.Utils.NewYorkTimesStreamTest;
-
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.observers.TestObserver;
 import okhttp3.mockwebserver.MockResponse;
@@ -50,10 +46,13 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*@Test
-    public void TopStoriesAPIReturnArticles() {
+    @Test
+    public void TopStoriesAPIReturnArticles() throws InterruptedException {
+
         Observable<Article> observable = NewYorkTimesStream.streamFetchArticle("home", API_KEY);
         TestObserver<Article> testObserver = new TestObserver<>();
+
+        Thread.sleep(3000);
 
         observable.subscribeWith(testObserver)
                 .assertNoErrors()
@@ -62,7 +61,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
 
         List<Result> articles = testObserver.values().get(0).getResult();
         assertThat("size != 0", articles.size() != 0);
-    }*/
+    }
 
     //Test MostPopular
     @Test
