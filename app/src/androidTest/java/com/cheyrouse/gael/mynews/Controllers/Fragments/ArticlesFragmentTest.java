@@ -52,12 +52,11 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
         Observable<Article> observable = NewYorkTimesStream.streamFetchArticle("home", API_KEY);
         TestObserver<Article> testObserver = new TestObserver<>();
 
-        Thread.sleep(3000);
-
         observable.subscribeWith(testObserver)
                 .assertNoErrors()
                 .assertNoTimeout()
                 .awaitTerminalEvent();
+        Thread.sleep(3000);
 
         List<Result> articles = testObserver.values().get(0).getResult();
         assertThat("size != 0", articles.size() != 0);
