@@ -69,7 +69,6 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
                 .setBody(JsonContent.jsonMostPopular));
 
         Observable<Article> observableArticles = NewYorkTimesStreamTest.streamFetchMostPopular();
-        Thread.sleep(5000);
         TestObserver<Article> testObserver = new TestObserver<>();
 
         observableArticles.subscribeWith(testObserver)
@@ -77,6 +76,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
                 .assertNoTimeout()
                 .awaitTerminalEvent();
 
+        Thread.sleep(5000);
         List<Result> articles = testObserver.values().get(0).getResult();
 
         assertThat("The result list is not empty", !articles.isEmpty());
