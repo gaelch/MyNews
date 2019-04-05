@@ -37,6 +37,7 @@
     <!-- Use too tabLayout text size -->
     <style name="MyCustomTabText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">15sp</item>
+        <item name="textAllCaps">true</item>
     </style>
     <!-- Switch -->
     <style name="SwitchCompatTheme" >

@@ -56,7 +56,6 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
                 .assertNoErrors()
                 .assertNoTimeout()
                 .awaitTerminalEvent();
-        Thread.sleep(3000);
 
         List<Result> articles = testObserver.values().get(0).getResult();
         assertThat("size != 0", articles.size() != 0);
@@ -64,12 +63,13 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
 
     //Test MostPopular
     @Test
-    public void fetchMostPopularTest() {
+    public void fetchMostPopularTest() throws InterruptedException {
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(JsonContent.jsonMostPopular));
 
         Observable<Article> observableArticles = NewYorkTimesStreamTest.streamFetchMostPopular();
+        Thread.sleep(5000);
         TestObserver<Article> testObserver = new TestObserver<>();
 
         observableArticles.subscribeWith(testObserver)

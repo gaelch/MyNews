@@ -49,7 +49,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
     private RecyclerViewAdapter adapter;
     private int position;
     private Disposable disposable;
-    private String sectionNav = "sports";
+    private String sectionNav = "business";
 
 
     public ArticlesFragment() {
@@ -180,7 +180,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     //Request to MostPopular Api articles
     private  void executeHttpRequestMostPopular (){
-        disposable = NewYorkTimesStream.streamFetchArticleMostPopular("arts", API_KEY).subscribeWith(new DisposableObserver<Article>() {
+        disposable = NewYorkTimesStream.streamFetchArticleMostPopular("world", API_KEY).subscribeWith(new DisposableObserver<Article>() {
 
             @Override
             public void onNext(Article articles) {
@@ -190,7 +190,9 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
             @Override
             public void onError(Throwable e) {
                 textView.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
                 Log.e("Test", "MostPopular is on error");
+                Log.e("Test", e.getMessage());
             }
 
             @Override
