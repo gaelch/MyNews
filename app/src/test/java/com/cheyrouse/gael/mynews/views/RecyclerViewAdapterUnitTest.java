@@ -1,9 +1,8 @@
 package com.cheyrouse.gael.mynews.views;
 
 import com.bumptech.glide.RequestManager;
-import com.cheyrouse.gael.mynews.Controllers.Fragments.ArticlesFragment;
-import com.cheyrouse.gael.mynews.Models.Result;
-import com.cheyrouse.gael.mynews.Utils.JsonContent;
+import com.cheyrouse.gael.mynews.controllers.fragments.ArticlesFragment;
+import com.cheyrouse.gael.mynews.models.Result;
 
 import org.junit.Test;
 

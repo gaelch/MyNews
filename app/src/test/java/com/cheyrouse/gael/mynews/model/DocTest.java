@@ -1,6 +1,6 @@
 package com.cheyrouse.gael.mynews.model;
 
-import com.cheyrouse.gael.mynews.Models.Doc;
+import com.cheyrouse.gael.mynews.models.Doc;
 
 import org.junit.Test;
 
