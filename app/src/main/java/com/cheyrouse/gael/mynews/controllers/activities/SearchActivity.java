@@ -1,7 +1,6 @@
 package com.cheyrouse.gael.mynews.controllers.activities;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -12,10 +11,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +24,12 @@ import com.cheyrouse.gael.mynews.controllers.fragments.ResultToSearchFragment;
 import com.cheyrouse.gael.mynews.models.Doc;
 import com.cheyrouse.gael.mynews.models.SearchArticle;
 import com.cheyrouse.gael.mynews.utils.NewYorkTimesStream;
+import com.cheyrouse.gael.mynews.utils.Prefs;
 import com.cheyrouse.gael.mynews.utils.StringDateUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,8 +43,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.editSearchBar) EditText editTextSearch;
-    @BindView(R.id.editTextBeginDate) EditText editTextBeginDate;
-    @BindView(R.id.editEndDate) EditText editTextEndDate;
+    @BindView(R.id.textBeginDate) TextView textBeginDate;
+    @BindView(R.id.textEndDate) TextView textEndDate;
     @BindView(R.id.checkBoxArts) CheckBox checkBoxArts;
     @BindView(R.id.checkBoxBusiness) CheckBox checkBoxBusiness;
     @BindView(R.id.checkBoxPolitics) CheckBox checkBoxPolitics;
@@ -52,6 +52,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.checkBoxSports) CheckBox checkBoxSport;
     @BindView(R.id.checkBoxTravel)CheckBox checkBoxTravel;
     @BindView(R.id.buttonSearch) TextView buttonSearch;
+    @BindView(R.id.switch_notification) Switch switchNotification;
+    @BindView(R.id.textViewBegin) TextView tvBegin;
+    @BindView(R.id.textViewEnd) TextView tvEnd;
+    @BindView(R.id.lineEnd) View viewEnd;
+    @BindView(R.id.line1) View viewStart;
 
     public static final String ARTICLES_SEARCH = "articles_search";
     private String keywords;
@@ -61,7 +66,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private int mYear;
     private int mMonth;
     private int mDay;
-
+    private boolean mode;
+    private Prefs prefs;
+    private Boolean switchNotif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,27 +76,38 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
         configureToolbar();
-        innitListener();
-        hide_keyboard(this);
-        configureEditTextSearch();
         categories = new ArrayList<>();
+        innitListener();
+        getIntentMode();
+        configureEditTextSearch();
+
     }
 
-    //To hide keyboard
-    public static void hide_keyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        //Find the currently focused view, so we can grab the correct window token from it.
-        View view = activity.getCurrentFocus();
-        //If no view currently has focus, create a new one, just so we can grab a window token from it
-        if(view == null) {
-            view = new View(activity);
+    private void getIntentMode() {
+        mode = getIntent().getBooleanExtra("mode", true);
+        if(!mode){
+            prefs = Prefs.get(SearchActivity.this);
+            switchNotification.setVisibility(View.VISIBLE);
+            tvBegin.setVisibility(View.GONE);
+            tvEnd.setVisibility(View.GONE);
+            viewStart.setVisibility(View.GONE);
+            viewEnd.setVisibility(View.GONE);
+            buttonSearch.setVisibility(View.GONE);
+            textBeginDate.setVisibility(View.GONE);
+            textEndDate.setVisibility(View.GONE);
+            configureCheckBoxPrefs();
+            configureSwitchNotification();
+        }else{
+            switchNotification.setVisibility(View.GONE);
         }
-        Objects.requireNonNull(inputMethodManager).hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
 
     //Configure editText
     private void configureEditTextSearch() {
+        if(prefs != null){
+        keywords = prefs.getKeywords();
+    }
+        editTextSearch.setText(keywords);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -104,7 +122,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void afterTextChanged(Editable s) {
                 keywords = editTextSearch.getText().toString();
-
             }
         });
     }
@@ -116,7 +133,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DatePickerDialogCustom,
                 new DatePickerDialog.OnDateSetListener() {
 
                     @SuppressLint("SetTextI18n")
@@ -124,18 +141,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear+1;
-                        String month = "";
-                        if (monthOfYear >= 1 && monthOfYear <= 9){
-                            month = String.valueOf("0" + monthOfYear);
-                        }else{
-                            month = String.valueOf(monthOfYear);
-                        }
-                        editTextBeginDate.setText(getDateForSearch(year, dayOfMonth, month));
-                        beginDate = StringDateUtils.getDate(year, dayOfMonth, month);
+                        textBeginDate.setText(StringDateUtils.getDate(year, dayOfMonth, monthOfYear));
+                        beginDate = StringDateUtils.getDateForSearch(year, dayOfMonth, monthOfYear);
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
-
     }
 
     //Configure end date (calendar and datePickerDialog)
@@ -145,7 +155,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DatePickerDialogCustom,
                 new DatePickerDialog.OnDateSetListener() {
 
                     @SuppressLint("SetTextI18n")
@@ -153,22 +163,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear+1;
-                        String month = "";
-                        if (monthOfYear >= 1 && monthOfYear <= 9){
-                            month = String.valueOf("0" + monthOfYear);
-                        }else{
-                            month = String.valueOf(monthOfYear);
-                        }
-                        editTextEndDate.setText(getDateForSearch(year, dayOfMonth, month));
-                        endDate = StringDateUtils.getDate(year, dayOfMonth, month);
+                        textEndDate.setText(StringDateUtils.getDate(year, dayOfMonth, monthOfYear));
+                        endDate = StringDateUtils.getDateForSearch(year, dayOfMonth, monthOfYear);
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
-    }
-
-
-    private static String getDateForSearch(int year, int dayOfMonth, String month) {
-        return dayOfMonth + "-" + month + "-" + year;
     }
 
     //Set the toolbar
@@ -185,8 +184,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     //Init Listeners
     private void innitListener(){
         editTextSearch.setOnClickListener(this);
-        editTextBeginDate.setOnClickListener(this);
-        editTextEndDate.setOnClickListener(this);
+        textBeginDate.setOnClickListener(this);
+        textEndDate.setOnClickListener(this);
         buttonSearch.setOnClickListener(this);
         checkBoxArts.setOnClickListener(this);
         checkBoxBusiness.setOnClickListener(this);
@@ -194,6 +193,83 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         checkBoxSciences.setOnClickListener(this);
         checkBoxSport.setOnClickListener(this);
         checkBoxTravel.setOnClickListener(this);
+        switchNotification.setOnClickListener(this);
+    }
+
+    //If Prefs is not null check saved CheckBox
+    private void configureCheckBoxPrefs() {
+        if(prefs != null){
+            categories = prefs.getCategories();
+            if(categories != null && categories.contains("arts")){
+                checkBoxArts.setChecked(true);
+            }
+            if(categories != null && categories.contains("business")){
+                checkBoxBusiness.setChecked(true);
+            }
+            if(categories != null && categories.contains("politics")){
+                checkBoxPolitics.setChecked(true);
+            }
+            if(categories != null && categories.contains("sports")){
+                checkBoxSport.setChecked(true);
+            }
+            if(categories != null && categories.contains("sciences")){
+                checkBoxSciences.setChecked(true);
+            }
+            if(categories != null && categories.contains("travel")){
+                checkBoxTravel.setChecked(true);
+            }
+        }
+    }
+
+    // If switch is saved, check it
+    private void configureSwitchNotification() {
+        if(prefs != null) {
+            switchNotif = prefs.getBoolean();
+            if (switchNotif) {
+                switchNotification.setChecked(true);
+            }
+        }
+        //To verify if keywords and checkBox are ok
+        switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(keywords.isEmpty()) {
+                    Toast.makeText(SearchActivity.this, "You must enter a keyword", Toast.LENGTH_LONG).show();
+                    switchNotification.setChecked(false);
+                }
+                if (categories.size() == 0) {
+                    Toast.makeText(SearchActivity.this, "You must choose a category", Toast.LENGTH_LONG).show();
+                    switchNotification.setChecked(false);
+                }
+
+                if (switchNotification.isChecked()) {
+                    switchNotif = true;
+                    saveQueryParams();
+                }
+                if (!switchNotification.isChecked()) {
+                    switchNotif = false;
+                    saveQueryParams();
+                }
+            }
+
+
+
+        });
+    }
+
+    //call onPause to save the settings if the switch is not touched
+    protected void onPause() {
+        super.onPause();
+        if(!mode){
+            saveQueryParams();
+        }
+    }
+
+    //Save params
+    private void saveQueryParams() {
+        prefs.storeCategories(categories);
+        prefs.storeKeywords(keywords);
+        prefs.storeBoolean(switchNotif);
     }
 
     //OnClick to button Search and checkBox
@@ -214,6 +290,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 }
                 break;
+
             case R.id.checkBoxArts:
                 if (checkBoxArts.isChecked()){
                     category = "arts";
@@ -268,10 +345,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     categories.remove("travel");
                 }
                 break;
-            case R.id.editTextBeginDate:
+            case R.id.textBeginDate:
                 configureBeginDate();
                 break;
-            case R.id.editEndDate:
+            case R.id.textEndDate:
                 configureEndDate();
                 break;
         }

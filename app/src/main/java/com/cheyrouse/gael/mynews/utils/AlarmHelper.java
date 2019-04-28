@@ -20,7 +20,7 @@ public class AlarmHelper {
         Calendar calendar = Calendar.getInstance(Locale.FRANCE);
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.MINUTE,0);
 
         if(calendar.before(now)){
             calendar.add(Calendar.DATE,1);
@@ -28,8 +28,8 @@ public class AlarmHelper {
 
         //request sharedPreferences to check boolean switchNotif
         Prefs prefs = new Prefs(context);
-
         boolean switchNotif = prefs.getBoolean();
+
         //call AlarmReceiver class
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if(switchNotif){

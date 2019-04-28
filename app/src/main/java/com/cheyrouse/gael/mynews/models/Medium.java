@@ -25,6 +25,7 @@ public class Medium {
     @SerializedName("approved_for_syndication")
     @Expose
     private Integer approvedForSyndication;
+
     @SerializedName("media-metadata")
     @Expose
     private List<MediaMetadatum> mediaMetadata = null;

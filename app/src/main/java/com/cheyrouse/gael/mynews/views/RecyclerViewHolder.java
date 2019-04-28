@@ -48,6 +48,8 @@ class RecyclerViewHolder extends RecyclerView.ViewHolder  {
         }
         else if(article.getMedia()!=null && article.getMedia().size()>=1){
             glide.load(article.getMedia().get(0).getMediaMetadata().get(0).getUrl()).apply(RequestOptions.centerInsideTransform()).into(imageView);
+        }else{
+            imageView.getResources().getDrawable(R.mipmap.ic_my_news);
         }
         this.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override

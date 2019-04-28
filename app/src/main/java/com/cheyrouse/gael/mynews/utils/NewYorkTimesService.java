@@ -58,18 +58,6 @@ public interface NewYorkTimesService {
         }
     };
 
-    ThreadLocal<Retrofit> retrofitMostPop = new ThreadLocal<Retrofit>() {
-        @Override
-        protected Retrofit initialValue() {
-            return new Retrofit.Builder()
-                    .baseUrl("https://api.nytimes.com/")
-                    .addConverterFactory(MyJsonConverter.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .client(okHttpClient)
-                    .build();
-        }
-    };
-
     OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build();

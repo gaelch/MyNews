@@ -61,8 +61,6 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
 
         this.configureViewPagerAndTabs();
 
-        this.configureAndShowArticlesFragment();
-
         (new AlarmHelper()).configureAlarmNotification(this);
     }
 
@@ -87,8 +85,9 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
             case R.id.menu_activity_main_params:
                 return true;
             case R.id.menu_activity_main_params_Notification:
-                Intent notificationIntent = new Intent(MainActivity.this, NotificationActivity.class);
-                startActivity(notificationIntent);
+                Intent notificationActivityIntent = new Intent(MainActivity.this, SearchActivity.class);
+                notificationActivityIntent.putExtra("mode", false);
+                startActivity(notificationActivityIntent);
                 return true;
             case R.id.menu_activity_main_params_help:
                 Intent helpIntent = new Intent(MainActivity.this, HelpActivity.class);
@@ -99,8 +98,9 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
                 startActivity(aboutIntent);
                 return true;
             case R.id.menu_activity_main_search:
-                Intent SearchActivityIntent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(SearchActivityIntent);
+                Intent searchActivityIntent = new Intent(MainActivity.this, SearchActivity.class);
+                searchActivityIntent.putExtra("mode", true);
+                startActivity(searchActivityIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -199,17 +199,6 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
     // -------------------
     // CONFIGURATION
     // -------------------
-
-    //Launch Article Fragment
-    private void configureAndShowArticlesFragment() {
-        ArticlesFragment articlesFragment = (ArticlesFragment) getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
-        if (articlesFragment == null) {
-            articlesFragment = new ArticlesFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.activity_main_frame_layout, articlesFragment)
-                    .commit();
-        }
-    }
 
     //Launch DetailActivity if article is clicked
     private void startDetailActivity(Result article) {

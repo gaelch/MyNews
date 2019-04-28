@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -30,8 +30,16 @@
     </style>
 
     <!-- Theme.AppCompat.Light is not a dialog theme -->
-    <style name="DialogTheme" parent="Theme.AppCompat.Light">
+    <style name="DatePickerDialogCustom" parent="@style/Theme.AppCompat.Dialog">
         <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:datePickerStyle">@style/DatePickerCustom</item>
+    </style>
+
+    <style name="DatePickerCustom" parent="@android:style/Widget.Material.DatePicker" tools:targetApi="lollipop">
+        <item name="android:headerBackground">@color/colorPrimary</item>
+        <item name="android:background">@android:color/holo_blue_light
+        </item>
+
     </style>
 
     <!-- Use too tabLayout text size -->

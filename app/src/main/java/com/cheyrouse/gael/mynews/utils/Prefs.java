@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.cheyrouse.gael.mynews.controllers.activities.NotificationActivity.MY_PREFS;
 
 public class Prefs {
   //This class using SharedPreferences and the Gson library
+    public static String MY_PREFS = "my_prefs";
     private static Prefs instance;
         private static SharedPreferences prefs;
 
@@ -86,7 +86,6 @@ public class Prefs {
 
         //to test class prefs store test list
         void storeListTest(List<String> testList) {
-
            //start writing (open the file)
             SharedPreferences.Editor editor = prefs.edit();
             //put the data

@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.Controllers.Fragments;
+package com.cheyrouse.gael.mynews.controllers.fragments;
 
 
 import android.content.Context;
@@ -17,9 +17,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.cheyrouse.gael.mynews.R;
-import com.cheyrouse.gael.mynews.Models.Article;
-import com.cheyrouse.gael.mynews.Models.Result;
-import com.cheyrouse.gael.mynews.Utils.NewYorkTimesStream;
+import com.cheyrouse.gael.mynews.models.Article;
+import com.cheyrouse.gael.mynews.models.Result;
+import com.cheyrouse.gael.mynews.utils.NewYorkTimesStream;
 import com.cheyrouse.gael.mynews.views.RecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
 import static android.support.constraint.Constraints.TAG;
-import static com.cheyrouse.gael.mynews.Utils.NewYorkTimesService.API_KEY;
+import static com.cheyrouse.gael.mynews.utils.NewYorkTimesService.API_KEY;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -186,7 +186,6 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
             public void onNext(Article articles) {
                 updateUI(articles);
             }
-
             @Override
             public void onError(Throwable e) {
                 textView.setVisibility(View.VISIBLE);
@@ -194,7 +193,6 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
                 Log.e("Test", "MostPopular is on error");
                 Log.e("Test", e.getMessage());
             }
-
             @Override
             public void onComplete() {
                 progressBar.setVisibility(View.GONE);
@@ -222,7 +220,6 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
                 Log.e("Test", "TopStories, section Business is charged");
             }
         });
-
     }
 
     private void disposeWhenDestroy(){
@@ -272,5 +269,4 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
     public interface ArticlesFragmentListener{
         void callbackArticle(Result resultTopStories);
     }
-
 }

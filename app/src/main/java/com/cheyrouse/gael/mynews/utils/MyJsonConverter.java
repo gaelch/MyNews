@@ -12,10 +12,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.io.Writer;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -64,6 +67,7 @@ public class MyJsonConverter extends Converter.Factory {
         private final Gson gson;
         private final TypeAdapter<T> adapter;
 
+
         GsonRequestBodyConverter(Gson gson, TypeAdapter<T> adapter) {
             this.gson = gson;
             this.adapter = adapter;
@@ -91,19 +95,21 @@ public class MyJsonConverter extends Converter.Factory {
 
         @Override
         public T convert(ResponseBody value) throws IOException {
-
             String dirty = value.string();
+            List<String> media = new ArrayList<>();
             try {
+
                 JSONObject obj = new JSONObject(dirty);
                 Object mediaObj = obj.getJSONObject("results").getJSONObject("media");
                 clean = mediaObj.toString();
+                media.add(clean);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             try {
-                return adapter.fromJson(clean);
+                return adapter.fromJson((Reader) media);
             } finally {
                 value.close();
             }
