@@ -46,7 +46,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
     }
 
-    @Test
+    /*@Test
     public void TopStoriesAPIReturnArticles() throws InterruptedException {
 
         Observable<Article> observable = NewYorkTimesStream.streamFetchArticle("home", API_KEY);
@@ -59,7 +59,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
 
         List<Result> articles = testObserver.values().get(0).getResult();
         assertThat("size != 0", articles.size() != 0);
-    }
+    }*/
 
     //Test MostPopular
     @Test
