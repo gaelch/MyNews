@@ -69,7 +69,6 @@ public class ResultToSearchFragment extends Fragment implements View.OnClickList
         View view =  inflater.inflate(R.layout.fragment_result_to_search, container, false);
         ButterKnife.bind(this, view);
         getTheBundle();
-
         configureRecyclerView();
         configureSwipeRefreshLayout();
         updateUI();

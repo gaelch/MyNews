@@ -32,4 +32,17 @@ public class DateUtils {
         final Calendar c = Calendar.getInstance();
         return c.get(Calendar.DAY_OF_MONTH);
     }
+
+    public static Calendar getCalendarPresets(){
+        //in a current date at 1 pm, this property get an instance to calendar
+        Calendar now = Calendar.getInstance(Locale.FRANCE);
+        Calendar calendar = Calendar.getInstance(Locale.FRANCE);
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 44);
+        if(calendar.before(now)){
+            calendar.add(Calendar.DATE,1);
+        }
+        return calendar;
+    }
 }

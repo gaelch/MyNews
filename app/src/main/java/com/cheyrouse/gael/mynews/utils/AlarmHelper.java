@@ -14,18 +14,8 @@ public class AlarmHelper {
     public void configureAlarmNotification(Context context) {
         AlarmManager alarmManager;
         PendingIntent pendingIntent;
-
-        //in a current date at 1 pm, this property get an instance to calendar
-        Calendar now = Calendar.getInstance(Locale.FRANCE);
-        Calendar calendar = Calendar.getInstance(Locale.FRANCE);
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE,0);
-
-        if(calendar.before(now)){
-            calendar.add(Calendar.DATE,1);
-        }
-
+        //getCalendarPresets
+        Calendar calendar = DateUtils.getCalendarPresets();
         //request sharedPreferences to check boolean switchNotif
         Prefs prefs = new Prefs(context);
         boolean switchNotif = prefs.getBoolean();
@@ -40,7 +30,6 @@ public class AlarmHelper {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
             }
         }
-
         //RTC-WAKEUP that will wake the device when it turns off.
         if (alarmManager != null && switchNotif) {
             Intent intent;

@@ -44,6 +44,7 @@ In the menu at the top left, you can choose the categories that interest you. On
     <string name="params">Params</string>
     <string name="notification">Notifications</string>
     <string name="about">About</string>
+    <string name="textContent">We did not find any new article for you today</string>
 
 
 </resources>

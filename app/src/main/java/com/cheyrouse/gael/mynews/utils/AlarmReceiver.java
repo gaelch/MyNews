@@ -1,16 +1,10 @@
 package com.cheyrouse.gael.mynews.utils;
 
 import android.annotation.SuppressLint;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
-import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import com.cheyrouse.gael.mynews.R;
 import com.cheyrouse.gael.mynews.models.SearchArticle;
 import java.util.List;
 import io.reactivex.disposables.Disposable;
@@ -36,14 +30,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         Prefs prefs = Prefs.get(mContext);
         String keywords = prefs.getKeywords();
         List<String> categories = prefs.getCategories();
-        Log.e("test", String.valueOf(categories));
-        Log.e("test", keywords);
         Disposable disposable = NewYorkTimesStream.streamFetchArticleSearchNotification(API_KEY, keywords, categories).subscribeWith(new DisposableObserver<SearchArticle>() {
             @Override
-            public void onNext(SearchArticle articles) {
-                showNotification(articles);
-            }
-
+            public void onNext(SearchArticle articles) { ShowNotification.showNotification(articles, mContext); }
             @Override
             public void onError(Throwable e) {
                 Log.e("test", e.getMessage());
@@ -54,44 +43,5 @@ public class AlarmReceiver extends BroadcastReceiver {
                 Log.e("Test", "Search is charged");
             }
         });
-    }
-
-
-    //To display notification
-    private void showNotification(SearchArticle articles) {
-        // 2 - Create a Style for the Notification
-        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
-        inboxStyle.setBigContentTitle("Notification");
-        inboxStyle.addLine("MyNews founds " + articles.getResponse().getDocs().size() + " articles today");
-
-        // 3 - Create a Channel (Android 8)
-        String channelId = CHANEL_ID;
-
-        // 4 - Build a Notification object
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(mContext, channelId)
-                        .setSmallIcon(R.mipmap.ic_my_news)
-                        .setContentTitle("My News")
-                        .setContentText("MyNews founds " + articles.getResponse().getDocs().size() + " articles today")
-                        .setAutoCancel(true)
-                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                        .setStyle(inboxStyle);
-
-        // 5 - Add the Notification to the Notification Manager and show it.
-        NotificationManager notificationManager = (NotificationManager) mContext
-                .getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // 6 - Support Version >= Android 8
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence channelName = "Message provenant de MyNews";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel mChannel = new NotificationChannel(channelId, channelName, importance);
-            assert notificationManager != null;
-            notificationManager.createNotificationChannel(mChannel);
-
-
-            // 7 - Show notification
-            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
-        }
     }
 }

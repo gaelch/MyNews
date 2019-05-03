@@ -12,11 +12,12 @@ import java.util.Locale;
 
 import static com.cheyrouse.gael.mynews.utils.DateUtils.API_DATE;
 import static com.cheyrouse.gael.mynews.utils.DateUtils.TEXT_DATE;
+import static com.cheyrouse.gael.mynews.utils.DateUtils.getCalendarPresets;
 import static org.junit.Assert.*;
 
 public class DateUtilsTest {
 
-    //test class stringDateUtil
+    //test getDate method
     @Test
     public void testDate(){
         final Calendar c = Calendar.getInstance();
@@ -29,6 +30,8 @@ public class DateUtilsTest {
         SimpleDateFormat sdformm = new SimpleDateFormat(API_DATE, Locale.getDefault());
         assertEquals(sdformm.format(date), DateUtils.getDate(mYear, mDay, mMonth, API_DATE));
     }
+
+    //test patterns
     @Test
     public void testDateString(){
         assertEquals("19700101", DateUtils.getDate(1970, 1, 0, API_DATE));
@@ -36,6 +39,7 @@ public class DateUtilsTest {
 
     }
 
+    //test calendar method return
     @Test
     public void testCalendar(){
         final Calendar c = Calendar.getInstance();
@@ -45,5 +49,11 @@ public class DateUtilsTest {
         assertEquals(mDay, DateUtils.getDay());
         assertEquals(mMonth, DateUtils.getMonth());
         assertEquals(mYear, DateUtils.getYear());
+    }
+
+    // check if presets are null
+    @Test
+    public void calendarPresetForNotifications(){
+        assertNotNull(getCalendarPresets());
     }
 }
