@@ -1,5 +1,6 @@
-package com.cheyrouse.gael.mynews.utils;
+package com.cheyrouse.gael.mynews;
 
+import com.cheyrouse.gael.mynews.NewYorkTimesServiceTest;
 import com.cheyrouse.gael.mynews.models.Article;
 import com.cheyrouse.gael.mynews.models.SearchArticle;
 

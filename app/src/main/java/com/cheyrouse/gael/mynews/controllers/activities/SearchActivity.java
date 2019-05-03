@@ -2,7 +2,6 @@ package com.cheyrouse.gael.mynews.controllers.activities;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,27 +16,25 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cheyrouse.gael.mynews.R;
 import com.cheyrouse.gael.mynews.controllers.fragments.ResultToSearchFragment;
 import com.cheyrouse.gael.mynews.models.Doc;
 import com.cheyrouse.gael.mynews.models.SearchArticle;
+import com.cheyrouse.gael.mynews.utils.IntentUtils;
 import com.cheyrouse.gael.mynews.utils.NewYorkTimesStream;
 import com.cheyrouse.gael.mynews.utils.Prefs;
-import com.cheyrouse.gael.mynews.utils.StringDateUtils;
-
+import com.cheyrouse.gael.mynews.utils.DateUtils;
+import com.cheyrouse.gael.mynews.utils.CheckUtils;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
-
-import static com.cheyrouse.gael.mynews.models.Result.TOPSTORIES_EXTRA;
 import static com.cheyrouse.gael.mynews.utils.NewYorkTimesService.API_KEY;
+import static com.cheyrouse.gael.mynews.utils.DateUtils.API_DATE;
+import static com.cheyrouse.gael.mynews.utils.DateUtils.TEXT_DATE;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener, ResultToSearchFragment.ResultToSearchFragmentListener {
 
@@ -57,15 +54,13 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.textViewEnd) TextView tvEnd;
     @BindView(R.id.lineEnd) View viewEnd;
     @BindView(R.id.line1) View viewStart;
+    @BindView(R.id.view_search) View viewSearch;
 
     public static final String ARTICLES_SEARCH = "articles_search";
     private String keywords;
     private List<String> categories;
     private String beginDate;
     private String endDate;
-    private int mYear;
-    private int mMonth;
-    private int mDay;
     private boolean mode;
     private Prefs prefs;
     private Boolean switchNotif;
@@ -80,12 +75,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         innitListener();
         getIntentMode();
         configureEditTextSearch();
-
     }
 
     private void getIntentMode() {
         mode = getIntent().getBooleanExtra("mode", true);
-        if(!mode){
+        if(!mode){ //false = notifications
             prefs = Prefs.get(SearchActivity.this);
             switchNotification.setVisibility(View.VISIBLE);
             tvBegin.setVisibility(View.GONE);
@@ -97,42 +91,41 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             textEndDate.setVisibility(View.GONE);
             configureCheckBoxPrefs();
             configureSwitchNotification();
-        }else{
+        }else{ // true = search
             switchNotification.setVisibility(View.GONE);
+            viewSearch.setVisibility(View.GONE);
         }
     }
 
     //Configure editText
     private void configureEditTextSearch() {
-        if(prefs != null){
-        keywords = prefs.getKeywords();
-    }
-        editTextSearch.setText(keywords);
-        editTextSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+        if(!mode) { //false = notifications
+            if (prefs != null) {
+                keywords = prefs.getKeywords();
             }
+            editTextSearch.setText(keywords);
+        }
+            editTextSearch.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
 
-            }
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                keywords = editTextSearch.getText().toString();
-            }
-        });
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    keywords = editTextSearch.getText().toString();
+                }
+            });
+
     }
 
     //Configure Begin date (calendar and datePickerDialog)
     private void configureBeginDate() {
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DatePickerDialogCustom,
                 new DatePickerDialog.OnDateSetListener() {
 
@@ -141,20 +134,15 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear+1;
-                        textBeginDate.setText(StringDateUtils.getDate(year, dayOfMonth, monthOfYear));
-                        beginDate = StringDateUtils.getDateForSearch(year, dayOfMonth, monthOfYear);
+                        textBeginDate.setText(DateUtils.getDate(year, dayOfMonth, monthOfYear, TEXT_DATE));
+                        beginDate = DateUtils.getDate(year, dayOfMonth, monthOfYear, API_DATE);
                     }
-                }, mYear, mMonth, mDay);
+                }, DateUtils.getYear(), DateUtils.getMonth(), DateUtils.getDay());
         datePickerDialog.show();
     }
 
     //Configure end date (calendar and datePickerDialog)
     private void configureEndDate() {
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DatePickerDialogCustom,
                 new DatePickerDialog.OnDateSetListener() {
 
@@ -163,10 +151,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear+1;
-                        textEndDate.setText(StringDateUtils.getDate(year, dayOfMonth, monthOfYear));
-                        endDate = StringDateUtils.getDateForSearch(year, dayOfMonth, monthOfYear);
+                        textEndDate.setText(DateUtils.getDate(year, dayOfMonth, monthOfYear, TEXT_DATE));
+                        endDate = DateUtils.getDate(year, dayOfMonth, monthOfYear, API_DATE);
                     }
-                }, mYear, mMonth, mDay);
+                }, DateUtils.getYear(), DateUtils.getMonth(), DateUtils.getDay());
         datePickerDialog.show();
     }
 
@@ -198,25 +186,15 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     //If Prefs is not null check saved CheckBox
     private void configureCheckBoxPrefs() {
-        if(prefs != null){
+        if(!mode) { //false = notifications
             categories = prefs.getCategories();
-            if(categories != null && categories.contains("arts")){
-                checkBoxArts.setChecked(true);
-            }
-            if(categories != null && categories.contains("business")){
-                checkBoxBusiness.setChecked(true);
-            }
-            if(categories != null && categories.contains("politics")){
-                checkBoxPolitics.setChecked(true);
-            }
-            if(categories != null && categories.contains("sports")){
-                checkBoxSport.setChecked(true);
-            }
-            if(categories != null && categories.contains("sciences")){
-                checkBoxSciences.setChecked(true);
-            }
-            if(categories != null && categories.contains("travel")){
-                checkBoxTravel.setChecked(true);
+            if (prefs != null) {
+                checkBoxArts.setChecked(CheckUtils.getCheckBoxBoolean(categories, "arts"));
+                checkBoxPolitics.setChecked(CheckUtils.getCheckBoxBoolean(categories, "politics"));
+                checkBoxBusiness.setChecked(CheckUtils.getCheckBoxBoolean(categories, "business"));
+                checkBoxSciences.setChecked(CheckUtils.getCheckBoxBoolean(categories, "politics"));
+                checkBoxSport.setChecked(CheckUtils.getCheckBoxBoolean(categories, "sciences"));
+                checkBoxTravel.setChecked(CheckUtils.getCheckBoxBoolean(categories, "travel"));
             }
         }
     }
@@ -233,27 +211,17 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(keywords.isEmpty()) {
-                    Toast.makeText(SearchActivity.this, "You must enter a keyword", Toast.LENGTH_LONG).show();
+                if(!CheckUtils.checkToSaveNotifications(keywords, categories)){
                     switchNotification.setChecked(false);
                 }
-                if (categories.size() == 0) {
-                    Toast.makeText(SearchActivity.this, "You must choose a category", Toast.LENGTH_LONG).show();
-                    switchNotification.setChecked(false);
-                }
-
                 if (switchNotification.isChecked()) {
                     switchNotif = true;
                     saveQueryParams();
-                }
-                if (!switchNotification.isChecked()) {
+                }else{
                     switchNotif = false;
                     saveQueryParams();
                 }
             }
-
-
-
         });
     }
 
@@ -275,26 +243,15 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     //OnClick to button Search and checkBox
     @Override
     public void onClick(View v) {
-        String category;
         switch (v.getId()){
             case R.id.buttonSearch:
-                if (keywords == null) {
-                    Toast.makeText(this, "You must enter a keyword", Toast.LENGTH_LONG).show();
-                } else if (keywords.isEmpty()) {
-                    Toast.makeText(this, "You must enter a keyword", Toast.LENGTH_LONG).show();
-                } else {
-                    if (categories.size() == 0) {
-                        Toast.makeText(this, "You must choose a category", Toast.LENGTH_LONG).show();
-                    } else {
-                        executeRequestWithSearchParams();
-                    }
+                if(CheckUtils.toExecuteHttpRequest(keywords, categories)){
+                    executeRequestWithSearchParams();
                 }
                 break;
-
             case R.id.checkBoxArts:
                 if (checkBoxArts.isChecked()){
-                    category = "arts";
-                    categories.add(category);
+                    categories.add("arts");
                 }
                 else {
                     categories.remove("arts");
@@ -302,8 +259,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.checkBoxBusiness:
                 if(checkBoxBusiness.isChecked()){
-                    category = "business";
-                    categories.add(category);
+                    categories.add("business");
                 }
                 else{
                     categories.remove("business");
@@ -311,8 +267,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.checkBoxPolitics:
                 if(checkBoxPolitics.isChecked()){
-                    category = "politics";
-                    categories.add(category);
+                    categories.add("politics");
                 }
                 else{
                     categories.remove("politics");
@@ -320,8 +275,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.checkBoxSciences:
                 if(checkBoxSciences.isChecked()){
-                    category = "sciences";
-                    categories.add(category);
+                    categories.add("sciences");
                 }
                 else{
                     categories.remove("sciences");
@@ -329,8 +283,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.checkBoxSports:
                 if(checkBoxSport.isChecked()){
-                    category = "sports";
-                    categories.add(category);
+                    categories.add("sports");
                 }
                 else{
                     categories.remove("sports");
@@ -338,8 +291,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.checkBoxTravel:
                 if(checkBoxTravel.isChecked()){
-                    category = "travel";
-                    categories.add(category);
+                    categories.add("travel");
                 }
                 else{
                     categories.remove("travel");
@@ -394,13 +346,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     //CallBack to Search to show DetailActivity
     @Override
     public void callbackSearchArticle(Doc searchArticle) {
-        startDetailActivityToSearch(searchArticle);
+        IntentUtils.startDetailActivity(this, searchArticle.getWebUrl());
     }
 
-    //Start DetailActivity
-    private void startDetailActivityToSearch(Doc searchArticle) {
-        Intent detailActivityIntent = new Intent(SearchActivity.this, ArticleDetailActivity.class);
-        detailActivityIntent.putExtra(TOPSTORIES_EXTRA, searchArticle.getWebUrl());
-        startActivity(detailActivityIntent);
-    }
 }

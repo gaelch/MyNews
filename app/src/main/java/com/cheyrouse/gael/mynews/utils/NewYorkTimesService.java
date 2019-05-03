@@ -51,6 +51,18 @@ public interface NewYorkTimesService {
         protected Retrofit initialValue() {
             return new Retrofit.Builder()
                     .baseUrl("https://api.nytimes.com/")
+                    .addConverterFactory(MyJsonConverter.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .client(okHttpClient)
+                    .build();
+        }
+    };
+    //Request with RetroFit, RxJava and OkHttp
+    ThreadLocal<Retrofit> retrofit2 = new ThreadLocal<Retrofit>() {
+        @Override
+        protected Retrofit initialValue() {
+            return new Retrofit.Builder()
+                    .baseUrl("https://api.nytimes.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(okHttpClient)

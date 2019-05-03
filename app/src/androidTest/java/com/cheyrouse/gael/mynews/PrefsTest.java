@@ -1,7 +1,10 @@
-package com.cheyrouse.gael.mynews.utils;
+package com.cheyrouse.gael.mynews;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+
+import com.cheyrouse.gael.mynews.utils.Prefs;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,7 +39,7 @@ public class PrefsTest {
 
 
     private List<String> getList(){
-        return prefs.getTestList();
+        return (List<String>) prefs.getTestList();
     }
 
 

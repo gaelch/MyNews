@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
+        android:name=".utils.ApplicationContextProvider"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_my_news"

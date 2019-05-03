@@ -50,6 +50,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
     private int position;
     private Disposable disposable;
     private String sectionNav = "business";
+    private String sectionMostPopular = "home";
 
 
     public ArticlesFragment() {
@@ -97,7 +98,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
                 executeHttpRequestTopStories();
                 break;
             case 1:
-                executeHttpRequestMostPopular();
+                executeHttpRequestMostPopular(sectionMostPopular);
                 break;
             case 2:
                 executeHttpRequestBusiness(sectionNav);
@@ -143,7 +144,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
                           executeHttpRequestTopStories();
                         break;
                     case 1:
-                          executeHttpRequestMostPopular();
+                          executeHttpRequestMostPopular(sectionMostPopular);
                         break;
                     case 2:
                            executeHttpRequestBusiness(sectionNav);
@@ -179,19 +180,25 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
     }
 
     //Request to MostPopular Api articles
-    private  void executeHttpRequestMostPopular (){
-        disposable = NewYorkTimesStream.streamFetchArticleMostPopular("world", API_KEY).subscribeWith(new DisposableObserver<Article>() {
-
+    private  void executeHttpRequestMostPopular (String sectionMostPopular){
+        disposable = NewYorkTimesStream.streamFetchArticleMostPopular(sectionMostPopular, API_KEY).subscribeWith(new DisposableObserver<Article>() {
             @Override
             public void onNext(Article articles) {
-                updateUI(articles);
+                if(articles.getResult().size() == 0){
+                    changeSectionMostPopular();
+                }else{
+                    updateUI(articles);
+                }
             }
             @Override
             public void onError(Throwable e) {
-                textView.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
-                Log.e("Test", "MostPopular is on error");
-                Log.e("Test", e.getMessage());
+                try {
+                    textView.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                } catch (Exception exc) {
+                    // This will catch any exception, because they are all descended from Exception
+                    Log.e("Test", exc.getMessage());
+                }
             }
             @Override
             public void onComplete() {
@@ -235,23 +242,21 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
         if(articlesResults != null){
             articlesResults.clear();
         }
-        if(articles.getResult() != null)
-        {
+        if(articles.getResult() != null) {
             articlesResults.addAll(articles.getResult());
             textView.setVisibility(View.GONE);
             if(articlesResults.size() == 0){
-                {
-                    articlesResults.clear();
-                    textView.setVisibility(View.VISIBLE);
-                    textView.setText(R.string.list_empty);}
+                articlesResults.clear();
+                textView.setVisibility(View.VISIBLE);
+                textView.setText(R.string.list_empty);
             }
             adapter.notifyDataSetChanged();
             swipeRefreshLayout.setRefreshing(false);
         }
-        else
-        {
-            Log.e("Test", "articles.getResult() is null");
-        }
+    }
+
+    private void changeSectionMostPopular() {
+        executeHttpRequestMostPopular("world");
     }
 
     // -----------------

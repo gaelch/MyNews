@@ -85,7 +85,7 @@ public class Prefs {
         }
 
         //to test class prefs store test list
-        void storeListTest(List<String> testList) {
+        public void storeListTest(List<String> testList) {
            //start writing (open the file)
             SharedPreferences.Editor editor = prefs.edit();
             //put the data
@@ -97,7 +97,7 @@ public class Prefs {
         }
 
         //getTestList recovers json strings and return there in ArrayList
-        ArrayList<String> getTestList() {
+        public ArrayList<String> getTestList() {
             Gson gson = new Gson();
             String json = prefs.getString("test", "");
             ArrayList<String> testList;

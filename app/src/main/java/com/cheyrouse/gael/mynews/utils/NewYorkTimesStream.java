@@ -22,7 +22,7 @@ public class NewYorkTimesStream {
     }
 
     public static Observable<Article> streamFetchArticleMostPopular(String section, String api_key){
-        NewYorkTimesService newYorkTimesService = Objects.requireNonNull(NewYorkTimesService.retrofit.get()).create(NewYorkTimesService.class);
+        NewYorkTimesService newYorkTimesService = Objects.requireNonNull(NewYorkTimesService.retrofit2.get()).create(NewYorkTimesService.class);
         return newYorkTimesService.getBySectionMp(section, api_key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

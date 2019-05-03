@@ -1,7 +1,6 @@
 package com.cheyrouse.gael.mynews.controllers.activities;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,6 +18,7 @@ import com.cheyrouse.gael.mynews.controllers.fragments.ArticlesFragment;
 import com.cheyrouse.gael.mynews.models.Result;
 import com.cheyrouse.gael.mynews.R;
 import com.cheyrouse.gael.mynews.utils.AlarmHelper;
+import com.cheyrouse.gael.mynews.utils.IntentUtils;
 import com.cheyrouse.gael.mynews.views.PagerAdapter;
 
 import java.util.ArrayList;
@@ -28,8 +27,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.cheyrouse.gael.mynews.models.Result.TOPSTORIES_EXTRA;
 
 //home screen
 public class MainActivity extends AppCompatActivity implements ArticlesFragment.ArticlesFragmentListener,NavigationView.OnNavigationItemSelectedListener
@@ -85,22 +82,16 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
             case R.id.menu_activity_main_params:
                 return true;
             case R.id.menu_activity_main_params_Notification:
-                Intent notificationActivityIntent = new Intent(MainActivity.this, SearchActivity.class);
-                notificationActivityIntent.putExtra("mode", false);
-                startActivity(notificationActivityIntent);
+                IntentUtils.launchIntentSearch(this, false);
                 return true;
             case R.id.menu_activity_main_params_help:
-                Intent helpIntent = new Intent(MainActivity.this, HelpActivity.class);
-                startActivity(helpIntent);
+                IntentUtils.launchIntent(this, false);
                 return true;
             case R.id.menu_activity_main_params_about:
-                Intent aboutIntent = new Intent(MainActivity.this, AboutActivity.class);
-                startActivity(aboutIntent);
+                IntentUtils.launchIntent(this, true);
                 return true;
             case R.id.menu_activity_main_search:
-                Intent searchActivityIntent = new Intent(MainActivity.this, SearchActivity.class);
-                searchActivityIntent.putExtra("mode", true);
-                startActivity(searchActivityIntent);
+                IntentUtils.launchIntentSearch(this, true);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -152,33 +143,25 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
         item.getTitle();
         switch (id) {
             case R.id.activity_main_drawer_technology:
-                Log.e("test", "technology is clicked");
-                String sectionNav = "technology";
-                updateNavArticle(sectionNav);
+                updateNavArticle("technology");
                 break;
             case R.id.activity_main_drawer_sports:
-                sectionNav = "sports";
-                updateNavArticle(sectionNav);
+                updateNavArticle("sports");
                 break;
             case R.id.activity_main_drawer_politics:
-                sectionNav = "politics";
-                updateNavArticle(sectionNav);
+                updateNavArticle("politics");
                 break;
             case R.id.activity_main_drawer_travel:
-                sectionNav = "travel";
-                updateNavArticle(sectionNav);
+                updateNavArticle("travel");
                 break;
             case R.id.activity_main_drawer_automobiles:
-                sectionNav = "automobiles";
-                updateNavArticle(sectionNav);
+                updateNavArticle("automobiles");
                 break;
             case R.id.activity_main_drawer_arts:
-                sectionNav = "arts";
-                updateNavArticle(sectionNav);
+                updateNavArticle("arts");
                 break;
             case R.id.activity_main_drawer_Business:
-                sectionNav = "business";
-                updateNavArticle(sectionNav);
+                updateNavArticle("business");
                 break;
             default:
                 break;
@@ -200,16 +183,9 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
     // CONFIGURATION
     // -------------------
 
-    //Launch DetailActivity if article is clicked
-    private void startDetailActivity(Result article) {
-        Intent detailActivityIntent = new Intent(MainActivity.this, ArticleDetailActivity.class);
-        detailActivityIntent.putExtra(TOPSTORIES_EXTRA, article.getUrl());
-        startActivity(detailActivityIntent);
-    }
-
-    //Callback oof ArticleFragment
+    //Callback of ArticleFragment
     @Override
     public void callbackArticle(Result article) {
-        startDetailActivity(article);
+        IntentUtils.startDetailActivity(this, article.getUrl());
     }
 }

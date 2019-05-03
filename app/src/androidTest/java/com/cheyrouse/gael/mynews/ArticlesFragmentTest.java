@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.controllers.fragments;
+package com.cheyrouse.gael.mynews;
 
 
 import android.support.test.InstrumentationRegistry;
@@ -10,8 +10,7 @@ import com.cheyrouse.gael.mynews.models.Doc;
 import com.cheyrouse.gael.mynews.models.Result;
 import com.cheyrouse.gael.mynews.models.SearchArticle;
 import com.cheyrouse.gael.mynews.utils.JsonContent;
-import com.cheyrouse.gael.mynews.utils.NewYorkTimesStream;
-import com.cheyrouse.gael.mynews.utils.NewYorkTimesStreamTest;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -23,7 +22,6 @@ import io.reactivex.observers.TestObserver;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
-import static com.cheyrouse.gael.mynews.utils.NewYorkTimesService.API_KEY;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 //Test Requests with Mockito and API request

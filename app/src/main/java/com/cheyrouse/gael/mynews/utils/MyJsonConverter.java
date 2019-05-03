@@ -100,19 +100,19 @@ public class MyJsonConverter extends Converter.Factory {
             try {
 
                 JSONObject obj = new JSONObject(dirty);
-                Object mediaObj = obj.getJSONObject("results").getJSONObject("media");
-                clean = mediaObj.toString();
-                media.add(clean);
+                try{
+                    Object mediaObj = obj.getJSONObject("results").getJSONObject("media");
+                    clean = mediaObj.toString();
+                    media.add(clean);
+                    obj.getJSONObject("results").put("media", gson.toJson(media));
+                    dirty = obj.toString();
+                }catch (JSONException ex){
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            try {
-                return adapter.fromJson((Reader) media);
-            } finally {
-                value.close();
-            }
+            return adapter.fromJson(dirty);
         }
     }
 

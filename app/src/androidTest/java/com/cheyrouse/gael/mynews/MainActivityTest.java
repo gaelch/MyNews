@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.controllers.activities;
+package com.cheyrouse.gael.mynews;
 
 
 import android.support.test.espresso.ViewInteraction;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.cheyrouse.gael.mynews.R;
+import com.cheyrouse.gael.mynews.controllers.activities.MainActivity;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;

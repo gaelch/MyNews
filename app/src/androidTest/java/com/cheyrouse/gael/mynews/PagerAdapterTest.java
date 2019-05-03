@@ -1,8 +1,9 @@
-package com.cheyrouse.gael.mynews.views;
+package com.cheyrouse.gael.mynews;
 
 import android.support.test.rule.ActivityTestRule;
 
 import com.cheyrouse.gael.mynews.controllers.activities.MainActivity;
+import com.cheyrouse.gael.mynews.views.PagerAdapter;
 
 import org.junit.Before;
 import org.junit.Rule;

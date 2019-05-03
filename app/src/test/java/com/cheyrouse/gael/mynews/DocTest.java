@@ -1,4 +1,4 @@
-package com.cheyrouse.gael.mynews.model;
+package com.cheyrouse.gael.mynews;
 
 import com.cheyrouse.gael.mynews.models.Doc;
 
