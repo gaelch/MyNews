@@ -10,6 +10,7 @@ import com.cheyrouse.gael.mynews.models.Doc;
 import com.cheyrouse.gael.mynews.models.Result;
 import com.cheyrouse.gael.mynews.models.SearchArticle;
 import com.cheyrouse.gael.mynews.utils.JsonContent;
+import com.cheyrouse.gael.mynews.utils.NewYorkTimesStream;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -22,6 +23,7 @@ import io.reactivex.observers.TestObserver;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 
+import static com.cheyrouse.gael.mynews.utils.NewYorkTimesService.API_KEY;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 //Test Requests with Mockito and API request
@@ -44,8 +46,8 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
     }
 
-    /*@Test
-    public void TopStoriesAPIReturnArticles() throws InterruptedException {
+    @Test
+    public void TopStoriesAPIReturnArticles() {
 
         Observable<Article> observable = NewYorkTimesStream.streamFetchArticle("home", API_KEY);
         TestObserver<Article> testObserver = new TestObserver<>();
@@ -57,7 +59,7 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
 
         List<Result> articles = testObserver.values().get(0).getResult();
         assertThat("size != 0", articles.size() != 0);
-    }*/
+    }
 
     //Test MostPopular
     @Test
