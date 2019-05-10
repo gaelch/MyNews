@@ -1,13 +1,15 @@
 package com.cheyrouse.gael.mynews;
 
+import android.content.Context;
 import com.cheyrouse.gael.mynews.utils.CheckUtils;
-
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 public class CheckUtilsTest {
+
+    private Context applicationContext;
 
     //test if CheckBox return good value
     @Test
@@ -26,7 +28,7 @@ public class CheckUtilsTest {
     public void testIfSearchValuesAreEmpty(){
         List<String> cat = new ArrayList<>();
         cat.add("News");
-        assertTrue(CheckUtils.toExecuteHttpRequest("MyNews", cat));
+        assertTrue(CheckUtils.toExecuteHttpRequest("MyNews", cat, getApplicationContext()));
     }
 
     // Test to see if values are not empty to save preset for notifications
@@ -34,6 +36,16 @@ public class CheckUtilsTest {
     public void testToSaveNotifications(){
         List<String> cat = new ArrayList<>();
         cat.add("News");
-        assertTrue(CheckUtils.checkToSaveNotifications("MyNews", cat));
+        assertTrue(CheckUtils.checkToSaveNotifications("MyNews", cat, getApplicationContext()));
     }
+
+    @Test
+    public void testIsSwitchIsChecked(){
+       // assertTrue(CheckUtils.getSwitchPrefs(getApplicationContext()));
+    }
+
+    public Context getApplicationContext() {
+        return applicationContext;
+    }
+
 }

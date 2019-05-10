@@ -91,6 +91,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             textEndDate.setVisibility(View.GONE);
             configureCheckBoxPrefs();
             configureSwitchNotification();
+            switchNotif = prefs.getBoolean();
         }else{ // true = search
             switchNotification.setVisibility(View.GONE);
             viewSearch.setVisibility(View.GONE);
@@ -185,8 +186,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 checkBoxArts.setChecked(CheckUtils.getCheckBoxBoolean(categories, "arts"));
                 checkBoxPolitics.setChecked(CheckUtils.getCheckBoxBoolean(categories, "politics"));
                 checkBoxBusiness.setChecked(CheckUtils.getCheckBoxBoolean(categories, "business"));
-                checkBoxSciences.setChecked(CheckUtils.getCheckBoxBoolean(categories, "politics"));
-                checkBoxSport.setChecked(CheckUtils.getCheckBoxBoolean(categories, "sciences"));
+                checkBoxSciences.setChecked(CheckUtils.getCheckBoxBoolean(categories, "sciences"));
+                checkBoxSport.setChecked(CheckUtils.getCheckBoxBoolean(categories, "sports"));
                 checkBoxTravel.setChecked(CheckUtils.getCheckBoxBoolean(categories, "travel"));
             }
         }
@@ -194,17 +195,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     // If switch is saved, check it
     private void configureSwitchNotification() {
-        if(prefs != null) {
-            switchNotif = prefs.getBoolean();
-            if (switchNotif) {
-                switchNotification.setChecked(true);
-            }
-        }
+        switchNotification.setChecked(CheckUtils.getSwitchPrefs(this));
         //To verify if keywords and checkBox are ok
         switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(!CheckUtils.checkToSaveNotifications(keywords, categories)){
+                if(!CheckUtils.checkToSaveNotifications(keywords, categories, getApplicationContext())){
                     switchNotification.setChecked(false);
                 }
                 if (switchNotification.isChecked()) {
@@ -238,7 +234,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.buttonSearch:
-                if(CheckUtils.toExecuteHttpRequest(keywords, categories)){
+                if(CheckUtils.toExecuteHttpRequest(keywords, categories, this)){
                     executeRequestWithSearchParams();
                 }
                 break;

@@ -1,6 +1,7 @@
 package com.cheyrouse.gael.mynews.controllers.activities;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -39,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
     private DrawerLayout drawerLayout;
     private List<ArticlesFragment> listFragments;
     private PagerAdapter mPagerAdapter;
+
+    public Context getContext(){
+        return getApplicationContext();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
