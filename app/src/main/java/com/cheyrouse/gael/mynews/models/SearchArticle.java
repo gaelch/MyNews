@@ -18,9 +18,12 @@ public class SearchArticle implements Parcelable {
     @Expose
     private Response response;
 
-    protected SearchArticle(Parcel in) {
+    private SearchArticle(Parcel in) {
         status = in.readString();
         copyright = in.readString();
+    }
+
+    public SearchArticle() {
     }
 
     public static final Creator<SearchArticle> CREATOR = new Creator<SearchArticle>() {

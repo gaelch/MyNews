@@ -41,7 +41,7 @@ public class CheckUtilsTest {
 
     @Test
     public void testIsSwitchIsChecked(){
-       // assertTrue(CheckUtils.getSwitchPrefs(getApplicationContext()));
+        assertTrue(CheckUtils.getSwitchPrefs(getApplicationContext()));
     }
 
     public Context getApplicationContext() {

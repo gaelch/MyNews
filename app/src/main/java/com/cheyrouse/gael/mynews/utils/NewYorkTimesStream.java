@@ -18,7 +18,7 @@ public class NewYorkTimesStream {
         return newYorkTimesService.getBySection(section, api_key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .timeout(10, TimeUnit.SECONDS);
+                .timeout(100, TimeUnit.SECONDS);
     }
 
     public static Observable<Article> streamFetchArticleMostPopular(String section, String api_key){
