@@ -35,7 +35,6 @@ public interface NewYorkTimesService {
             @Query("begin_date")String beginDate,
             @Query("end_date")String endDate,
             @Query("sort") String sort
-
     );
 
     @GET("svc/search/v2/articlesearch.json?")
@@ -43,23 +42,10 @@ public interface NewYorkTimesService {
                                         @Query("q") String search,
                                         @Query("fq")List<String> category,
                                         @Query("sort") String sort
-
     );
 
     //Request with RetroFit, RxJava and OkHttp
     ThreadLocal<Retrofit> retrofit = new ThreadLocal<Retrofit>() {
-        @Override
-        protected Retrofit initialValue() {
-            return new Retrofit.Builder()
-                    .baseUrl("https://api.nytimes.com/")
-                    .addConverterFactory(MyJsonConverter.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .client(okHttpClient)
-                    .build();
-        }
-    };
-    //Request with RetroFit, RxJava and OkHttp
-   /* ThreadLocal<Retrofit> retrofit2 = new ThreadLocal<Retrofit>() {
         @Override
         protected Retrofit initialValue() {
             return new Retrofit.Builder()
@@ -69,7 +55,7 @@ public interface NewYorkTimesService {
                     .client(okHttpClient)
                     .build();
         }
-    };*/
+    };
 
     OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))

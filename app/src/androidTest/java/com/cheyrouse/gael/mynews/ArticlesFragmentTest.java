@@ -46,21 +46,6 @@ public class ArticlesFragmentTest extends InstrumentationTestCase {
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
     }
 
-    @Test
-    public void TopStoriesAPIReturnArticles() {
-
-        Observable<Article> observable = NewYorkTimesStream.streamFetchArticle("home", API_KEY);
-        TestObserver<Article> testObserver = new TestObserver<>();
-
-        observable.subscribeWith(testObserver)
-                .assertNoErrors()
-                .assertNoTimeout()
-                .awaitTerminalEvent();
-
-        List<Result> articles = testObserver.values().get(0).getResult();
-        assertThat("size != 0", articles.size() != 0);
-    }
-
     //Test MostPopular
     @Test
     public void fetchMostPopularTest() throws InterruptedException {

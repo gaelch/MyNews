@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
     private List<ArticlesFragment> listFragments;
     private PagerAdapter mPagerAdapter;
 
-    public Context getContext(){
-        return getApplicationContext();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

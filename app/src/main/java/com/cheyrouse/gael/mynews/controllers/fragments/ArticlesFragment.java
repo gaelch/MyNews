@@ -89,7 +89,14 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
         ButterKnife.bind(this, view);
         progressBar.setVisibility(View.VISIBLE);
         articlesResults = new ArrayList<>();
+        configureFragmentPosition();
+        configureRecyclerView();
+        configureSwipeRefreshLayout();
+        return view;
+    }
 
+    // To launch good http request on good fragment
+    private void configureFragmentPosition() {
         if (getArguments() != null) {
             position = getArguments().getInt(FRAGMENT_POSITION);
         }
@@ -104,11 +111,6 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
                 executeHttpRequestBusiness(sectionNav);
                 break;
         }
-
-        configureRecyclerView();
-        configureSwipeRefreshLayout();
-
-        return view;
     }
 
     //Update sectionNav to request articles
@@ -255,18 +257,14 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
         }
     }
 
+    // If default section is empty
     private void changeSectionMostPopular() {
         executeHttpRequestMostPopular("world");
     }
 
-    // -----------------
-    // ACTION
-    // -----------------
-
     //Configure item click on RecyclerView
     @Override
     public void onArticleClicked(Result resultTopStories) {
-        Log.e("TAG", "Position : ");
         mListener.callbackArticle(resultTopStories);
     }
 

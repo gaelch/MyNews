@@ -61,7 +61,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private List<String> categories;
     private String beginDate;
     private String endDate;
-    private boolean mode;
+    private boolean searchMode;
     private Prefs prefs;
     private Boolean switchNotif;
 
@@ -74,12 +74,16 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         categories = new ArrayList<>();
         innitListener();
         getIntentMode();
+        checkAndSwitchMode();
         configureEditTextSearch();
     }
 
     private void getIntentMode() {
-        mode = getIntent().getBooleanExtra("mode", true);
-        if(!mode){ //false = notifications
+        searchMode = getIntent().getBooleanExtra("mode", true);
+    }
+
+    private void checkAndSwitchMode() {
+        if(!searchMode){ //false = notifications
             prefs = Prefs.get(SearchActivity.this);
             switchNotification.setVisibility(View.VISIBLE);
             tvBegin.setVisibility(View.GONE);
@@ -89,9 +93,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             buttonSearch.setVisibility(View.GONE);
             textBeginDate.setVisibility(View.GONE);
             textEndDate.setVisibility(View.GONE);
+            switchNotif = prefs.getBoolean();
             configureCheckBoxPrefs();
             configureSwitchNotification();
-            switchNotif = prefs.getBoolean();
         }else{ // true = search
             switchNotification.setVisibility(View.GONE);
             viewSearch.setVisibility(View.GONE);
@@ -100,11 +104,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     //Configure editText
     private void configureEditTextSearch() {
-        if(!mode) { //false = notifications
+        if(!searchMode) { //false = notifications
             if (prefs != null) {
                 keywords = prefs.getKeywords();
+                editTextSearch.setText(keywords);
             }
-            editTextSearch.setText(keywords);
         }
             editTextSearch.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -180,7 +184,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     //If Prefs is not null check saved CheckBox
     private void configureCheckBoxPrefs() {
-        if(!mode) { //false = notifications
+        if(!searchMode) { //false = notifications
             categories = prefs.getCategories();
             if (prefs != null) {
                 checkBoxArts.setChecked(CheckUtils.getCheckBoxBoolean(categories, "arts"));
@@ -203,13 +207,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 if(!CheckUtils.checkToSaveNotifications(keywords, categories, getApplicationContext())){
                     switchNotification.setChecked(false);
                 }
-                if (switchNotification.isChecked()) {
-                    switchNotif = true;
-                    saveQueryParams();
-                }else{
-                    switchNotif = false;
-                    saveQueryParams();
-                }
+                switchNotif = CheckUtils.checkIfSwitchIsChecked(switchNotification.isChecked());
+                saveQueryParams();
             }
         });
     }
@@ -217,7 +216,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     //call onPause to save the settings if the switch is not touched
     protected void onPause() {
         super.onPause();
-        if(!mode){
+        if(!searchMode){
             saveQueryParams();
         }
     }
@@ -298,8 +297,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     //Request Articles with user search params
     private void executeRequestWithSearchParams(){
-        Log.e("test", String.valueOf(categories));
-        Log.e("test", keywords);
         Disposable disposable = NewYorkTimesStream.streamFetchArticleSearch(API_KEY, keywords, categories, beginDate, endDate).subscribeWith(new DisposableObserver<SearchArticle>() {
             @Override
             public void onNext(SearchArticle articles) {

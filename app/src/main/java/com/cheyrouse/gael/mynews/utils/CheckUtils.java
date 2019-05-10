@@ -60,4 +60,12 @@ public class CheckUtils {
         }
         return switchNotif;
     }
+
+    public static boolean checkIfSwitchIsChecked(boolean val){
+        boolean switchNotif = false;
+        if(val){
+            switchNotif = true;
+        }
+        return switchNotif;
+    }
 }

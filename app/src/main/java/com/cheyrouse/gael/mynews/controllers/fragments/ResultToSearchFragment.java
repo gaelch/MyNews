@@ -123,10 +123,6 @@ public class ResultToSearchFragment extends Fragment implements View.OnClickList
             adapter.notifyDataSetChanged();
             swipeRefreshLayout.setRefreshing(false);
         }
-        else
-        {
-            Log.e("Test", "searchArticle.getResponse().getDocs() is null");
-        }
     }
 
     @Override

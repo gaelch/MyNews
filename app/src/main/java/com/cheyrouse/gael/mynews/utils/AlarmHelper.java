@@ -36,7 +36,6 @@ public class AlarmHelper {
             intent = new Intent(context, AlarmReceiver.class);
             pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
         }
 
     }
