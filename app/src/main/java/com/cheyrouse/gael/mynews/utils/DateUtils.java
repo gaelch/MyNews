@@ -10,6 +10,7 @@ public class DateUtils {
     public static final String TEXT_DATE = "dd-MM-yyyy";
     public static final String API_DATE = "yyyyMMdd";
 
+    // To format date
     public static String getDate(int year, int dayOfMonth, int monthOfYear, String pattern) {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(0);
@@ -33,6 +34,7 @@ public class DateUtils {
         return c.get(Calendar.DAY_OF_MONTH);
     }
 
+    // get calendar to Alarm Helper
     public static Calendar getCalendarPresets(){
         //in a current date at 1 pm, this property get an instance to calendar
         Calendar now = Calendar.getInstance(Locale.FRANCE);

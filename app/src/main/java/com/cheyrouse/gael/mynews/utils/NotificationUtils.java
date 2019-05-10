@@ -5,6 +5,7 @@ public class NotificationUtils {
 
     public static final String TEXTCONTENT = "Nous n'avons trouvé aucun nouvel article pour vous aujourd'hui";
 
+    // To get Notification text
     public static String getTextContent(SearchArticle articles){
         String textContent;
         if (articles == null){

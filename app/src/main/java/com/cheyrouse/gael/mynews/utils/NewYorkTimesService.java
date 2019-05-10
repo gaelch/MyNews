@@ -21,6 +21,7 @@ public interface NewYorkTimesService {
     public static final String API_KEY = "c30Fj2G1xFQkdMypW0aC6uEfGZhJh6Rn";
 
 
+    //Requests HTTP
     @GET("svc/topstories/v2/{section}.json?")
     Observable<Article> getBySection(@Path("section") String section, @Query("api-key") String API_KEY);
 
@@ -58,7 +59,7 @@ public interface NewYorkTimesService {
         }
     };
     //Request with RetroFit, RxJava and OkHttp
-    ThreadLocal<Retrofit> retrofit2 = new ThreadLocal<Retrofit>() {
+   /* ThreadLocal<Retrofit> retrofit2 = new ThreadLocal<Retrofit>() {
         @Override
         protected Retrofit initialValue() {
             return new Retrofit.Builder()
@@ -68,7 +69,7 @@ public interface NewYorkTimesService {
                     .client(okHttpClient)
                     .build();
         }
-    };
+    };*/
 
     OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))

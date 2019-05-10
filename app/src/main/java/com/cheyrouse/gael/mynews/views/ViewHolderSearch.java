@@ -55,7 +55,5 @@ class ViewHolderSearch extends RecyclerView.ViewHolder  {
             });
 
         }
-
-
     }
 
