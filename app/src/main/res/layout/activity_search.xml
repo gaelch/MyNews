@@ -13,196 +13,253 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textBeginDate"
-        android:layout_marginStart="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="155dp"
-        android:text="@string/begin_date" />
-
-    <View
-        android:id="@+id/line1"
-        android:layout_width="120dp"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_below="@+id/textBeginDate"
-        android:layout_alignEnd="@+id/textBeginDate" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textEndDate"
-        android:layout_marginStart="10dp"
-        android:layout_alignTop="@+id/textView"
-        android:text="@string/end_date" />
-
-    <View
-        android:layout_width="120dp"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_below="@+id/textEndDate"
-        android:layout_alignEnd="@+id/textEndDate" />
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraint"
-        android:layout_below="@+id/line1"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <CheckBox
-            android:id="@+id/checkBoxArts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/arts"
-            android:textColor="@color/Black"
-            android:textSize="@dimen/size_string"
-            android:theme="@style/checkBoxStyle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RelativeOverlap" />
-
-        <CheckBox
-            android:id="@+id/checkBoxBusiness"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/business"
-            android:textColor="@color/Black"
-            android:textSize="@dimen/size_string"
-            android:theme="@style/checkBoxStyle"
-            app:layout_constraintStart_toStartOf="@+id/checkBoxArts"
-            app:layout_constraintTop_toBottomOf="@+id/checkBoxArts"
-            tools:ignore="RelativeOverlap" />
-
-        <CheckBox
-            android:id="@+id/checkBoxSciences"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/sciences"
-            android:textColor="@color/Black"
-            android:textSize="@dimen/size_string"
-            android:theme="@style/checkBoxStyle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/checkBoxBusiness"
-            app:layout_constraintTop_toBottomOf="@+id/checkBoxBusiness"
-            tools:ignore="RelativeOverlap" />
-
-        <CheckBox
-            android:id="@+id/checkBoxPolitics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/politics"
-            android:textColor="@color/Black"
-            android:textSize="@dimen/size_string"
-            android:theme="@style/checkBoxStyle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RelativeOverlap" />
-
-        <CheckBox
-            android:id="@+id/checkBoxSports"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/sports"
-            android:textColor="@color/Black"
-            android:textSize="@dimen/size_string"
-            android:theme="@style/checkBoxStyle"
-            app:layout_constraintStart_toStartOf="@+id/checkBoxPolitics"
-            app:layout_constraintTop_toBottomOf="@+id/checkBoxPolitics"
-            tools:ignore="RelativeOverlap" />
-
-        <CheckBox
-            android:id="@+id/checkBoxTravel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/travel"
-            android:textColor="@color/Black"
-            android:textSize="@dimen/size_string"
-            android:theme="@style/checkBoxStyle"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/checkBoxSports"
-            app:layout_constraintTop_toBottomOf="@+id/checkBoxSports"
-            tools:ignore="RelativeOverlap" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/buttonSearch"
-        android:layout_width="347dp"
-        android:layout_height="45dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_below="@+id/constraint"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        android:background="@color/colorPrimary"
-        android:shadowColor="@android:color/black"
-        android:text="@string/search"
-        android:textColor="@color/colorAccent" />
-
-    <TextView
-        android:id="@+id/textBeginDate"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="175dp"
-        android:clickable="true"
-        android:longClickable="false"
-        android:focusable="true"
-        android:backgroundTint="@android:color/black"
-        android:drawableEnd="@drawable/ic_expand_more"
-        android:textColor="@color/colorPrimary" />
-
-    <TextView
-        android:id="@+id/textEndDate"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="175dp"
-        android:layout_marginEnd="40dp"
-        android:backgroundTint="@android:color/black"
-        android:drawableEnd="@drawable/ic_expand_more"
-        android:clickable="true"
-        android:longClickable="false"
-        android:focusable="true"
-        android:textColor="@color/colorPrimary" />
-
 
     <EditText
         android:id="@+id/editSearchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="75dp"
         android:layout_marginStart="25dp"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="25dp"
-        android:inputType="text"
-        android:hint="@string/search_query_terms"
-        android:cursorVisible="true"
-        android:textCursorDrawable="@color/colorPrimaryDark"
         android:backgroundTint="@color/colorPrimaryDark"
+        android:cursorVisible="true"
         android:drawableStart="@drawable/ic_search"
+        android:hint="@string/search_query_terms"
         android:importantForAutofill="no"
+        android:inputType="text"
+        android:textCursorDrawable="@color/colorPrimaryDark"
         tools:targetApi="o" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/editSearchBar"
+        android:layout_marginTop="0dp">
+
+        <TextView
+            android:id="@+id/textViewBegin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textBeginDate"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/begin_date"
+            app:layout_constraintStart_toStartOf="@+id/textEndDate"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/textBeginDate"
+            android:layout_alignEnd="@+id/textBeginDate"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="0dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="@+id/textEndDate"
+            app:layout_constraintTop_toBottomOf="@+id/textEndDate" />
+
+        <TextView
+            android:id="@+id/textViewEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textEndDate"
+            android:layout_alignTop="@+id/textViewBegin"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/end_date"
+            app:layout_constraintStart_toStartOf="@+id/textBeginDate"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/lineEnd"
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/textEndDate"
+            android:layout_alignEnd="@+id/textEndDate"
+            android:layout_marginEnd="0dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="@+id/textBeginDate"
+            app:layout_constraintTop_toBottomOf="@+id/textBeginDate" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/line1"
+            tools:layout_editor_absoluteX="0dp">
+
+            <CheckBox
+                android:id="@+id/checkBoxArts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/arts"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/size_string"
+                android:theme="@style/checkBoxStyle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RelativeOverlap" />
+
+            <CheckBox
+                android:id="@+id/checkBoxBusiness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/business"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/size_string"
+                android:theme="@style/checkBoxStyle"
+                app:layout_constraintStart_toStartOf="@+id/checkBoxArts"
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxArts"
+                tools:ignore="RelativeOverlap" />
+
+            <CheckBox
+                android:id="@+id/checkBoxSciences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/sciences"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/size_string"
+                android:theme="@style/checkBoxStyle"
+                app:layout_constraintStart_toStartOf="@+id/checkBoxBusiness"
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxBusiness"
+                tools:ignore="RelativeOverlap" />
+
+            <CheckBox
+                android:id="@+id/checkBoxPolitics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="40dp"
+                android:text="@string/politics"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/size_string"
+                android:theme="@style/checkBoxStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RelativeOverlap" />
+
+            <CheckBox
+                android:id="@+id/checkBoxSports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/sports"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/size_string"
+                android:theme="@style/checkBoxStyle"
+                app:layout_constraintStart_toStartOf="@+id/checkBoxPolitics"
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxPolitics"
+                tools:ignore="RelativeOverlap" />
+
+            <CheckBox
+                android:id="@+id/checkBoxTravel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/travel"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/size_string"
+                android:theme="@style/checkBoxStyle"
+                app:layout_constraintStart_toStartOf="@+id/checkBoxSports"
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxSports"
+                tools:ignore="RelativeOverlap" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_search"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/Black"
+            app:layout_constraintTop_toBottomOf="@+id/constraint"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/buttonSearch"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@color/colorPrimary"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:shadowColor="@android:color/black"
+            android:text="@string/search"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_search" />
+
+        <Switch
+            android:id="@+id/switch_notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/constraint"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:text="@string/enable_notifications"
+            android:textColor="@color/Black"
+            android:theme="@style/SwitchCompatTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_search" />
+
+        <TextView
+            android:id="@+id/textBeginDate"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewEnd"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="40dp"
+            android:backgroundTint="@android:color/black"
+            android:clickable="true"
+            android:drawableEnd="@drawable/ic_expand_more"
+            android:focusable="true"
+            android:longClickable="false"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewEnd" />
+
+        <TextView
+            android:id="@+id/textEndDate"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewEnd"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="@android:color/black"
+            android:clickable="true"
+            android:drawableEnd="@drawable/ic_expand_more"
+            android:focusable="true"
+            android:longClickable="false"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewBegin" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_search_frame_layout"
