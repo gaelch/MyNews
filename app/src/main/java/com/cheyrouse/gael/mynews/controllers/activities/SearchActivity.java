@@ -131,7 +131,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        monthOfYear = monthOfYear+1;
+                        //monthOfYear = monthOfYear+1;
                         textBeginDate.setText(DateUtils.getDate(year, dayOfMonth, monthOfYear, TEXT_DATE));
                         beginDate = DateUtils.getDate(year, dayOfMonth, monthOfYear, API_DATE);
                     }
@@ -148,7 +148,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        monthOfYear = monthOfYear+1;
+                        //monthOfYear = monthOfYear+1;
                         textEndDate.setText(DateUtils.getDate(year, dayOfMonth, monthOfYear, TEXT_DATE));
                         endDate = DateUtils.getDate(year, dayOfMonth, monthOfYear, API_DATE);
                     }

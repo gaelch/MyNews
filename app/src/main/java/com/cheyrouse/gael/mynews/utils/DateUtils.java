@@ -40,8 +40,8 @@ public class DateUtils {
         Calendar now = Calendar.getInstance(Locale.FRANCE);
         Calendar calendar = Calendar.getInstance(Locale.FRANCE);
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE, 44);
+        calendar.set(Calendar.HOUR_OF_DAY, 9);
+        calendar.set(Calendar.MINUTE, 25);
         if(calendar.before(now)){
             calendar.add(Calendar.DATE,1);
         }
