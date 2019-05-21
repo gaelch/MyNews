@@ -50,7 +50,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
     private int position;
     private Disposable disposable;
     private String sectionNav = "business";
-    private String sectionMostPopular = "home";
+    private String sectionMostPopular = "movies";
 
 
     public ArticlesFragment() {
@@ -259,7 +259,7 @@ public class ArticlesFragment extends Fragment implements RecyclerViewAdapter.on
 
     // If default section is empty
     private void changeSectionMostPopular() {
-        executeHttpRequestMostPopular("world");
+        executeHttpRequestMostPopular("opinion");
     }
 
     //Configure item click on RecyclerView
