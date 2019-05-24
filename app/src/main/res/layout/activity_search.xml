@@ -46,7 +46,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="30dp"
             android:text="@string/begin_date"
-            app:layout_constraintStart_toStartOf="@+id/textEndDate"
+            app:layout_constraintStart_toStartOf="@+id/textBeginDate"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
@@ -70,7 +70,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
             android:text="@string/end_date"
-            app:layout_constraintStart_toStartOf="@+id/textBeginDate"
+            app:layout_constraintStart_toStartOf="@+id/textEndDate"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
@@ -224,7 +224,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view_search" />
 
         <TextView
-            android:id="@+id/textBeginDate"
+            android:id="@+id/textEndDate"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewEnd"
@@ -238,10 +238,11 @@
             android:longClickable="false"
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewEnd" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewEnd"
+            tools:targetApi="lollipop" />
 
         <TextView
-            android:id="@+id/textEndDate"
+            android:id="@+id/textBeginDate"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewEnd"
@@ -255,10 +256,10 @@
             android:longClickable="false"
             android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewBegin" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewBegin"
+            tools:targetApi="lollipop" />
 
     </android.support.constraint.ConstraintLayout>
-
 
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"

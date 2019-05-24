@@ -1,5 +1,6 @@
 package com.cheyrouse.gael.mynews.views;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,7 +21,7 @@ class RecyclerViewHolder extends RecyclerView.ViewHolder  {
     @BindView(R.id.fragment_main_item_date) TextView textViewDate;
     @BindView(R.id.fragment_main_item_image) ImageView imageView;
     @BindView(R.id.fragment_main_item_section) TextView textViewSection;
-    @BindView(R.id.relativeLayout) RelativeLayout relativeLayout;
+    @BindView(R.id.constraintLayout) ConstraintLayout constraintLayout;
 
     private static final String SUBSECTION = " > ";
 
@@ -51,7 +52,7 @@ class RecyclerViewHolder extends RecyclerView.ViewHolder  {
         }else{
             imageView.getResources().getDrawable(R.mipmap.ic_my_news);
         }
-        this.relativeLayout.setOnClickListener(new View.OnClickListener() {
+        this.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callback.onArticleClicked(article);

@@ -80,8 +80,6 @@ public class MainActivity extends AppCompatActivity implements ArticlesFragment.
     public boolean onOptionsItemSelected(MenuItem item) {
         //3 - Handle actions on menu items
         switch (item.getItemId()) {
-            case R.id.menu_activity_main_params:
-                return true;
             case R.id.menu_activity_main_params_Notification:
                 IntentUtils.launchIntentSearch(this, false);
                 return true;
